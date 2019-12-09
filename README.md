@@ -1,4 +1,7 @@
 # 游戏名：刀剑与魔法（暂定）
+## 开发环境
+* Unity3D
+* Visual Studio
 ## 规则设计
 * [游戏规则](https://github.com/BATTLEHAWK00/MyFirstGame/blob/master/GameRules.md)<br>
 * [秘术卡](https://github.com/BATTLEHAWK00/MyFirstGame/blob/master/Cards.md)
