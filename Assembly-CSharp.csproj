@@ -59,11 +59,12 @@
      <Compile Include="Assets\Scripts\GameMain\GridSystem\CubeCell.cs" />
      <Compile Include="Assets\Scripts\GameMain\GridSystem\GridSystem.cs" />
      <Compile Include="Assets\Scripts\GameMain\Player\PlayerLogic.cs" />
-     <Compile Include="Assets\Scripts\GameMain\UI\Buttons\Generate.cs" />
-     <Compile Include="Assets\Scripts\GameMain\UI\Buttons\Place.cs" />
-     <Compile Include="Assets\Scripts\GameMain\UI\Select.cs" />
-     <Compile Include="Assets\Scripts\GameMain\UI\UI.cs" />
-     <Compile Include="Assets\Scripts\GameMain\UI\UI_Display.cs" />
+     <Compile Include="Assets\Scripts\GameMain\UI_Logic\Buttons\Generate.cs" />
+     <Compile Include="Assets\Scripts\GameMain\UI_Logic\Buttons\Place.cs" />
+     <Compile Include="Assets\Scripts\GameMain\UI_Logic\GenerateUnit.cs" />
+     <Compile Include="Assets\Scripts\GameMain\UI_Logic\Select.cs" />
+     <Compile Include="Assets\Scripts\GameMain\UI_Logic\UI.cs" />
+     <Compile Include="Assets\Scripts\GameMain\UI_Logic\UI_Display.cs" />
      <Compile Include="Assets\Scripts\GameMain\Units\CommonShuxing.cs" />
      <Compile Include="Assets\Scripts\GameMain\Units\Types\Archer.cs" />
      <Compile Include="Assets\Scripts\GameMain\Units\Types\Changmaoshou.cs" />

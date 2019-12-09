@@ -48,9 +48,12 @@ public class GameSystem
 
 public static class Game
 {
+    #region 这里存放全局变量
     public static GameSystem GameSystemCurrent;
     public static Move MoveCurrent;
     public static Select SelectCurrrent;
+    public static GameObject NewObject;
+    #endregion
 
     public static void GameInitialize(int a)
     {

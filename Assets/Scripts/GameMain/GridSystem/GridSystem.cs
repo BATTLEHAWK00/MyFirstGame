@@ -21,14 +21,7 @@ public class GridSystem : MonoBehaviour
     }
    void Start()
     {
-        //if (transform.childCount != 0)
-        //{
-        //    Debug.Log(transform.childCount);
-        //    foreach (Transform child in transform)
-        //        GameObject.DestroyImmediate(child);
-        //    //for (int i = 0; i <= transform.childCount; i++)
-                
-        //}
+
     }
     void CreateCell(uint x, uint z, uint i) //创建单元格
     {
