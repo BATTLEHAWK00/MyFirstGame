@@ -21,16 +21,9 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler
     {
         if (!Game.GameSystemCurrent.IsPlacing)
         {
-            if (Game.SelectCurrrent.SelectedObject != null & CurrentObject == null)  //判断选择的物体是否处在本空单元
-            {
-                if (Game.SelectCurrrent.SelectedPosition == this)
-                {
-                    CurrentObject = Game.SelectCurrrent.SelectedObject;
-                    CurrentObject.transform.position = gameObject.transform.position;
-                }
-            }
-            if (Game.SelectCurrrent.SelectedObject == CurrentObject & Game.SelectCurrrent.SelectedPosition != this)  //判断物体是否发生移动
-                CurrentObject = null;
+            MovePosition();
+            if (Game.SelectCurrrent.SelectedObject == CurrentObject && Game.SelectCurrrent.SelectedPosition != this)  //判断物体是否发生移动
+                 CurrentObject = null;
         }
     }
     public void SetPosition(uint x,uint y)  //初始化单元格坐标
@@ -39,9 +32,22 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler
         _Position.Y = y;
         //Debug.Log(x.ToString() + y.ToString());
     }
-
+    void MovePosition() 
+    {
+        if (Game.SelectCurrrent.SelectedObject != null && CurrentObject == null)  //判断选择的物体是否处在本空单元
+        {
+            if (Game.SelectCurrrent.SelectedPosition == this)
+            {
+                CurrentObject = Game.SelectCurrrent.SelectedObject;
+                CurrentObject.transform.position = gameObject.transform.position;
+                Game.SelectCurrrent.SelectedObject = null;
+                Game.SelectCurrrent.SelectedPosition = null;
+            }
+        }
+    }
     public void OnPointerClick(PointerEventData eventData)  //鼠标点击事件
     {
-        Game.SelectCurrrent.SelectedPosition = gameObject.GetComponent<CubeCell>();
+        if(Game.SelectCurrrent.SelectedObject!=null)
+            Game.SelectCurrrent.SelectedPosition = gameObject.GetComponent<CubeCell>();
     }
 }
