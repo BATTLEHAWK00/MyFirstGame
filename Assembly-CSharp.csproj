@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{31D50F23-20B9-D423-8A80-DA9CD419329A}</ProjectGuid>
+    <ProjectGuid>{F536D4E2-7E6F-BB40-F6EB-7C64A65B74DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -74,19 +74,19 @@
      <Compile Include="Assets\Scripts\GameWin\BackToMenu.cs" />
      <Compile Include="Assets\Scripts\SelectSide\SelectSide.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Android.Editor">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/ScriptAssemblies/Unity.Analytics.Android.Editor.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/ScriptAssemblies/Unity.Analytics.Android.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Software/Unity 2019.1.0a8/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -281,19 +281,19 @@
  <HintPath>D:/Software/Unity 2019.1.0a8/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/PackageCache/com.unity.analytics@3.0.9/Android/Unity.Analytics.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/PackageCache/com.unity.analytics@3.0.9/Android/Unity.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing">
- <HintPath>E:/MyFiles/工程/Unity工程/scene/Library/PackageCache/com.unity.purchasing@2.0.1/UnityEngine.Purchasing.dll</HintPath>
+ <HintPath>D:/Source/Repos/MyFirstGame/Library/PackageCache/com.unity.purchasing@2.0.1/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/Software/Unity 2019.1.0a8/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
