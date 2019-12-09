@@ -69,23 +69,24 @@ public class Move
             //ui_script = GameObject.Find("/UI").GetComponent<UI>();
             //OnClickObject = GameFunc.GetMousePointedObject ();
             if(Game.GameSystemCurrent.isWaiting)
-        {
-            if (finish && OnClickObject.tag == "a" && !Set1 && (GameFunc.GetObjectShuxing(OnClickObject).BelongToWho == Game.GameSystemCurrent.Side))    //设置移动物体
             {
-                MovingObject = OnClickObject;
-                m_begin = OnClickObject.transform.position;
-                ui_script.ShowMovingCirle1(m_begin);
-                finish = false;
-                Set1 = true;
-            }
-            else if (!finish && OnClickObject.tag == "b" && !Set2 && (OnClickObject.GetComponent<PlayerLogic>().Side == Game.GameSystemCurrent.Side))  //设置目标
-            {
+                if (finish && OnClickObject.tag == "a" && !Set1 && (GameFunc.GetObjectShuxing(OnClickObject).BelongToWho == Game.GameSystemCurrent.Side))    //设置移动物体
+                {
+                    MovingObject = OnClickObject;
+                    m_begin = OnClickObject.transform.position;
+                    ui_script.ShowMovingCirle1(m_begin);
+                    finish = false;
+                    Set1 = true;
+                }
+                else if (!finish && OnClickObject.tag == "b" && !Set2 && (OnClickObject.GetComponent<PlayerLogic>().Side == Game.GameSystemCurrent.Side))  //设置目标
+                {
+                    m_begin = MovingObject.transform.position;
                     m_target = OnClickObject.transform.position;
                     TargetObject = OnClickObject;
                     ui_script.ShowMovingCirle2(m_target);
                     Set2 = true;
+                }
             }
-        }
     }
     }
 

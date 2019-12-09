@@ -8,10 +8,10 @@ public class Changmaoshou : UnitMain
     const uint Attack = 1;
     const uint AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Changmaoshou_class(HP, Attack, AttackRange);
-    //public Changmaoshou()
-    //{
-    //    base.Shuxing = Shuxing;
-    //}
+    public Changmaoshou()
+    {
+        base._Type = UnitType.Changmaoshou;
+    }
 }
 
 public class Changmaoshou_class : Shuxing

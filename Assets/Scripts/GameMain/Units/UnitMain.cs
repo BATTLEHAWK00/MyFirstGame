@@ -1,11 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum UnitType
+{
+    Archer,
+    Changmaoshou,
+    Farmer,
+    Fashi,
+    Rider
+}
 public class UnitMain : MonoBehaviour
 {
     private UI ui_script;
     virtual public Shuxing Shuxing { get; set; }
     public float Top_Offset=new float();
+    protected UnitType _Type;
+    #region 外部只读属性
+    public UnitType Type { get { return _Type; } }
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -72,13 +84,6 @@ public abstract class Shuxing
         content += ("\n攻击力：" + Attack.ToString());
         content += ("\n攻击范围：" + Attackrange.ToString());
         return content;
-    }
-    private string BoolToString(bool a)
-    {
-        if (a)
-            return "拥有";
-        else
-            return "无";
     }
 
 }

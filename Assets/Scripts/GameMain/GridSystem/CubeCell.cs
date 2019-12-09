@@ -32,7 +32,7 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler
         _Position.Y = y;
         //Debug.Log(x.ToString() + y.ToString());
     }
-    void MovePosition() 
+    void MovePosition() //处理物体移动
     {
         if (Game.SelectCurrrent.SelectedObject != null && CurrentObject == null)  //判断选择的物体是否处在本空单元
         {

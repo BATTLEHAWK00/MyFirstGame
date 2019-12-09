@@ -26,14 +26,6 @@ public class UnitTypes
 {
     public UnitType unitType;
     public string PrefabLocation;
-    public enum UnitType
-    {
-        Archer,
-        Changmaoshou,
-        Farmer,
-        Fashi,
-        Rider
-    }
     public UnitTypes(UnitType unitType)
     {
         this.unitType = unitType;

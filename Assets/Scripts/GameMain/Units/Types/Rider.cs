@@ -8,10 +8,10 @@ public class Rider : UnitMain
     const uint Attack = 1;
     const uint AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Rider_class(HP, Attack, AttackRange);
-    //public Rider()
-    //{
-    //    base.Shuxing = Shuxing;
-    //}
+    public Rider()
+    {
+        base._Type = UnitType.Rider;
+    }
 }
 
 public class Rider_class : Shuxing

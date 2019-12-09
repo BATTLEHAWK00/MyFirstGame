@@ -9,10 +9,10 @@ public class Farmer : UnitMain
     const uint AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Farmer_class(HP, Attack, AttackRange);
 
-    //public Farmer()
-    //{
-    //    base.Shuxing = Shuxing;
-    //}
+    public Farmer()
+    {
+        base._Type = UnitType.Farmer;
+    }
 }
 
 public class Farmer_class : Shuxing

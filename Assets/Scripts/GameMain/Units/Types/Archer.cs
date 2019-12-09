@@ -9,10 +9,10 @@ public class Archer : UnitMain
     const uint AttackRange = 1;
     //public Archer_class Shuxing = new Archer_class(HP, Attack, AttackRange) ;
     public override Shuxing Shuxing { get; set; } = new Archer_class(HP, Attack, AttackRange);
-    //public Archer()
-    //{
-    //    base.Shuxing = Shuxing;
-    //}
+    public Archer()
+    {
+        base._Type = UnitType.Archer;
+    }
 }
 public class Archer_class : Shuxing
 {

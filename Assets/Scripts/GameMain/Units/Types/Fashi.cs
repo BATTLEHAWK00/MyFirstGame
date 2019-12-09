@@ -9,10 +9,10 @@ public class Fashi : UnitMain
     const uint AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Fashi_class(HP, Attack, AttackRange);
 
-    //public Fashi()
-    //{
-    //    base.Shuxing = Shuxing;
-    //}
+    public Fashi()
+    {
+        base._Type = UnitType.Fashi;
+    }
 }
 
 public class Fashi_class : Shuxing
