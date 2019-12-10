@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CubeCell : MonoBehaviour,IPointerClickHandler
+public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
 {
     #region 只读变量
     public VectorInGame Position { get { return _Position; } }
@@ -11,6 +11,8 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler
     public Vector3 CenterOffset;    //中心偏移 在Unity中修改
     private VectorInGame _Position;
     public GameObject CurrentObject;    //单元内所处物体
+    public Material HighLightedMaterial;
+    public Material NormalMaterial;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,5 +51,15 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler
     {
         if(Game.SelectCurrrent.SelectedObject!=null)
             Game.SelectCurrrent.SelectedPosition = gameObject.GetComponent<CubeCell>();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        gameObject.GetComponent<MeshRenderer>().material = HighLightedMaterial;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        gameObject.GetComponent<MeshRenderer>().material = NormalMaterial;
     }
 }

@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3df761a8f01d35744b68cb66c6926257, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,3 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CenterOffset: {x: 0, y: 0, z: 0}
+  CurrentObject: {fileID: 0}
+  HighLightedMaterial: {fileID: 2100000, guid: e12ddc6ce23315a48b5519d48ff2759b, type: 2}
+  NormalMaterial: {fileID: 2100000, guid: 3df761a8f01d35744b68cb66c6926257, type: 2}

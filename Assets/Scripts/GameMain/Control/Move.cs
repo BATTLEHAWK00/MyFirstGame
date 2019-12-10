@@ -21,7 +21,7 @@ public class Move:MonoBehaviour
     {
         Game.MoveCurrent = this;
     }
-    public IEnumerator AttackMove()
+    public IEnumerator AttackMove() //攻击指令协程
     {
         if (MovingObject == null)
         {
@@ -38,7 +38,7 @@ public class Move:MonoBehaviour
         }
         yield return null;
     }
-    IEnumerator MoveTo()
+    IEnumerator MoveTo()    //移过去
     {
         isMoving = true;
         while(Vector3.Distance(MovingObject.transform.position, m_target) > 2f)
@@ -51,7 +51,7 @@ public class Move:MonoBehaviour
         MoveSpeed = initspeed;
         yield return null;
     }
-    IEnumerator MoveBack()
+    IEnumerator MoveBack()  //移回来
     {
         while(Vector3.Distance(MovingObject.transform.position, m_begin) != 0f)
         {
@@ -70,7 +70,7 @@ public class Move:MonoBehaviour
         isMoving = false;
         MoveSpeed = 5f;
     }
-    public void CheckMove(GameObject OnClickObject)
+    public void CheckMove(GameObject OnClickObject) //检查参数内物体是否符合攻击条件
     {
         if (Game.GameSystemCurrent.isWaiting)
         {
@@ -80,7 +80,7 @@ public class Move:MonoBehaviour
                 m_begin = OnClickObject.transform.position;
                 ui_script.ShowMovingCirle1(m_begin);
             }
-            else if (!isMoving && TargetObject==null)  //设置目标
+            else if (!isMoving && TargetObject==null && OnClickObject!=MovingObject)  //设置目标
             {
                 m_begin = MovingObject.transform.position;
                 m_target = OnClickObject.transform.position;
