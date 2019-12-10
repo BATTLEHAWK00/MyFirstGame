@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Farmer : UnitMain
 {
-    const uint HP = 1;
-    const uint Attack = 1;
-    const uint AttackRange = 1;
+    const int HP = 1;
+    const int Attack = 1;
+    const int AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Farmer_class(HP, Attack, AttackRange);
 
     public Farmer()
@@ -18,7 +18,7 @@ public class Farmer : UnitMain
 public class Farmer_class : Shuxing
 {
 
-    public Farmer_class(uint a, uint b, uint c) : base(a, b, c)
+    public Farmer_class(int a, int b, int c) : base(a, b, c)
     {
         base.Name = "农民";
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Changmaoshou : UnitMain
 {
-    const uint HP = 1;
-    const uint Attack = 1;
-    const uint AttackRange = 1;
+    const int HP = 1;
+    const int Attack = 1;
+    const int AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Changmaoshou_class(HP, Attack, AttackRange);
     public Changmaoshou()
     {
@@ -16,7 +16,7 @@ public class Changmaoshou : UnitMain
 
 public class Changmaoshou_class : Shuxing
 {
-    public Changmaoshou_class(uint a, uint b, uint c) : base(a, b, c)
+    public Changmaoshou_class(int a, int b, int c) : base(a, b, c)
     {
         base.Name = "长矛手"; 
     }

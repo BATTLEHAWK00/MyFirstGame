@@ -44,15 +44,19 @@ public class UnitMain : MonoBehaviour
             GameObject.Destroy(gameObject);
         }
     }
+    public void HP_Operate(int value)
+    {
+        Shuxing.Hp += value;
+    }
 }
 
 public abstract class Shuxing
 {
     #region 本身属性
     public string Name;
-    public uint Hp;
-    public uint Attack;
-    public uint Attackrange;
+    public int Hp;
+    public int Attack;
+    public int Attackrange;
     #endregion
     #region 功能属性
     public bool isBeingPlaced;
@@ -70,7 +74,7 @@ public abstract class Shuxing
     //public bool NoArmour;
     //public bool Combo;
 
-    public Shuxing(uint a, uint b, uint c)
+    public Shuxing(int a, int b, int c)
     {
         Hp = a;
         Attack = b;

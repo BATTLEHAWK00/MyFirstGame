@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSystem
+public class GameSystem:MonoBehaviour
 {
     //对外只读
     public bool isWaiting { get { return _isWaiting; } }
@@ -15,7 +15,10 @@ public class GameSystem
     public readonly int Side;   //0是A方 1是B方 只读
     private bool _isWaiting = false;     //判断是否等待玩家操作
 
-
+    public void Awake()
+    {
+        Game.GameSystemCurrent = this;
+    }
     public int GetRound()   //获取回合数
     {
         return Round;
@@ -39,9 +42,9 @@ public class GameSystem
     {
         _isWaiting = true;
     }
-    public GameSystem(int a)    //构造函数初始化
+    public GameSystem()    //构造函数初始化
     {
-        Side = a;
+        Side = Game.Side;
         NextRound();
     }
 }
@@ -53,15 +56,15 @@ public static class Game
     public static Move MoveCurrent;
     public static Select SelectCurrrent;
     public static GameObject NewObject;
+    public static int Side;
     #endregion
 
     public static void GameInitialize(int a)
     {
-        GameSystemCurrent = new GameSystem(a);
+        Side = a;
     }
     public static void InGameInitialize()
     {
-        MoveCurrent = new Move();
         SelectCurrrent = new Select();
     }
     public static void GameWin(int b)

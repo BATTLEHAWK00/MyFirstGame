@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Rider : UnitMain
 {
-    const uint HP = 1;
-    const uint Attack = 1;
-    const uint AttackRange = 1;
+    const int HP = 1;
+    const int Attack = 1;
+    const int AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Rider_class(HP, Attack, AttackRange);
     public Rider()
     {
@@ -17,7 +17,7 @@ public class Rider : UnitMain
 public class Rider_class : Shuxing
 {
 
-    public Rider_class(uint a, uint b, uint c) : base(a, b, c)
+    public Rider_class(int a, int b, int c) : base(a, b, c)
     {
         base.Name = "骑士";
     }

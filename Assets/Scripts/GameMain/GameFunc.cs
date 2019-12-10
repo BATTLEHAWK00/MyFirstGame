@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameFunc
+public class GameFunc : MonoBehaviour
 {
     public static Shuxing GetObjectShuxing(GameObject a) //获取相应物体属性
     {

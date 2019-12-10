@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Fashi : UnitMain
 {
-    const uint HP = 1;
-    const uint Attack = 1;
-    const uint AttackRange = 1;
+    const int HP = 1;
+    const int Attack = 1;
+    const int AttackRange = 1;
     public override Shuxing Shuxing { get; set; } = new Fashi_class(HP, Attack, AttackRange);
 
     public Fashi()
@@ -17,7 +17,7 @@ public class Fashi : UnitMain
 
 public class Fashi_class : Shuxing
 {
-    public Fashi_class(uint a, uint b, uint c) : base(a, b, c)
+    public Fashi_class(int a, int b, int c) : base(a, b, c)
     {
         base.Name = "法师";
     }

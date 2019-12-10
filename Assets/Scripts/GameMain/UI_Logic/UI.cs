@@ -49,14 +49,13 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Game.MoveCurrent.move();
+        StartCoroutine(Game.MoveCurrent.AttackMove());
         //回合数显示
         if (Game.GameSystemCurrent.WhoseRound() == Game.GameSystemCurrent.Side)
             RoundDisplay.GetComponent<UnityEngine.UI.Text>().text = "回合数：" + Game.GameSystemCurrent.GetRound().ToString() + "（你的回合）";
         else
             RoundDisplay.GetComponent<UnityEngine.UI.Text>().text = "回合数：" + Game.GameSystemCurrent.GetRound().ToString();
         //回合数显示
-
         //棋子数显示
         int n = 0;
         if (Game.GameSystemCurrent.Side == 0)
