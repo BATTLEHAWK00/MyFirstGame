@@ -15,15 +15,18 @@ public class UnitMain : MonoBehaviour
     virtual public Shuxing Shuxing { get; set; }
     public float Top_Offset=new float();
     protected UnitType _Type;
+    private int _Side;
     #region 外部只读属性
     public UnitType Type { get { return _Type; } }
+    public int Side { get { return _Side; } }
     #endregion
+    public void SetSide(int side){_Side = side;}
     // Start is called before the first frame update
     void Start()
     {
         ui_script = GameObject.Find("/UI").GetComponent<UI>();
+        Game.GameSystemCurrent.UnitList.Add(this);
     }
-
     // Update is called once per frame
     void Update()
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//[ExecuteInEditMode] //让网格在Unity编辑器里出现
+[ExecuteInEditMode] //让网格在Unity编辑器里出现
 public class GridSystem : MonoBehaviour
 {
     #region 此处变量在Unity中修改
@@ -14,8 +14,10 @@ public class GridSystem : MonoBehaviour
     CubeCell[] CubeCells;   //单元格数组
     void Awake()    //建立单元格系统
     {
+        if (transform.childCount > 0)
+            return;
         CubeCells = new CubeCell[Width * Length];
-        for (uint i = 0,z = 0;z<Width;z++)
+        for (uint i = 0,z = 0;z < Width;z++)
             for (uint x = 0; x < Length; x++)
                 CreateCell(x,z, i++);
     }
@@ -33,6 +35,7 @@ public class GridSystem : MonoBehaviour
         Cell.SetPosition(x,z);
         Cell.transform.SetParent(transform, false);
         Cell.transform.localPosition = position+Offset;
+        Cell.name = "CubeCell (" + x.ToString() + "," + z.ToString() + ")";
     }
 
     public CubeCell FindCubeCell(VectorInGame a) //按坐标查找单元格

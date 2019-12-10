@@ -58,21 +58,12 @@ public class UI : MonoBehaviour
         //回合数显示
         //棋子数显示
         int n = 0;
-        if (Game.GameSystemCurrent.Side == 0)
-        {
-            foreach (Shuxing i in Game.GameSystemCurrent.ShuxingListA)
+        foreach (UnitMain i in Game.GameSystemCurrent.UnitList)
+            if (i.Side == Game.Side)
                 n++;
-        }
-        else
-        {
-            foreach (Shuxing i in Game.GameSystemCurrent.ShuxingListB)
-                n++;
-        }
         QiziNubmerDisplay.GetComponent<UnityEngine.UI.Text>().text = "当前棋子数：" + n.ToString();
         //棋子数显示
     }
-
-
     public void ShowState(GameObject b) //显示状态
     {
         Shuxing a = GameFunc.GetObjectShuxing(b);
@@ -98,12 +89,9 @@ public class UI : MonoBehaviour
     {
         Vector3 position;
         MouseCircle.SetActive(true);
-
         position = a.transform.position;
         position.y = Plane.transform.position.y + 0.1f;
-
         MouseCircle.transform.position = position ;
-
     }
 
     public void HideCirle() //隐藏圆圈

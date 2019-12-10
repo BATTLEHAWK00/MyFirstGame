@@ -9,12 +9,10 @@ public class GameSystem:MonoBehaviour
     public bool isWaiting { get { return _isWaiting; } }
     //对外只读
     public bool IsPlacing;  //是否正在放置
-    public List<Shuxing> ShuxingListA = new List<Shuxing>(); //A方属性列表
-    public List<Shuxing> ShuxingListB = new List<Shuxing>(); //B方属性列表
+    public List<UnitMain> UnitList = new List<UnitMain>();
     private int Round = 0;     //回合数
     public readonly int Side;   //0是A方 1是B方 只读
     private bool _isWaiting = false;     //判断是否等待玩家操作
-
     public void Awake()
     {
         Game.GameSystemCurrent = this;
