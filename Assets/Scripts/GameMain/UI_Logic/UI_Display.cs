@@ -12,8 +12,8 @@ public class UI_Display : MonoBehaviour,IPointerEnterHandler ,IPointerExitHandle
         Game.MoveCurrent.CheckMove(gameObject);
         Game.SelectCurrrent.Check();
         Game.SelectCurrrent.SelectedObject = gameObject;
-    }
 
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log(GameFunc.GetObjectShuxing(gameObject).BelongToWho.ToString());

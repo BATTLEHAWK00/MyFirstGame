@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class GenerateUnit
 {
-    public void Generate(UnitTypes unitType)
+    public void Generate(UnitType unitType)
     {
         if (Game.NewObject == null)
         {
-            Game.NewObject = GameObject.Instantiate(Resources.Load<GameObject>(unitType.PrefabLocation));
+            UnitTypes unit = new UnitTypes(unitType);
+            Game.NewObject = GameObject.Instantiate(Resources.Load<GameObject>(unit.PrefabLocation));
             GameFunc.GetObjectShuxing(Game.NewObject).isBeingPlaced = true;
             Game.GameSystemCurrent.IsPlacing = true;
         }

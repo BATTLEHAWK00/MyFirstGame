@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameMain\Control\Move.cs" />
+     <Compile Include="Assets\Scripts\GameMain\EventSystem\EventMain.cs" />
      <Compile Include="Assets\Scripts\GameMain\GameFunc.cs" />
      <Compile Include="Assets\Scripts\GameMain\GameSystem.cs" />
      <Compile Include="Assets\Scripts\GameMain\GridSystem\CubeCell.cs" />
