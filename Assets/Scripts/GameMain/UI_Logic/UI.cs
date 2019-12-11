@@ -90,7 +90,7 @@ public class UI : MonoBehaviour
         Vector3 position;
         MouseCircle.SetActive(true);
         position = a.transform.position;
-        position.y = Plane.transform.position.y + 0.1f;
+        position.y = Plane.transform.position.y + 0.3f;
         MouseCircle.transform.position = position ;
     }
 
@@ -117,7 +117,7 @@ public class UI : MonoBehaviour
     {
         Vector3 position = a;
         MovingCircle2.SetActive(true);
-        position.y = Plane.transform.position.y + 0.1f;
+        position.y = Plane.transform.position.y + 0.3f;
         MovingCircle2.transform.position = position;
 
     }

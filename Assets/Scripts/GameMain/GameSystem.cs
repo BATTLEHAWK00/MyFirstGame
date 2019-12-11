@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
+
 public class GameSystem:MonoBehaviour
 {
     //对外只读
