@@ -13,10 +13,13 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     public GameObject CurrentObject;    //单元内所处物体
     public Material HighLightedMaterial;
     public Material NormalMaterial;
+    public Material OccupiedMaterial;
+    private Material CurrentMaterial;
+    private bool OnMouse = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     // Update is called once per frame
     void Update()
@@ -27,6 +30,10 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
             if (Game.SelectCurrrent.SelectedObject == CurrentObject && Game.SelectCurrrent.SelectedPosition != this)  //判断物体是否发生移动
                  CurrentObject = null;
         }
+        if (CurrentObject == null&&!OnMouse)
+            CurrentMaterial = NormalMaterial;
+        if (gameObject.GetComponent<MeshRenderer>().material != CurrentMaterial)
+            gameObject.GetComponent<MeshRenderer>().material = CurrentMaterial;
     }
     public void SetPosition(uint x,uint y)  //初始化单元格坐标
     {
@@ -49,17 +56,23 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     }
     public void OnPointerClick(PointerEventData eventData)  //鼠标点击事件
     {
-        if(Game.SelectCurrrent.SelectedObject!=null)
+        OnMouse = false;
+        if (Game.SelectCurrrent.SelectedObject != null)
+        { 
             Game.SelectCurrrent.SelectedPosition = gameObject.GetComponent<CubeCell>();
+            CurrentMaterial = OccupiedMaterial;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        gameObject.GetComponent<MeshRenderer>().material = HighLightedMaterial;
+        CurrentMaterial = HighLightedMaterial;
+        OnMouse = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameObject.GetComponent<MeshRenderer>().material = NormalMaterial;
+        if (Game.SelectCurrrent.SelectedPosition != this)
+            CurrentMaterial=NormalMaterial;
     }
 }

@@ -110,3 +110,6 @@ MonoBehaviour:
   CurrentObject: {fileID: 0}
   HighLightedMaterial: {fileID: 2100000, guid: e12ddc6ce23315a48b5519d48ff2759b, type: 2}
   NormalMaterial: {fileID: 2100000, guid: 3df761a8f01d35744b68cb66c6926257, type: 2}
+  OccupiedMaterial: {fileID: 2100000, guid: 11673da175e0aeb438b04665045658fe, type: 2}
+  TextPrefab: {fileID: 3231675667520977807, guid: 129ad9a4fa7041546836bf7f14be71a2,
+    type: 3}

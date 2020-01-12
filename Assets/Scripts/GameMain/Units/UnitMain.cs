@@ -44,6 +44,7 @@ public class UnitMain : MonoBehaviour
         if (Shuxing.Hp <= 0)
         {
             //Qizi.ShuxingList.Remove();
+            Game.GameSystemCurrent.UnitList.Remove(this);
             GameObject.Destroy(gameObject);
         }
     }
