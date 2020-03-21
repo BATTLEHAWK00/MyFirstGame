@@ -31,4 +31,4 @@ PhysicsManager:
   m_FrictionType: 0
   m_EnableEnhancedDeterminism: 0
   m_EnableUnifiedHeightmaps: 1
-  m_DefaultMaxAngluarSpeed: 50
+  m_DefaultMaxAngluarSpeed: 7
