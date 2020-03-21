@@ -8,13 +8,13 @@ using UnityEngine.Events;
 /// </summary>
 public class EventManager: BaseManager <EventManager>
 {
-    private Dictionary<Events, UnityAction<object>> EventDic = new Dictionary<Events, UnityAction<object>>();
+    private Dictionary<string, UnityAction<object>> EventDic = new Dictionary<string, UnityAction<object>>();
     /// <summary>
     /// 添加事件
     /// </summary>
     /// <param name="name">事件名</param>
     /// <param name="action">事件动作</param>
-    public void AddListenner(Events name,UnityAction<object> action)
+    public void AddListenner(string name,UnityAction<object> action)
     {
         if (EventDic.ContainsKey(name))
             EventDic[name] += action;
@@ -29,7 +29,7 @@ public class EventManager: BaseManager <EventManager>
     /// </summary>
     /// <param name="name">事件名</param>
     /// <param name="info">参数</param>
-    public void EventTrigger(Events name,object info)
+    public void EventTrigger(string name,object info)
     {
         if (EventDic.ContainsKey(name))
         {
@@ -43,7 +43,7 @@ public class EventManager: BaseManager <EventManager>
     /// 删除事件
     /// </summary>
     /// <param name="name">事件名</param>
-    public void RemoveListener(Events name)
+    public void RemoveListener(string name)
     {
         if (EventDic.ContainsKey(name))
         {

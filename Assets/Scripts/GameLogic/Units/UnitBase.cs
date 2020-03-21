@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Events_Unit
+{
+    Unit_OnUnitDeath,
+    Unit_OnUnitBirth
+}
+
 public class UnitBase : MonoBehaviour
 {
     #region 私有成员
@@ -41,7 +48,7 @@ public class UnitBase : MonoBehaviour
         }
         //添加事件
         EventAdd();
-        EventManager.Getinstance().EventTrigger(Events.Unit_OnUnitBirth,gameObject);
+        EventManager.Getinstance().EventTrigger("Unit_OnUnitBirth",gameObject);
         Invoke("Die", 3);
         //子类初始化函数
         _Start();
@@ -49,8 +56,8 @@ public class UnitBase : MonoBehaviour
     public void Die() { _HP = 0; }
     void EventAdd()
     {
-        EventManager.Getinstance().AddListenner(Events.Unit_OnUnitDeath, OnDeathBroadcast);
-        EventManager.Getinstance().AddListenner(Events.Unit_OnUnitBirth, OnBirthBroadcast);
+        EventManager.Getinstance().AddListenner("Unit_OnUnitDeath", OnDeathBroadcast);
+        EventManager.Getinstance().AddListenner("Unit_OnUnitBirth", OnBirthBroadcast);
     }
     // Update is called once per frame
     void Update()
@@ -75,7 +82,7 @@ public class UnitBase : MonoBehaviour
     
     void OnDeath()
     {
-        EventManager.Getinstance().EventTrigger(Events.Unit_OnUnitDeath, gameObject);
+        EventManager.Getinstance().EventTrigger("Unit_OnUnitDeath", gameObject);
         Destroy(gameObject);
     }
     void OnDeathBroadcast(object info)

@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Events
+public class Events
 {
-    Unit_OnUnitDeath,
-    Unit_OnUnitBirth,
-    Game_OnStart,
-    Game_OnEnd
+
 }

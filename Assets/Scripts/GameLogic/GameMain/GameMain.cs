@@ -9,8 +9,8 @@ public class GameMain : MonoBehaviour
     void Start()
     {
         TheGame.Getinstance().SetGameMain(this);
-        EventManager.Getinstance().AddListenner(Events.Game_OnStart, OnGameStart);
-        EventManager.Getinstance().EventTrigger(Events.Game_OnStart, null);
+        EventManager.Getinstance().AddListenner("Game_OnStart", OnGameStart);
+        EventManager.Getinstance().EventTrigger("Game_OnStart", null);
     }
     void OnGameStart(object info)
     {
