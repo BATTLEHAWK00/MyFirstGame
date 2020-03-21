@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
-    public _debug Debug;
+    public _debug _Debug;
     // Start is called before the first frame update
     void Start()
     {
         TheGame.Getinstance().SetGameMain(this);
+        EventManager.Getinstance().AddListenner(Events.Game_OnStart, OnGameStart);
+        EventManager.Getinstance().EventTrigger(Events.Game_OnStart, null);
     }
-
+    void OnGameStart(object info)
+    {
+        Debug.Log("[消息]游戏开始");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,7 +28,7 @@ public class TheGame : BaseManager<TheGame>
     public GameMain GameMain { get { return gameMain; } }
     public _debug Debug()
     {
-        return gameMain.Debug;
+        return gameMain._Debug;
     }
     public void SetGameMain(GameMain _gameMain)
     {

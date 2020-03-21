@@ -27,6 +27,10 @@ public class UnitBase : MonoBehaviour
         }
         return false;
     }
+    void Awake()
+    {
+
+    }
     void Start()
     {
         //检测初始化是否有错误
@@ -37,7 +41,7 @@ public class UnitBase : MonoBehaviour
         }
         //添加事件
         EventAdd();
-        Debug.Log(string.Format("[单位]{0}初始化完毕!", UnitName));
+        EventManager.Getinstance().EventTrigger(Events.Unit_OnUnitBirth,gameObject);
         Invoke("Die", 3);
         //子类初始化函数
         _Start();
@@ -45,7 +49,8 @@ public class UnitBase : MonoBehaviour
     public void Die() { _HP = 0; }
     void EventAdd()
     {
-        EventManager.Getinstance().AddListenner("Unit_OnDeath", TheGame.Getinstance().Debug().OnDeathBroadcast);
+        EventManager.Getinstance().AddListenner(Events.Unit_OnUnitDeath, OnDeathBroadcast);
+        EventManager.Getinstance().AddListenner(Events.Unit_OnUnitBirth, OnBirthBroadcast);
     }
     // Update is called once per frame
     void Update()
@@ -70,7 +75,15 @@ public class UnitBase : MonoBehaviour
     
     void OnDeath()
     {
-        EventManager.Getinstance().EventTrigger("Unit_OnDeath", gameObject);
+        EventManager.Getinstance().EventTrigger(Events.Unit_OnUnitDeath, gameObject);
         Destroy(gameObject);
+    }
+    void OnDeathBroadcast(object info)
+    {
+        Debug.Log(string.Format("[消息]{0}已死亡", (info as GameObject).GetComponent<UnitBase>().UnitName));
+    }
+    void OnBirthBroadcast(object info)
+    {
+        Debug.Log(string.Format("[消息]{0}已生成", (info as GameObject).GetComponent<UnitBase>().UnitName));
     }
 }

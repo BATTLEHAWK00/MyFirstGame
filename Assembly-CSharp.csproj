@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0B1A8424-6649-87A5-B0F0-564358DD181F}</ProjectGuid>
+    <ProjectGuid>{F536D4E2-7E6F-BB40-F6EB-7C64A65B74DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Base\BaseManager.cs" />
     <Compile Include="Assets\Scripts\Debug\_debug.cs" />
     <Compile Include="Assets\Scripts\EventManager\EventManager.cs" />
+    <Compile Include="Assets\Scripts\EventManager\Events.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\GameMain.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Farmer\Farmer.cs" />
@@ -75,31 +76,31 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame_new/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
