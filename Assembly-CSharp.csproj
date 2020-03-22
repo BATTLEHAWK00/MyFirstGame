@@ -64,17 +64,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Base\BaseManager.cs" />
+    <Compile Include="Assets\Scripts\Debug\GenerateUnit.cs" />
     <Compile Include="Assets\Scripts\Debug\_debug.cs" />
     <Compile Include="Assets\Scripts\EventManager\EventManager.cs" />
     <Compile Include="Assets\Scripts\EventManager\Events.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GameMain\Camera\SetCameraPos.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\GameMain.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GameMain\UI\Debug\UnitCall\SwitchButton.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GridSystem\CubeCell.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GridSystem\GridSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Common\UnitGeneration.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Farmer\Farmer.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Lancer\Lancer.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Rider\Rider.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
+    <Compile Include="Assets\Scripts\Mono\MonoManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

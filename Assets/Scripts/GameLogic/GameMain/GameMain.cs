@@ -5,12 +5,13 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
     public _debug _Debug;
+    public GridSystem GridSystem;
     // Start is called before the first frame update
     void Start()
     {
         TheGame.Getinstance().SetGameMain(this);
-        EventManager.Getinstance().AddListenner("Game_OnStart", OnGameStart);
-        EventManager.Getinstance().EventTrigger("Game_OnStart", null);
+        EventManager.Getinstance().AddListener<object>("Game_OnStart", OnGameStart);
+        EventManager.Getinstance().EventTrigger("Game_OnStart");
     }
     void OnGameStart(object info)
     {

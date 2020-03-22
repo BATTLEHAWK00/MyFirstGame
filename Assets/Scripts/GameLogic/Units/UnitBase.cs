@@ -2,13 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum Events_Unit
-{
-    Unit_OnUnitDeath,
-    Unit_OnUnitBirth
-}
-
 public class UnitBase : MonoBehaviour
 {
     #region 私有成员
@@ -36,7 +29,7 @@ public class UnitBase : MonoBehaviour
     }
     void Awake()
     {
-
+        
     }
     void Start()
     {
@@ -56,8 +49,8 @@ public class UnitBase : MonoBehaviour
     public void Die() { _HP = 0; }
     void EventAdd()
     {
-        EventManager.Getinstance().AddListenner("Unit_OnUnitDeath", OnDeathBroadcast);
-        EventManager.Getinstance().AddListenner("Unit_OnUnitBirth", OnBirthBroadcast);
+        EventManager.Getinstance().AddListener<GameObject>("Unit_OnUnitDeath", OnDeathBroadcast);
+        EventManager.Getinstance().AddListener<GameObject>("Unit_OnUnitBirth", OnBirthBroadcast);
     }
     // Update is called once per frame
     void Update()
@@ -85,12 +78,19 @@ public class UnitBase : MonoBehaviour
         EventManager.Getinstance().EventTrigger("Unit_OnUnitDeath", gameObject);
         Destroy(gameObject);
     }
-    void OnDeathBroadcast(object info)
+    void OnDeathBroadcast(GameObject info)
     {
-        Debug.Log(string.Format("[消息]{0}已死亡", (info as GameObject).GetComponent<UnitBase>().UnitName));
+        if (info == gameObject)
+            Debug.Log(string.Format("[消息]{0}({1})已死亡", info.GetComponent<UnitBase>().UnitName,info.GetInstanceID()));
     }
-    void OnBirthBroadcast(object info)
+    void OnBirthBroadcast(GameObject info)
     {
-        Debug.Log(string.Format("[消息]{0}已生成", (info as GameObject).GetComponent<UnitBase>().UnitName));
+        if(info == gameObject)
+            Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName,info.GetInstanceID()));
+    }
+    private void OnDestroy()
+    {
+        EventManager.Getinstance().RemoveListener<GameObject>("Unit_OnUnitDeath", OnDeathBroadcast);
+        EventManager.Getinstance().RemoveListener<GameObject>("Unit_OnUnitBirth", OnBirthBroadcast);
     }
 }
