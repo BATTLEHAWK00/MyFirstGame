@@ -40,7 +40,8 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     public void OnPointerClick(PointerEventData eventData)  //鼠标点击事件
     {
         OnMouse = false;
-        EventManager.Getinstance().EventTrigger<CubeCell>("Grid_OnSelected",this);
+        if(RoundSystem.Getinstance().IsWaitingPlayer())
+            EventManager.Getinstance().EventTrigger<CubeCell>("Grid_OnSelected",this);
         AudioManager.Getinstance().PlaySound("Grid/OnClick", 0.1f);
     }
 

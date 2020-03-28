@@ -14,8 +14,10 @@ public class UI_Units : BaseManager<UI_Units>
     {
         if (CallPanel == null)
             CallPanel = GameObject.Find("UI/Canvas/Call/Call_Panel");
-        CallPanel.SetActive(true);
         CurrentSelected = cubeCell;
         Debug.Log("单元格选中:" + cubeCell.Position.X + "," + cubeCell.Position.Y);
+        if (cubeCell.CurrentObject != null)
+            return;
+        CallPanel.SetActive(true);
     }
 }

@@ -25,8 +25,11 @@ public class GameMain : MonoBehaviour
     void OnGameStart(object info)
     {
         Debug.Log("[消息]游戏开始");
+        RoundSystem.Getinstance().Init(GameObject.Find("UI/Canvas/HUD/RoundsPanel/Text").GetComponent<UnityEngine.UI.Text>(),1);
+        UIManager.Getinstance().Init();
         AudioManager.Getinstance().PlayBGM("1");
         AudioManager.Getinstance().PlaySound("GameMain/GameStart",0.1f);
+        UIManager.Getinstance().MsgOnScreen("游戏开始啦!");
     }
     // Update is called once per frame
     void Update()

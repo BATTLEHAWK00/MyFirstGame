@@ -51,6 +51,7 @@ public class UnitBase : MonoBehaviour
         //子类初始化函数
         _Start();
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.2f);
+        EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "被召唤了出来!");
     }
     public void Die() { _HP = 0; }
     void EventAdd()
