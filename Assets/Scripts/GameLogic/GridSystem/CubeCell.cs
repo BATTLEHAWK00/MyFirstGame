@@ -40,13 +40,15 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     public void OnPointerClick(PointerEventData eventData)  //鼠标点击事件
     {
         OnMouse = false;
-
+        EventManager.Getinstance().EventTrigger<CubeCell>("Grid_OnSelected",this);
+        AudioManager.Getinstance().PlaySound("Grid/OnClick", 0.1f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         meshRenderer.material = HighLightedMaterial;
         OnMouse = true;
+        AudioManager.Getinstance().PlaySound("Grid/OnMouse",0.1f);
         //Debug.Log("鼠标进入");
     }
 

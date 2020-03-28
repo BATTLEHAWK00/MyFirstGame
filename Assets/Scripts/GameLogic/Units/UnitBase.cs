@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class UnitSounds
+{
+    public readonly string OnDeath = "Units/OnDeath";
+    public readonly string OnBorn = "Units/OnBorn";
+}
 public class UnitBase : MonoBehaviour
 {
     #region 私有成员
@@ -45,6 +50,7 @@ public class UnitBase : MonoBehaviour
         Invoke("Die", 3);
         //子类初始化函数
         _Start();
+        AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.2f);
     }
     public void Die() { _HP = 0; }
     void EventAdd()
@@ -76,6 +82,7 @@ public class UnitBase : MonoBehaviour
     void OnDeath()
     {
         EventManager.Getinstance().EventTrigger("Unit_OnUnitDeath", gameObject);
+        AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
         Destroy(gameObject);
     }
     void OnDeathBroadcast(GameObject info)

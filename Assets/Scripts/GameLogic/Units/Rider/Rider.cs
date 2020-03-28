@@ -7,6 +7,8 @@ public class Rider : UnitBase
 
     public Rider()
     {
-        base.SetUnitType("骑手", UnitType.Rider);
+        base.SetUnitType("骑士", UnitType.Rider);
+        base._HP = 3;
+        base._Description = "骑士";
     }
 }

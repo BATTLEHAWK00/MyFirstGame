@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AudioManager\AudioList.cs" />
+    <Compile Include="Assets\Scripts\AudioManager\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Base\BaseManager.cs" />
     <Compile Include="Assets\Scripts\Debug\GenerateUnit.cs" />
     <Compile Include="Assets\Scripts\Debug\_debug.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\Scripts\GameLogic\GameMain\Camera\SetCameraPos.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\GameMain.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\UI\Debug\UnitCall\SwitchButton.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GameMain\UI\Units.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\CubeCell.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\GridSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />
