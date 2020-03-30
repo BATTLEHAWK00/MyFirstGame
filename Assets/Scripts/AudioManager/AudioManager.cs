@@ -29,7 +29,7 @@ public class AudioManager : BaseManager<AudioManager>
             bgm_source = obj_Audio.AddComponent<AudioSource>();
         Debug.Log("[消息]播放BGM:" + name);
         bgm_source.clip = Resources.Load<AudioClip>("Audio/BGM/" + name);
-        bgm_source.volume = 0.2f;
+        bgm_source.volume = 0.05f;
         bgm_source.Play();
     }
     public void PlayBGM()

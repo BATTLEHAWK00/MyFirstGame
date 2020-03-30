@@ -47,7 +47,7 @@ public class UnitBase : MonoBehaviour
         //添加事件
         EventAdd();
         EventManager.Getinstance().EventTrigger("Unit_OnUnitBirth",gameObject);
-        Invoke("Die", 3);
+        //Invoke("Die", 3);
         //子类初始化函数
         _Start();
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.2f);
@@ -84,6 +84,7 @@ public class UnitBase : MonoBehaviour
     {
         EventManager.Getinstance().EventTrigger("Unit_OnUnitDeath", gameObject);
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
+        EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "已死亡!");
         Destroy(gameObject);
     }
     void OnDeathBroadcast(GameObject info)

@@ -5,15 +5,22 @@ using UnityEngine;
 public class MsgBar : MonoBehaviour
 {
     private float seconds = 0;
+    [Range(1,10f)]
+    public float RemainTime = 3f;
+    private Animation animation;
     private void Awake()
     {
+        animation = gameObject.AddComponent<Animation>();
         EventManager.Getinstance().AddListener<string>("UI_MsgBar", Event_Msg);
         gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        AnimationClip clip;
+        clip = Animation.Instantiate<AnimationClip>(Resources.Load<AnimationClip>("Animation/UI/MsgBar/Disppear"));
+        clip.legacy = true;
+        animation.AddClip(clip, "Disappear");
     }
 
     // Update is called once per frame
@@ -27,15 +34,17 @@ public class MsgBar : MonoBehaviour
     {
         gameObject.GetComponentInChildren<UnityEngine.UI.Text>().text = msg;
         gameObject.SetActive(true);
-        if(seconds>0)
-            seconds += 1.5f;
-        else
-            seconds += 3f;
+        seconds = RemainTime;
+        AnimationClip clip = Animation.Instantiate<AnimationClip>(Resources.Load<AnimationClip>("Animation/UI/MsgBar/Appear"));
+        clip.legacy = true;
+        animation.AddClip(clip, "Appear");
+        animation.Play("Appear",PlayMode.StopAll);
         //Invoke("Die", 5f);
     }
     public void Die()
     {
         //Destroy(gameObject);
+        animation.Play("Disappear", PlayMode.StopAll);
         gameObject.SetActive(false);
     }
 }

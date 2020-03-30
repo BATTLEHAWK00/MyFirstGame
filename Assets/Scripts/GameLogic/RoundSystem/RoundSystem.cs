@@ -12,6 +12,7 @@ public class RoundSystem : BaseManager<RoundSystem>
     {
         return isWaiting;
     }
+    public int Side { get { return side; } }
     public void NextRound()
     {
         Rounds++;

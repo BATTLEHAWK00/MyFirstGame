@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
     <Compile Include="Assets\Scripts\Mono\MonoManager.cs" />
+    <Compile Include="Assets\test.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
