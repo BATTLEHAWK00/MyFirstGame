@@ -2731,13 +2731,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6e676f0cdad0e44a324f12c59d8f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 8
-  Length: 8
+  Width: 4
+  Length: 5
   CubePrefab: {fileID: 8071269156242330144, guid: 41a2169ef5ff3be4881dc85f56e94138,
     type: 3}
   Ground: {fileID: 1187719799}
   Offset: {x: 0, y: 0, z: 0}
   Distance: 6.5
+  RowCounter: 
 --- !u!4 &1804181468
 Transform:
   m_ObjectHideFlags: 0

@@ -13,17 +13,22 @@ public class GridSystem : MonoBehaviour
     public float Distance = 10f;
     #endregion
     List<CubeCell> CubeCells = new List<CubeCell>();
+    public List<int> RowCounter = new List<int>();
     //CubeCell[] CubeCells;   //单元格数组
-    void Awake()    
+    void Awake()
     {
+        // 初始化行计数器
+        for (int i = 0; i < Length; i++)
+            RowCounter.Add(0);
+        // 二维遍历创建单元格
         for (int i = 0, z = 0; z < Width; z++)
             for (int x = 0; x < Length; x++)
                 CreateCell(x, z, i++);
     }
    void Start() //建立单元格系统
-    {
+   {
 
-    }
+   }
     void CreateCell(int x, int z, int i) //创建单元格
     {
         Vector3 position;

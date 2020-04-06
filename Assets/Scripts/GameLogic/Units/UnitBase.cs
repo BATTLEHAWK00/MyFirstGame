@@ -12,14 +12,20 @@ public class UnitBase : MonoBehaviour
     #region 私有成员
     private string _unitName;
     private UnitType _unitType;
+    private int _side;
+    private CubeCell _position;
     #endregion
-    #region 共有成员
-    public string UnitName { get { return _unitName; } }
-    public UnitType UnitType { get { return _unitType; } }
-    public int GetHP() { return _HP; }
+    #region 公有成员
+    public string UnitName { get { return _unitName; } }    //获取单位显示名称
+    public UnitType UnitType { get { return _unitType; } }  //单位类型
+    public int GetHP() { return _HP; }  //获取HP
+    public int Side { get { return _side; } }   //属于哪一方
+    public CubeCell GetPosition(){ return _position;}   //获取单元格位置
     #endregion
     #region 单位共有属性
     protected int _HP=-1;    //生命
+    protected int Attack;   //攻击力
+    protected int AttackRange;  //攻击距离
     protected string _Description;    //单位描述
     #endregion
     // Start is called before the first frame update
@@ -56,6 +62,7 @@ public class UnitBase : MonoBehaviour
     public void Die() { _HP = 0; }
     void EventAdd()
     {
+        //添加事件
         EventManager.Getinstance().AddListener<GameObject>("Unit_OnUnitDeath", OnDeathBroadcast);
         EventManager.Getinstance().AddListener<GameObject>("Unit_OnUnitBirth", OnBirthBroadcast);
     }
@@ -82,9 +89,13 @@ public class UnitBase : MonoBehaviour
     
     void OnDeath()
     {
+        //触发单位死亡事件(Unit_OnUnitDeath)
         EventManager.Getinstance().EventTrigger("Unit_OnUnitDeath", gameObject);
+        //播放死亡音效
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
+        //广播死亡消息
         EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "已死亡!");
+        //销毁物体
         Destroy(gameObject);
     }
     void OnDeathBroadcast(GameObject info)
@@ -99,6 +110,7 @@ public class UnitBase : MonoBehaviour
     }
     private void OnDestroy()
     {
+        //事件销毁
         EventManager.Getinstance().RemoveListener<GameObject>("Unit_OnUnitDeath", OnDeathBroadcast);
         EventManager.Getinstance().RemoveListener<GameObject>("Unit_OnUnitBirth", OnBirthBroadcast);
     }

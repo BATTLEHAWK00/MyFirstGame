@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum UnitType
 {
-    Archer,
-    Farmer,
-    Lancer,
-    Rider,
-    Witcher
+    Archer, //弓箭手
+    Farmer, //农民
+    Lancer, //长矛手
+    Rider,  //骑士
+    Witcher //法师
 }
