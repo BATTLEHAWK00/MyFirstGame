@@ -9,7 +9,9 @@
 * Assets 游戏文件
     * Scripts 脚本
     * Resources 资源文件
+        * Sounds 声音文件
         * Prefabs 预制文件
+            * Units 单位预制
         * Scenes 场景文件
         * Texture 贴图文件
     * Materials 材质文件
@@ -24,7 +26,7 @@
     * 秘术卡系统
     * 天赋系统
     * 单位召唤系统 〇
-* UI逻辑
+* UI交互/逻辑
 * 音效系统 √
 * 事件系统 √
 * 坐标网格系统 〇
