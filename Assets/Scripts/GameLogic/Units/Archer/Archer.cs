@@ -9,5 +9,7 @@ public class Archer : UnitBase
         base.SetUnitType("弓箭手", UnitType.Archer);
         base._HP = 3;
         base._Description = "弓箭手";
+        base.attack = 2;
+        base.attackRange = 3;
     }
 }

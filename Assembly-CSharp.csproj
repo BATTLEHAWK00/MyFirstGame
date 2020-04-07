@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\AudioManager\AudioList.cs" />
     <Compile Include="Assets\Scripts\AudioManager\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Base\BaseManager.cs" />
+    <Compile Include="Assets\Scripts\Common\Common.cs" />
     <Compile Include="Assets\Scripts\Debug\GenerateUnit.cs" />
     <Compile Include="Assets\Scripts\Debug\_debug.cs" />
     <Compile Include="Assets\Scripts\EventManager\EventManager.cs" />

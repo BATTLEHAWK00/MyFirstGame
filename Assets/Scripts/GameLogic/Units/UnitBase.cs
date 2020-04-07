@@ -20,11 +20,14 @@ public class UnitBase : MonoBehaviour
     public int GetHP() { return _HP; }  //获取HP
     public int Side { get { return _side; } }   //属于哪一方
     public CubeCell GetPosition() { return _position; }   //获取单元格位置
+    public void SetPosition(CubeCell cubeCell) { _position = cubeCell; }
+    public int AttackRange { get { return attackRange; } }
+    public int Attack { get { return attack; } }
     #endregion
     #region 单位共有属性
     protected int _HP = -1;    //生命
-    protected int Attack;   //攻击力
-    protected int AttackRange;  //攻击距离
+    protected int attack = 1;   //攻击力
+    protected int attackRange = 2;  //攻击距离
     protected string _Description;    //单位描述
     protected delegate void AttackDelegate(UnitBase Target);
     protected AttackDelegate AttackFunc;
@@ -96,6 +99,9 @@ public class UnitBase : MonoBehaviour
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
         //广播死亡消息
         EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "已死亡!");
+        //行计数器扣除
+        TheGame.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.Y]--;
+        GetPosition().CurrentObject = null;
         //销毁物体
         Destroy(gameObject);
     }

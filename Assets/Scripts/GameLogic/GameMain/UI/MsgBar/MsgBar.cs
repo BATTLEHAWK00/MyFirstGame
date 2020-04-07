@@ -17,10 +17,10 @@ public class MsgBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AnimationClip clip;
-        clip = Animation.Instantiate<AnimationClip>(Resources.Load<AnimationClip>("Animation/UI/MsgBar/Disppear"));
-        clip.legacy = true;
-        animation.AddClip(clip, "Disappear");
+        //AnimationClip clip;
+        //clip = Animation.Instantiate<AnimationClip>(Resources.Load<AnimationClip>("Animation/UI/MsgBar/Disppear"));
+        //clip.legacy = true;
+        //animation.AddClip(clip, "Disappear");
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class MsgBar : MonoBehaviour
     public void Die()
     {
         //Destroy(gameObject);
-        animation.Play("Disappear", PlayMode.StopAll);
+        //animation.Play("Disappear", PlayMode.StopAll);
         gameObject.SetActive(false);
     }
 }
