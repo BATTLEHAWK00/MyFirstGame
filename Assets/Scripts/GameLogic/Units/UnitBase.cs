@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class UnitSounds
 {
     public readonly string OnDeath = "Units/OnDeath";
@@ -20,13 +19,15 @@ public class UnitBase : MonoBehaviour
     public UnitType UnitType { get { return _unitType; } }  //单位类型
     public int GetHP() { return _HP; }  //获取HP
     public int Side { get { return _side; } }   //属于哪一方
-    public CubeCell GetPosition(){ return _position;}   //获取单元格位置
+    public CubeCell GetPosition() { return _position; }   //获取单元格位置
     #endregion
     #region 单位共有属性
-    protected int _HP=-1;    //生命
+    protected int _HP = -1;    //生命
     protected int Attack;   //攻击力
     protected int AttackRange;  //攻击距离
     protected string _Description;    //单位描述
+    protected delegate void AttackDelegate(UnitBase Target);
+    protected AttackDelegate AttackFunc;
     #endregion
     // Start is called before the first frame update
     bool CheckInitError()
@@ -40,7 +41,7 @@ public class UnitBase : MonoBehaviour
     }
     void Awake()
     {
-        
+
     }
     void Start()
     {
@@ -52,7 +53,7 @@ public class UnitBase : MonoBehaviour
         }
         //添加事件
         EventAdd();
-        EventManager.Getinstance().EventTrigger("Unit_OnUnitBirth",gameObject);
+        EventManager.Getinstance().EventTrigger("Unit_OnUnitBirth", gameObject);
         //Invoke("Die", 3);
         //子类初始化函数
         _Start();
@@ -77,7 +78,7 @@ public class UnitBase : MonoBehaviour
     }
     virtual protected void _Start() { }
     virtual protected void _Update() { }
-    protected void SetUnitType(string name,UnitType unitType)
+    protected void SetUnitType(string name, UnitType unitType)
     {
         _unitName = name;
         _unitType = unitType;
@@ -86,7 +87,7 @@ public class UnitBase : MonoBehaviour
     {
         _HP -= amount;
     }
-    
+
     void OnDeath()
     {
         //触发单位死亡事件(Unit_OnUnitDeath)
@@ -101,12 +102,12 @@ public class UnitBase : MonoBehaviour
     void OnDeathBroadcast(GameObject info)
     {
         if (info == gameObject)
-            Debug.Log(string.Format("[消息]{0}({1})已死亡", info.GetComponent<UnitBase>().UnitName,info.GetInstanceID()));
+            Debug.Log(string.Format("[消息]{0}({1})已死亡", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
     }
     void OnBirthBroadcast(GameObject info)
     {
-        if(info == gameObject)
-            Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName,info.GetInstanceID()));
+        if (info == gameObject)
+            Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
     }
     private void OnDestroy()
     {
