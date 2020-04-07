@@ -5,7 +5,7 @@
 ## 规则设计
 * [游戏规则](https://github.com/BATTLEHAWK00/MyFirstGame/blob/master/GameRules.md)  
 * [秘术卡](https://github.com/BATTLEHAWK00/MyFirstGame/blob/master/Cards.md)  
-* [天赋](https://github.com/BATTLEHAWK00/MyFirstGame/blob/master/Tatent.md)  
+* [天赋](https://github.com/BATTLEHAWK00/MyFirstGame/blob/master/Talents.md)  
 ## 目录结构
 * Assets 游戏文件
     * Scripts 脚本
