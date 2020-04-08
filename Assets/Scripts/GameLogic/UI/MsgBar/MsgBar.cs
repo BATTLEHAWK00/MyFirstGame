@@ -35,10 +35,12 @@ public class MsgBar : MonoBehaviour
         gameObject.GetComponentInChildren<UnityEngine.UI.Text>().text = msg;
         gameObject.SetActive(true);
         seconds = RemainTime;
-        AnimationClip clip = Animation.Instantiate<AnimationClip>(Resources.Load<AnimationClip>("Animation/UI/MsgBar/Appear"));
-        clip.legacy = true;
-        animation.AddClip(clip, "Appear");
-        animation.Play("Appear",PlayMode.StopAll);
+        ResManager.Getinstance().LoadAsync<AnimationClip>("Animation/UI/MsgBar/Appear",(anim)=> {
+            AnimationClip clip = Animation.Instantiate(anim);
+            clip.legacy = true;
+            animation.AddClip(clip, "Appear");
+            animation.Play("Appear", PlayMode.StopAll);
+        });
         //Invoke("Die", 5f);
     }
     public void Die()

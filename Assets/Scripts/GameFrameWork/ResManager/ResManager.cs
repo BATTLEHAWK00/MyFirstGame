@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ResManager : BaseManager<ResManager>
+public class ResManager : BaseManager<ResManager>   //资源管理模块
 {
     /// <summary>
     /// 同步加载资源
@@ -31,6 +31,7 @@ public class ResManager : BaseManager<ResManager>
     /// <param name="callback">回调委托方法</param>
     public void LoadAsync<T>(string name, UnityAction<T> callback) where T : Object
     {
+        //开启异步加载协程
         TheGame.Getinstance().GameMain.MonoManager.StartCoroutine(LoadAsyncCoroutine<T>(name, callback));
     }
     IEnumerator LoadAsyncCoroutine<T>(string name,UnityAction<T> callback) where T: Object

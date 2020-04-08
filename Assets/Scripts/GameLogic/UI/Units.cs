@@ -13,7 +13,7 @@ public class UI_Units : BaseManager<UI_Units>
     public void CellSelected(CubeCell cubeCell)
     {
         if (CallPanel == null)
-            CallPanel = GameObject.Find("UI/Canvas/Call/Call_Panel");
+            CallPanel = UIManager.Getinstance().Mid.Find("Call/Call_Panel").gameObject;
         CurrentSelected = cubeCell;
         Debug.Log("单元格选中:" + cubeCell.Position.X + "," + cubeCell.Position.Y);
         if (cubeCell.CurrentObject != null)

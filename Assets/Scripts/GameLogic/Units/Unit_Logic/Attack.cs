@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Attack
 {
+    /// <summary>
+    /// 攻击方法
+    /// </summary>
+    /// <param name="from">攻击方</param>
+    /// <param name="target">攻击目标</param>
     public void AttackTarget(UnitBase from,UnitBase target)
     {
         #region 异常处理

@@ -15,7 +15,7 @@ public class AudioManager : BaseManager<AudioManager>
         } 
         set
         {
-            bgm_source.volume = BGM_Volume;
+            bgm_source.volume = value;
         }
     }
     public void PlayBGM(string name)
@@ -30,13 +30,9 @@ public class AudioManager : BaseManager<AudioManager>
         Debug.Log("[消息]播放BGM:" + name);
         ResManager.Getinstance().LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) => {
             bgm_source.clip = clip;
+            bgm_source.volume = 0.05f;
+            bgm_source.Play();
         });
-        bgm_source.volume = 0.05f;
-        bgm_source.Play();
-    }
-    public void PlayBGM()
-    {
-
     }
     public void SwitchBGM()
     {
