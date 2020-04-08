@@ -16,8 +16,9 @@ public class UI_Units : BaseManager<UI_Units>
             CallPanel = UIManager.Getinstance().Mid.Find("Call/Call_Panel").gameObject;
         CurrentSelected = cubeCell;
         Debug.Log("单元格选中:" + cubeCell.Position.X + "," + cubeCell.Position.Y);
-        if (cubeCell.CurrentObject != null)
+        if (cubeCell.CurrentUnit != null)
             return;
+        UnitSelection.Getinstance().ClearSelection();
         CallPanel.SetActive(true);
     }
 }

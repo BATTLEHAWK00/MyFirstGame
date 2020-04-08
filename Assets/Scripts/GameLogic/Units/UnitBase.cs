@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 public class UnitSounds
 {
     public readonly string OnDeath = "Units/OnDeath";
@@ -9,7 +10,7 @@ public class UnitSounds
 /// <summary>
 /// 单位基本属性类
 /// </summary>
-public class UnitBase : MonoBehaviour
+public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
     #region 私有成员
     private string _unitName;   //单位名
@@ -87,7 +88,7 @@ public class UnitBase : MonoBehaviour
         EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "已死亡!");
         //行计数器扣除
         TheGame.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.Y]--;
-        GetPosition().CurrentObject = null;
+        GetPosition().CurrentUnit = null;
         //销毁物体
         Destroy(gameObject);
     }
@@ -131,6 +132,22 @@ public class UnitBase : MonoBehaviour
     public void CostHP(int amount)  //扣血方法
     {
         _HP -= amount;
+    }
+    #endregion
+    #region 输入事件
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _position.OnPointerEnter(eventData);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _position.OnPointerExit(eventData);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _position.OnPointerClick(eventData);
     }
     #endregion
 }

@@ -23,7 +23,6 @@ public class GameMain : MonoBehaviour
         EventManager.Getinstance().AddListener<object>("Game_OnStart", OnGameStart);
         EventManager.Getinstance().EventTrigger("Game_OnStart");
         EventManager.Getinstance().AddListener<CubeCell>("Grid_OnSelected",UI_Units.Getinstance().CellSelected);
-        StartCoroutine(attack());
     }
     void OnGameStart(object info)
     {
@@ -37,13 +36,6 @@ public class GameMain : MonoBehaviour
     void Update()
     {
         
-    }
-    IEnumerator attack()
-    {
-        yield return new WaitForSeconds(1f);
-        Attack attack1 = new Attack();
-        attack1.AttackTarget(A, B);
-        yield return attack();
     }
     public GameMain()
     {

@@ -24,13 +24,12 @@ public class AudioManager : BaseManager<AudioManager>
         {
             obj_Audio = new GameObject();
             obj_Audio.name = "Audio";
-        }
-        if (bgm_source == null)
             bgm_source = obj_Audio.AddComponent<AudioSource>();
+            bgm_source.volume = 0.05f;
+        }
         Debug.Log("[消息]播放BGM:" + name);
         ResManager.Getinstance().LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) => {
             bgm_source.clip = clip;
-            bgm_source.volume = 0.05f;
             bgm_source.Play();
         });
     }

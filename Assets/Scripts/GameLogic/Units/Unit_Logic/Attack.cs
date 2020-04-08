@@ -20,6 +20,7 @@ public class Attack
         {
             UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击距离({1})不够!与目标距离:{2}", from.UnitName, from.AttackRange, AttackDistance(from, target)));
             Debug.LogWarning("攻击距离不够!");
+            return;
         }
         #endregion
         //开启攻击协程
@@ -31,6 +32,7 @@ public class Attack
     #region 攻击动画
     IEnumerator Anim_MoveTo(UnitBase from, UnitBase target)
     {
+        UnitSelection.Getinstance().Waiting = true;
         Vector3 currentpositon = from.transform.position;
         Vector3 targetpositon = target.transform.position;
         from.transform.position = Vector3.MoveTowards(currentpositon, targetpositon, 0.5f);
@@ -52,7 +54,10 @@ public class Attack
         from.transform.position = Vector3.MoveTowards(currentpositon, targetpositon, 0.5f);
         yield return new WaitForEndOfFrame();
         if (Vector3.Distance(currentpositon, targetpositon) < 0.1f)
+        {
+            UnitSelection.Getinstance().Waiting = false;
             yield return null;
+        }
         else
             yield return Anim_MoveBack(from);
     }

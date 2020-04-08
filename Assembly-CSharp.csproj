@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\GameLogic\GameMain\GameMain.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\CubeCell.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\GridSystem.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GridSystem\Selection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\RoundSystem\RoundSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Debug\UnitCall\SwitchButton.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />

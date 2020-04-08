@@ -10,7 +10,7 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     #endregion
     public Vector3 CenterOffset;    //中心偏移 在Unity中修改
     private VectorInGame _Position;
-    public GameObject CurrentObject;    //单元内所处物体
+    public UnitBase CurrentUnit;    //单元内所处物体
     public Material HighLightedMaterial;
     public Material NormalMaterial;
     public Material OccupiedMaterial;
@@ -38,8 +38,13 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     }
     public void OnPointerClick(PointerEventData eventData)  //鼠标点击事件
     {
-        if(RoundSystem.Getinstance().IsWaitingPlayer())
-            EventManager.Getinstance().EventTrigger<CubeCell>("Grid_OnSelected",this);
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+        if (!RoundSystem.Getinstance().IsWaitingPlayer())
+            return;
+        EventManager.Getinstance().EventTrigger<CubeCell>("Grid_OnSelected",this);
+        if (this.CurrentUnit != null)
+            UnitSelection.Getinstance().Set(this);
         AudioManager.Getinstance().PlaySound("Grid/OnClick", 0.1f);
     }
 

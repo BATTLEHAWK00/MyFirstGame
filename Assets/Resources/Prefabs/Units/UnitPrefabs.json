@@ -1,0 +1,25 @@
+{
+  "List":
+  [
+    {
+      "unitType": "Archer",
+      "Path": "Prefabs/Units/Archer"
+    },
+    {
+      "unitType": "Farmer",
+      "Path": "Prefabs/Units/Farmer"
+    },
+    {
+      "unitType": "Lancer",
+      "Path": "Prefabs/Units/Lancer"
+    },
+    {
+      "unitType": "Witcher",
+      "Path": "Prefabs/Units/Witcher"
+    },
+    {
+      "unitType": "Rider",
+      "Path": "Prefabs/Units/Rider"
+    }
+  ]
+}
