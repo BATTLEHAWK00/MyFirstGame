@@ -28,7 +28,9 @@ public class AudioManager : BaseManager<AudioManager>
         if (bgm_source == null)
             bgm_source = obj_Audio.AddComponent<AudioSource>();
         Debug.Log("[消息]播放BGM:" + name);
-        bgm_source.clip = Resources.Load<AudioClip>("Audio/BGM/" + name);
+        ResManager.Getinstance().LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) => {
+            bgm_source.clip = clip;
+        });
         bgm_source.volume = 0.05f;
         bgm_source.Play();
     }
@@ -50,24 +52,7 @@ public class AudioManager : BaseManager<AudioManager>
     
     public void PlaySound(string name)
     {
-        if (bgm_source == null)
-        {
-            obj_Audio = new GameObject();
-            obj_Audio.name = "Audio";
-            bgm_source = obj_Audio.AddComponent<AudioSource>();
-        }
-        AudioSource audioSource = obj_Audio.AddComponent<AudioSource>();
-        sound_source.Add(audioSource);
-        audioSource.clip = Resources.Load<AudioClip>("Audio/Sounds/" + name);
-        audioSource.Play();
-        for(int i=0;i<sound_source.Count;i++)
-        {
-            if(!sound_source[i].isPlaying)
-            {
-                GameObject.Destroy(sound_source[i]);
-                sound_source.RemoveAt(i);
-            }
-        }
+        PlaySound(name, 0.5f);
     }
     public void PlaySound(string name,float volume)
     {
@@ -77,11 +62,13 @@ public class AudioManager : BaseManager<AudioManager>
             obj_Audio.name = "Audio";
             bgm_source = obj_Audio.AddComponent<AudioSource>();
         }
-        AudioSource audioSource = obj_Audio.AddComponent<AudioSource>();
-        sound_source.Add(audioSource);
-        audioSource.clip = Resources.Load<AudioClip>("Audio/Sounds/" + name);
-        audioSource.volume = volume;
-        audioSource.Play();
+        ResManager.Getinstance().LoadAsync<AudioClip>("Audio/Sounds/" + name, (clip) => {
+            AudioSource audioSource = obj_Audio.AddComponent<AudioSource>();
+            sound_source.Add(audioSource);
+            audioSource.clip = clip;
+            audioSource.volume = volume;
+            audioSource.Play();
+        });
     }
     void CleanAudioSource()
     {

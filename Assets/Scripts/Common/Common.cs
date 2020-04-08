@@ -10,6 +10,12 @@ public static class Common
         a = b;
         b = t;
     }
+    public static void Swap<T>(T a,T b)    //交换方法
+    {
+        T t = a;
+        a = b;
+        b = t;
+    }
     /*
     public static void Swap(ref object a,ref object b)
     {

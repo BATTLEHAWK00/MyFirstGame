@@ -71,7 +71,7 @@ public class UnitBase : MonoBehaviour
         EventManager.Getinstance().AddListener<GameObject>("Unit_OnUnitBirth", OnBirthBroadcast);
     }
     // Update is called once per frame
-    void Update()
+    void Update()   //帧刷新事件
     {
         #region HP检测
         if (_HP <= 0)
@@ -86,7 +86,7 @@ public class UnitBase : MonoBehaviour
         _unitName = name;
         _unitType = unitType;
     }
-    public void CostHP(int amount)
+    public void CostHP(int amount)  //扣血方法
     {
         _HP -= amount;
     }
@@ -107,12 +107,12 @@ public class UnitBase : MonoBehaviour
     }
     void OnDeathBroadcast(GameObject info)
     {
-        if (info == gameObject)
+        if (info == gameObject) //若事件本体为此物体
             Debug.Log(string.Format("[消息]{0}({1})已死亡", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
     }
     void OnBirthBroadcast(GameObject info)
     {
-        if (info == gameObject)
+        if (info == gameObject) //若事件本体为此物体
             Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
     }
     private void OnDestroy()

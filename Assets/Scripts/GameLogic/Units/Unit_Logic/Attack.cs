@@ -6,23 +6,25 @@ public class Attack
 {
     public void AttackTarget(UnitBase from,UnitBase target)
     {
+        #region 异常处理
         if (from == null || target == null)
             return;
         if(from==target)
         { UIManager.Getinstance().MsgOnScreen("你不能攻击自己!");return; }
-        if (from.AttackRange >= AttackDistance(from, target))
+        if (from.AttackRange < AttackDistance(from, target))
         {
-            TheGame.Getinstance().GameMain.MonoManager.StartCoroutine(Anim_MoveTo(from, target));
-            UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击了{1}", from.UnitName, target.UnitName));
-            Debug.Log(string.Format("{0}攻击了{1}",from.UnitName,target.UnitName));
-        }else
-        {
-            UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击距离({1})不够!与目标距离:{2}",from.UnitName,from.AttackRange, AttackDistance(from, target)));
+            UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击距离({1})不够!与目标距离:{2}", from.UnitName, from.AttackRange, AttackDistance(from, target)));
             Debug.LogWarning("攻击距离不够!");
         }
-            
+        #endregion
+        //开启攻击协程
+        TheGame.Getinstance().GameMain.MonoManager.StartCoroutine(Anim_MoveTo(from, target));
+        //广播攻击消息
+        UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击了{1}", from.UnitName, target.UnitName));
+        Debug.Log(string.Format("{0}攻击了{1}",from.UnitName,target.UnitName));
     }
-    public IEnumerator Anim_MoveTo(UnitBase from, UnitBase target)
+    #region 攻击动画
+    IEnumerator Anim_MoveTo(UnitBase from, UnitBase target)
     {
         Vector3 currentpositon = from.transform.position;
         Vector3 targetpositon = target.transform.position;
@@ -38,7 +40,7 @@ public class Attack
             yield return Anim_MoveTo(from, target);
         }
     }
-    public IEnumerator Anim_MoveBack(UnitBase from)
+    IEnumerator Anim_MoveBack(UnitBase from)
     {
         Vector3 currentpositon = from.transform.position;
         Vector3 targetpositon = from.GetPosition().transform.position;
@@ -49,7 +51,8 @@ public class Attack
         else
             yield return Anim_MoveBack(from);
     }
-    public int AttackDistance(UnitBase from,UnitBase to)
+    #endregion
+    public int AttackDistance(UnitBase from,UnitBase to)    //计算攻击需要的距离
     {
         if (from == null || to == null)
             return -1;
