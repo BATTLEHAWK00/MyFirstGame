@@ -23,6 +23,7 @@ public class Attack
             return;
         }
         #endregion
+        from.ShowHP();target.ShowHP();
         //开启攻击协程
         TheGame.Getinstance().GameMain.MonoManager.StartCoroutine(Anim_MoveTo(from, target));
         //广播攻击消息
@@ -70,7 +71,7 @@ public class Attack
         int fromY = from.GetPosition().Position.Y;
         int toY = to.GetPosition().Position.Y;
         if (fromY > toY)
-            Common.Swap(ref fromY,ref toY);
+            TheGameCommon.Common.Swap(ref fromY,ref toY);
         for (int i = fromY; i <= toY; i++)
             if (TheGame.Getinstance().GameMain.GridSystem.RowCounter[i]>0)
                 cnt++;

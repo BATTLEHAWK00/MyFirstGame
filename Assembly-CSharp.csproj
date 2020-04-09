@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\GameLogic\RoundSystem\RoundSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Debug\UnitCall\SwitchButton.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Unit\HP_Bar\HP_Bar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Units.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Common\UnitGeneration.cs" />

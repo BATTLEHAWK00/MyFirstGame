@@ -13,6 +13,7 @@ public class GridSystem : MonoBehaviour
     public float Distance = 10f;
     #endregion
     List<CubeCell> CubeCells = new List<CubeCell>();
+    [HideInInspector]
     public List<int> RowCounter = new List<int>();
     //CubeCell[] CubeCells;   //单元格数组
     void Awake()

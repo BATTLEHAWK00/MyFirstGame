@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 public class UnitSounds
 {
     public readonly string OnDeath = "Units/OnDeath";
@@ -12,6 +13,9 @@ public class UnitSounds
 /// </summary>
 public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
+    #region Unity编辑器里编辑
+    public float Height=10f;
+    #endregion
     #region 私有成员
     private string _unitName;   //单位名
     private UnitType _unitType; //单位类型
@@ -27,8 +31,10 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     public void SetPosition(CubeCell cubeCell) { _position = cubeCell; }    //设置单元格位置
     public int AttackRange { get { return attackRange; } }  //获取单位攻击距离
     public int Attack { get { return attack; } }    //获取单位攻击力
+    public int MaxHP { get { return _MaxHP; } }     //获取最大生命值
     #endregion
     #region 单位共有属性
+    protected int _MaxHP = -1;
     protected int _HP = -1;    //生命
     protected int attack = 1;   //攻击力
     protected int attackRange = 2;  //攻击距离
@@ -38,6 +44,12 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     #endregion
     #region Debug方法
     public void Die() { _HP = 0; }
+    #endregion
+    #region UI组件
+    protected GameObject HP_Bar;
+    #endregion
+    #region 委托
+    protected UnityAction onUpdate;
     #endregion
     #region 单位初始化
     protected void SetUnitType(string name, UnitType unitType)
@@ -54,6 +66,7 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         }
         return false;
     }
+
     #endregion
     #region 单位事件
     void EventAdd()
@@ -76,7 +89,10 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     void OnBirthBroadcast(GameObject info)
     {
         if (info == gameObject) //若事件本体为此物体
+        {
             Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
+            UIManager.Getinstance().MsgOnScreen(UnitName + "被召唤了出来!");
+        }
     }
     void OnDeath()
     {
@@ -85,7 +101,7 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         //播放死亡音效
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
         //广播死亡消息
-        EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "已死亡!");
+        UIManager.Getinstance().MsgOnScreen(UnitName + "已死亡!");
         //行计数器扣除
         TheGame.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.Y]--;
         GetPosition().CurrentUnit = null;
@@ -114,7 +130,6 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         //子类初始化函数
         _Start();
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.2f);
-        EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", UnitName + "被召唤了出来!");
     }
     // Update is called once per frame
     void Update()   //帧刷新事件
@@ -124,7 +139,24 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
             OnDeath();
         #endregion
         _Update();
+        if (onUpdate != null)
+            onUpdate.Invoke();
     }
+    void Awake() 
+    { 
+        _Awake();
+        ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/Unit/HP_Bar",(obj)=> {
+            HP_Bar = obj.transform.Find("Bar").gameObject;
+            HP_Bar.SetActive(false);
+            obj.transform.SetParent(this.transform);
+            Vector3 vector3 = this.transform.position;
+            vector3.y += Height;
+            obj.transform.position = vector3;
+            obj.transform.rotation = Camera.main.transform.rotation;
+            obj.GetComponent<HP_Bar>().SetUnit(this);
+        });
+    }
+    virtual protected void _Awake() { }
     virtual protected void _Start() { }
     virtual protected void _Update() { }
     #endregion
@@ -134,10 +166,23 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         _HP -= amount;
     }
     #endregion
+    #region UI方法
+    public void ShowHP()
+    {
+        HP_Bar.SetActive(true);
+        HP_Bar.GetComponentInParent<HP_Bar>().Seconds = 1f;
+    }
+
+    public void HideHP()
+    {
+        HP_Bar.SetActive(false);
+    }
+    #endregion
     #region 输入事件
     public void OnPointerEnter(PointerEventData eventData)
     {
         _position.OnPointerEnter(eventData);
+        ShowHP();
     }
 
     public void OnPointerExit(PointerEventData eventData)

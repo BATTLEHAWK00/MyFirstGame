@@ -19,27 +19,31 @@ public class UIManager : BaseManager<UIManager>
     public Transform System { get { return system; } }
     public Transform HUD { get { return hud.transform; } }
     #endregion
-    /*
+
     public void MsgOnScreen(string text)
     {
-        GameObject obj = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/MsgBar"));
-        if (obj == null)
-            Debug.LogError("[错误]公告栏无法加载!");
-        Debug.Log(obj.name);
-        obj.transform.SetParent(HUD.transform);
-        obj.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
+        ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/HUD/MsgBar",(obj)=> {
+            if (obj == null)
+                Debug.LogError("[错误]公告栏无法加载!");
+            //Debug.Log(obj.name);
+            obj.transform.SetParent(HUD.transform);
+            Vector2 vector2 = obj.GetComponent<RectTransform>().anchoredPosition;
+            vector2.x = 0;
+            obj.GetComponent<RectTransform>().anchoredPosition = vector2;
+            obj.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
+        });
     }
-    */
+
     public void ShowPanel(string panelname)
     {
         ResManager.Getinstance().LoadAsync<GameObject>("UI/"+panelname,(panel)=> { 
             
         });
     }
-    public void MsgOnScreen(string text)
+    /*public void MsgOnScreen(string text)
     {
         EventManager.Getinstance().EventTrigger<string>("UI_MsgBar", text);
-    }
+    }*/
     public UIManager()
     {
         //ResManager.Getinstance().Load<GameObject>("Prefabs/UI/UI");
@@ -49,6 +53,6 @@ public class UIManager : BaseManager<UIManager>
         bottom = Canvas.transform.Find("Bottom");
         system = Canvas.transform.Find("System");
         hud = Top.Find("HUD").gameObject;
-        MsgBar = Top.Find("HUD/MsgBar").gameObject;
+        //MsgBar = Top.Find("HUD/MsgBar").gameObject;
     }
 }
