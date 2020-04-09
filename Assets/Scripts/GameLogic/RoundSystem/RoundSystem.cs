@@ -16,6 +16,11 @@ public class RoundSystem : BaseManager<RoundSystem>
     #region 公有属性
     public bool IsWaitingPlayer(){ return isWaiting; }//是否正在等待玩家
     public int Side { get { return side; } }
+    #region 单位列表
+    private List<UnitBase> unitList = new List<UnitBase>();
+    public void AddUnit(UnitBase unitBase) { unitList.Add(unitBase); }
+    public void RemoveUnit(UnitBase unitBase) { unitList.Remove(unitBase); }
+    #endregion
     #endregion
     #region 方法
     public void NextRound() //进入下一回合
@@ -30,6 +35,17 @@ public class RoundSystem : BaseManager<RoundSystem>
         {
             roundtext.text = "回合数:" + Rounds.ToString() + "(你的回合)";
             EventManager.Getinstance().EventTrigger("RoundSystem_YourTurn");    //触发你的回合事件
+            foreach(var i in unitList)
+            {
+                i.CanOperate = true;
+            }
+        }
+        else
+        {
+            foreach (var i in unitList)
+            {
+                i.CanOperate = false;
+            }
         }
     }
     public void Init(int side) //回合系统初始化

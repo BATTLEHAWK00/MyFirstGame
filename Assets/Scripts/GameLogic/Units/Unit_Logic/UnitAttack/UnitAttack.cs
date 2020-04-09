@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack
+public class UnitAttack:BaseManager<UnitAttack>
 {
     /// <summary>
     /// 攻击方法
@@ -22,15 +22,25 @@ public class Attack
             Debug.LogWarning("攻击距离不够!");
             return;
         }
+        if (!from.CanOperate)
+        { UIManager.Getinstance().MsgOnScreen("你已经操作过该单位!");return; }
         #endregion
         from.ShowHP();target.ShowHP();
         //开启攻击协程
-        TheGame.Getinstance().GameMain.MonoManager.StartCoroutine(Anim_MoveTo(from, target));
+        Mono.Getinstance().GetMono().StartCoroutine(attack(from, target));
+        from.CanOperate = false;
         //广播攻击消息
         UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击了{1}", from.UnitName, target.UnitName));
         Debug.Log(string.Format("{0}攻击了{1}",from.UnitName,target.UnitName));
     }
     #region 攻击动画
+    IEnumerator attack(UnitBase from, UnitBase target)
+    {
+        yield return Anim_MoveTo(from, target);
+        if (target == null)
+            yield break;
+        yield return Anim_MoveTo(target, from);
+    }
     IEnumerator Anim_MoveTo(UnitBase from, UnitBase target)
     {
         UnitSelection.Getinstance().Waiting = true;
@@ -68,8 +78,8 @@ public class Attack
         if (from == null || to == null)
             return -1;
         int cnt = 0;
-        int fromY = from.GetPosition().Position.Y;
-        int toY = to.GetPosition().Position.Y;
+        int fromY = from.GetPosition().Position.y;
+        int toY = to.GetPosition().Position.y;
         if (fromY > toY)
             TheGameCommon.Common.Swap(ref fromY,ref toY);
         for (int i = fromY; i <= toY; i++)

@@ -7,8 +7,8 @@ public class Witcher : UnitBase
     public Witcher()
     {
         base.SetUnitType("法师", UnitType.Witcher);
-        base._MaxHP = 3;
-        base._HP = _MaxHP;
-        base._Description = "法师";
+        base.MaxHP = 3;
+        base.HP = MaxHP;
+        base.Description = "法师";
     }
 }

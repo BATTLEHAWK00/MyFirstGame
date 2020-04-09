@@ -7,20 +7,21 @@ public class Archer : UnitBase
     protected override void _Awake()
     {
         var data = TheGameCommon.JsonFunc.FromFile<ArcherData>("Prefabs/Units/UnitData/Archer");
+        /*
         Debug.Log(data.Description);
         Debug.Log(data.HP);
         Debug.Log(data.Attack);
-        Debug.Log(data.AttackRange);
+        Debug.Log(data.AttackRange);*/
     }
 
     public Archer()
     {
         base.SetUnitType("弓箭手", UnitType.Archer);
-        base._MaxHP = 3;
-        base._HP = _MaxHP;
-        base._Description = "弓箭手";
-        base.attack = 2;
-        base.attackRange = 3;
+        base.MaxHP = 3;
+        base.HP = MaxHP;
+        base.Description = "弓箭手";
+        base.Attack = 2;
+        base.AttackRange = 3;
     }
 }
 [System.Serializable]

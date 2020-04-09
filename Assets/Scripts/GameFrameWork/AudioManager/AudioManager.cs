@@ -63,8 +63,17 @@ public class AudioManager : BaseManager<AudioManager>
             audioSource.clip = clip;
             audioSource.volume = volume;
             audioSource.Play();
+            Mono.Getinstance().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
         });
     }
+    IEnumerator AudioTimeToLive(AudioSource audioSource)
+    {
+        while (audioSource.isPlaying)
+            yield return new WaitForSeconds(0.5f);
+        sound_source.Remove(audioSource);
+        GameObject.Destroy(audioSource);
+    }
+    /*  因代码优化而弃用
     void CleanAudioSource()
     {
         for (int i = 0; i < sound_source.Count; i++)
@@ -76,8 +85,9 @@ public class AudioManager : BaseManager<AudioManager>
             }
         }
     }
+    */
     public AudioManager()
     {
-        TheGame.Getinstance().GameMain.MonoManager.AddUpdateListener(CleanAudioSource);
+        //TheGame.Getinstance().GameMain.MonoManager.AddUpdateListener(CleanAudioSource);
     }
 }

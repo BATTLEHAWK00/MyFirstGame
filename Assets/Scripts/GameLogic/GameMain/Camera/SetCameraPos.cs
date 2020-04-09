@@ -11,7 +11,7 @@ public class SetCameraPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 vector = gameObject.GetComponent<GridSystem>().FindCubeCell(new VectorInGame(gameObject.GetComponent<GridSystem>().Center().X,0)).transform.position;
+        Vector3 vector = gameObject.GetComponent<GridSystem>().FindCubeCell(new Vector2Int(gameObject.GetComponent<GridSystem>().Center().x,0)).transform.position;
         vector.z -= BackwardOffset;
         vector.y += HeightOffset;
         vector.x += HorizontalOffset;

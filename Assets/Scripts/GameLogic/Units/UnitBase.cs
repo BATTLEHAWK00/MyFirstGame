@@ -17,33 +17,29 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     public float Height=10f;
     #endregion
     #region 私有成员
-    private string _unitName;   //单位名
-    private UnitType _unitType; //单位类型
-    private int _side;          //属于哪一方
     private CubeCell _position; //单元格位置
     #endregion
     #region 公有成员
-    public string UnitName { get { return _unitName; } }    //获取单位显示名称
-    public UnitType UnitType { get { return _unitType; } }  //单位类型
-    public int GetHP() { return _HP; }  //获取HP
-    public int Side { get { return _side; } }   //属于哪一方
+    public int GetHP() { return HP; }  //获取HP
     public CubeCell GetPosition() { return _position; }   //获取单元格位置
     public void SetPosition(CubeCell cubeCell) { _position = cubeCell; }    //设置单元格位置
-    public int AttackRange { get { return attackRange; } }  //获取单位攻击距离
-    public int Attack { get { return attack; } }    //获取单位攻击力
-    public int MaxHP { get { return _MaxHP; } }     //获取最大生命值
     #endregion
     #region 单位共有属性
-    protected int _MaxHP = -1;
-    protected int _HP = -1;    //生命
-    protected int attack = 1;   //攻击力
-    protected int attackRange = 2;  //攻击距离
-    protected string _Description;    //单位描述
+    public bool CanOperate = true;
+    public string UnitName { get; protected set; }   //单位名
+    public UnitType unitType { get; protected set; } //单位类型
+    protected int HP = -1;    //生命
+    public string Description { get; protected set; }    //单位描述
+    public int AttackRange { get; protected set; } = 2;  //单位攻击距离
+    public int Attack { get; protected set; } = 1;    //单位攻击力
+    public int MaxHP { get; protected set; }     //最大生命值
+    private List<Buff> buffs = new List<Buff>();
+    private List<Buff> deBuffs = new List<Buff>();
     protected delegate void AttackDelegate(UnitBase Target);
     protected AttackDelegate AttackFunc;
     #endregion
     #region Debug方法
-    public void Die() { _HP = 0; }
+    public void Die() { HP = 0; }
     #endregion
     #region UI组件
     protected GameObject HP_Bar;
@@ -54,12 +50,12 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     #region 单位初始化
     protected void SetUnitType(string name, UnitType unitType)
     {
-        _unitName = name;
-        _unitType = unitType;
+        UnitName = name;
+        this.unitType = unitType;
     }
     bool CheckInitError()
     {
-        if (_HP == -1)
+        if (HP == -1)
         {
             Debug.LogError("[单位]HP未初始化!");
             return true;
@@ -84,13 +80,16 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     void OnDeathBroadcast(GameObject info)
     {
         if (info == gameObject) //若事件本体为此物体
-            Debug.Log(string.Format("[消息]{0}({1})已死亡", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
+        {
+
+        }
+            //Debug.Log(string.Format("[消息]{0}({1})已死亡", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
     }
     void OnBirthBroadcast(GameObject info)
     {
         if (info == gameObject) //若事件本体为此物体
         {
-            Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
+            //Debug.Log(string.Format("[消息]{0}({1})已生成", info.GetComponent<UnitBase>().UnitName, info.GetInstanceID()));
             UIManager.Getinstance().MsgOnScreen(UnitName + "被召唤了出来!");
         }
     }
@@ -103,8 +102,10 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         //广播死亡消息
         UIManager.Getinstance().MsgOnScreen(UnitName + "已死亡!");
         //行计数器扣除
-        TheGame.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.Y]--;
+        TheGame.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.y]--;
         GetPosition().CurrentUnit = null;
+        //移除回合系统列表
+        RoundSystem.Getinstance().RemoveUnit(this);
         //销毁物体
         Destroy(gameObject);
     }
@@ -126,7 +127,8 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
         //添加事件
         EventAdd();
         EventManager.Getinstance().EventTrigger("Unit_OnUnitBirth", gameObject);
-        //Invoke("Die", 3);
+        //向回合系统列表添加单位
+        RoundSystem.Getinstance().AddUnit(this);
         //子类初始化函数
         _Start();
         AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.2f);
@@ -135,7 +137,7 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     void Update()   //帧刷新事件
     {
         #region HP检测
-        if (_HP <= 0)
+        if (HP <= 0)
             OnDeath();
         #endregion
         _Update();
@@ -163,7 +165,7 @@ public class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,I
     #region 单位方法
     public void CostHP(int amount)  //扣血方法
     {
-        _HP -= amount;
+        HP -= amount;
     }
     #endregion
     #region UI方法

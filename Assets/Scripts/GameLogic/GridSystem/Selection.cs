@@ -21,8 +21,8 @@ public class UnitSelection : BaseManager<UnitSelection>
         if(end==null)
         {
             end = cubeCell;
-            Attack attack = new Attack();
-            attack.AttackTarget(start.CurrentUnit, end.CurrentUnit);
+            end.GetComponent<MeshRenderer>().material.color = Color.blue;
+            UnitAttack.Getinstance().AttackTarget(start.CurrentUnit, end.CurrentUnit);
             end = null;
         }
             
@@ -41,11 +41,11 @@ public class UnitSelection : BaseManager<UnitSelection>
     }
     public UnitSelection()
     {
-        TheGame.Getinstance().GameMain.MonoManager.AddUpdateListener(()=> {
+        Mono.Getinstance().GetMono().AddUpdateListener(()=> {
             if (Input.GetMouseButtonDown(1))
             {
                 if (start == null)
-                    return;
+                { end = null;return; }
                 ClearSelection();
                 UIManager.Getinstance().MsgOnScreen("已清除当前选择");
             }

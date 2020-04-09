@@ -49,37 +49,21 @@ public class GridSystem : MonoBehaviour
         Cell.name = "CubeCell (" + x.ToString() + "," + z.ToString() + ")";
     }
 
-    public CubeCell FindCubeCell(VectorInGame a) //按坐标查找单元格
+    public CubeCell FindCubeCell(Vector2Int a) //按坐标查找单元格
     {
         foreach(var i in CubeCells)
         {
-            if (i.Position.X == a.X & i.Position.Y == a.Y)
+            if (i.Position.x == a.x & i.Position.y == a.y)
                 return i;
         }
         return null;
     }
-    public VectorInGame Center()
+    public Vector2Int Center()
     {
-        VectorInGame vector = new VectorInGame();
-        vector.X = (int)Width / 2;
-        vector.Y = (int)Length / 2;
+        Vector2Int vector = new Vector2Int();
+        vector.x = (int)Width / 2;
+        vector.y = (int)Length / 2;
         return vector;
     }
 }
-public struct VectorInGame
-{
-    public int X;
-    public int Y;
 
-    public uint Distance()
-    {
-        Debug.Log((uint)Mathf.CeilToInt(Mathf.Sqrt(X * X + Y * Y)));
-        return (uint)Mathf.CeilToInt(Mathf.Sqrt(X * X + Y * Y));
-    }
-    public VectorInGame(int X,int Y)
-    {
-        this.X = X;
-        this.Y = Y;
-    }
-
-}

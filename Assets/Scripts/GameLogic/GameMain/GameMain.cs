@@ -6,15 +6,13 @@ public class GameMain : MonoBehaviour
 {
     public _debug _Debug;
     public GridSystem GridSystem;
-    public MonoManager MonoManager;
-    public UnitBase A;
-    public UnitBase B;
+    //public MonoManager MonoManager;
     private void Awake()
     {
-        GameObject obj = new GameObject();
-        obj.name = "MonoManager";
-        obj.transform.parent = gameObject.transform;
-        MonoManager = obj.AddComponent<MonoManager>();
+        //GameObject obj = new GameObject();
+        //obj.name = "MonoManager";
+        //obj.transform.parent = gameObject.transform;
+        //MonoManager = obj.AddComponent<MonoManager>();
     }
 
     // Start is called before the first frame update

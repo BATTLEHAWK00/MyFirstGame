@@ -79,9 +79,12 @@
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\CubeCell.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\GridSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\Selection.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\HolyWater\HolyWater.cs" />
     <Compile Include="Assets\Scripts\GameLogic\RoundSystem\RoundSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Debug\UnitCall\SwitchButton.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\PanelBase.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Unit\HP_Bar\HP_Bar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Units.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />
@@ -91,7 +94,8 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\Rider\Rider.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes.cs" />
-    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Attack.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\UnitAttack\UnitAttack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -15,7 +15,8 @@ public class MonoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        action_OnUpdate.Invoke();
+        if(action_OnUpdate!=null)
+            action_OnUpdate.Invoke();
     }
     public void AddUpdateListener(UnityAction action)
     {
@@ -30,5 +31,16 @@ public class MonoManager : MonoBehaviour
             action_OnUpdate -= action;
         else
             Debug.LogError("传入了空的UpdateAction!");
+    }
+}
+public class Mono : BaseManager<Mono>
+{
+    private MonoManager mono;
+    public MonoManager GetMono() { return mono; }
+    public Mono()
+    {
+        GameObject gameObject = new GameObject();
+        gameObject.name = "MonoManager";
+        mono = gameObject.AddComponent<MonoManager>();
     }
 }
