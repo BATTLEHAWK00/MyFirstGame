@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378633424}
+      - m_Target: {fileID: 0}
         m_MethodName: GenerateRider
         m_Mode: 1
         m_Arguments:
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378633424}
+      - m_Target: {fileID: 0}
         m_MethodName: GenerateFarmer
         m_Mode: 1
         m_Arguments:
@@ -635,7 +635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 378633422}
   - component: {fileID: 378633423}
-  - component: {fileID: 378633424}
   m_Layer: 0
   m_Name: Debug
   m_TagString: Untagged
@@ -666,23 +665,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 378633421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa7ed1d466bf26439bafcc7be858190, type: 3}
+  m_Script: {fileID: 11500000, guid: 61ca21e516b9cb14c879895801549d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &378633424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378633421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e721d86a58bacf34cb83494583fba2f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SideA: {fileID: 2000506480}
-  SideB: {fileID: 411705351}
 --- !u!1 &411705351
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378633424}
+      - m_Target: {fileID: 0}
         m_MethodName: GenerateLancer
         m_Mode: 1
         m_Arguments:
@@ -903,11 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f18e69b905bc646a67065c67b2efe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Debug: {fileID: 378633423}
   GridSystem: {fileID: 1804181467}
-  MonoManager: {fileID: 0}
-  A: {fileID: 0}
-  B: {fileID: 0}
 --- !u!4 &562603403
 Transform:
   m_ObjectHideFlags: 0
@@ -1080,7 +1061,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378633424}
+      - m_Target: {fileID: 0}
         m_MethodName: GenerateWitcher
         m_Mode: 1
         m_Arguments:
@@ -1324,7 +1305,6 @@ GameObject:
   - component: {fileID: 762331879}
   - component: {fileID: 762331878}
   - component: {fileID: 762331877}
-  - component: {fileID: 762331876}
   m_Layer: 5
   m_Name: SwitchBGM
   m_TagString: Untagged
@@ -1352,19 +1332,6 @@ RectTransform:
   m_AnchoredPosition: {x: -539, y: -166.4}
   m_SizeDelta: {x: 104.57, y: 27.73}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &762331876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762331874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7650d4eef6424ee499c843a876bdc2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Panel: {fileID: 961961898}
 --- !u!114 &762331877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1375,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 762331876}
+      - m_Target: {fileID: 0}
         m_MethodName: SwitchBGM
         m_Mode: 1
         m_Arguments:
@@ -2216,7 +2183,6 @@ GameObject:
   - component: {fileID: 1395934242}
   - component: {fileID: 1395934241}
   - component: {fileID: 1395934240}
-  - component: {fileID: 1395934239}
   m_Layer: 5
   m_Name: NextRound
   m_TagString: Untagged
@@ -2244,19 +2210,6 @@ RectTransform:
   m_AnchoredPosition: {x: -539, y: -203}
   m_SizeDelta: {x: 104.57, y: 27.73}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1395934239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395934237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7650d4eef6424ee499c843a876bdc2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Panel: {fileID: 961961898}
 --- !u!114 &1395934240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,7 +2424,6 @@ GameObject:
   - component: {fileID: 1667296992}
   - component: {fileID: 1667296991}
   - component: {fileID: 1667296990}
-  - component: {fileID: 1667296989}
   m_Layer: 5
   m_Name: ForceDie
   m_TagString: Untagged
@@ -2499,19 +2451,6 @@ RectTransform:
   m_AnchoredPosition: {x: -539, y: -130.1}
   m_SizeDelta: {x: 104.57, y: 27.73}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1667296989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667296987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7650d4eef6424ee499c843a876bdc2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Panel: {fileID: 961961898}
 --- !u!114 &1667296990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2556,7 +2495,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 378633423}
-        m_MethodName: ForceDie
+        m_MethodName: ForceToDie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2684,7 +2623,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378633424}
+      - m_Target: {fileID: 0}
         m_MethodName: HidePanel
         m_Mode: 1
         m_Arguments:
@@ -3024,7 +2963,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 378633424}
+      - m_Target: {fileID: 0}
         m_MethodName: GenerateArcher
         m_Mode: 1
         m_Arguments:

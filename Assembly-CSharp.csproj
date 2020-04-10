@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Common\Common.cs" />
-    <Compile Include="Assets\Scripts\Debug\_debug.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioList.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\Base\BaseManager.cs" />
@@ -74,13 +73,13 @@
     <Compile Include="Assets\Scripts\GameFrameWork\ResManager\ResManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\UIManager\UIManager.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\Camera\SetCameraPos.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\GameMain\Debug\_Debug.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\GameMain.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\CubeCell.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\GridSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\Selection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\HolyWater\HolyWater.cs" />
     <Compile Include="Assets\Scripts\GameLogic\RoundSystem\RoundSystem.cs" />
-    <Compile Include="Assets\Scripts\GameLogic\UI\Debug\UnitCall\SwitchButton.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
@@ -299,18 +298,6 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX.Rocks">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX.Mdb">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX.Pdb">
-      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
