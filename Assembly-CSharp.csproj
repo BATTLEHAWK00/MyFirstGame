@@ -300,6 +300,18 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.CecilX.Rocks">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Mdb">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Pdb">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/NetWorking(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>
