@@ -25,7 +25,7 @@ public class UIManager : BaseManager<UIManager>
     public Transform HUD { get { return hud.transform; } }
     #endregion
 
-    public void MsgOnScreen(string text)
+    public void MsgOnScreen(string text)    //广播消息
     {
         ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/HUD/MsgBar",(obj)=> {
             if (obj == null)
@@ -33,25 +33,44 @@ public class UIManager : BaseManager<UIManager>
             obj.transform.SetParent(HUD.transform,false);
             obj.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
         });
-    }
+    } 
+    #region 控制面板的开启和关闭
     public void PushPanel(PanelTypes panelType)
     {
-        panelStack.Push(GetPanel(panelType));
+        if (panelStack.Count > 0)
+            panelStack.Peek().OnPause();
+        var panel = GetPanel(panelType);
+        panel.OnEnter();
+        panelStack.Push(panel);
     }
-    public PanelBase GetPanel(PanelTypes paneltype)
+    public void PopPanel(PanelTypes panelType)
     {
-        PanelBase panel;
-        if (panelInstancesDic.TryGetValue(paneltype, out panel) && panel != null)
-            return panel;
-        else
-            ResManager.Getinstance().LoadAsync<GameObject>("UI/" + panelPrefabsPathDic[paneltype], (obj) =>
-            {
-                var panelbase = obj.GetComponent<PanelBase>();
-                panelInstancesDic.Add(paneltype, panelbase);
-                obj.transform.SetParent(Layer(panelbase.Layer));
-            });
-        return panel;
+        if (panelStack.Count == 0)
+            return;
+        var panel = panelStack.Peek();
+        panel.OnExit();
+        panelStack.Pop();
+        if (panelStack.Count == 0)
+            return;
+        panelStack.Peek().OnResume();
     }
+    private PanelBase GetPanel(PanelTypes paneltype)
+    {
+        if (panelInstancesDic.ContainsKey(paneltype) && panelInstancesDic[paneltype] != null)
+            return panelInstancesDic[paneltype];
+        var panel = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/Panels/" + panelPrefabsPathDic[paneltype]);
+        var panelbase = panel.GetComponent<PanelBase>();
+        if (panelInstancesDic.ContainsKey(paneltype))
+            panelInstancesDic[paneltype] = panelbase;
+        else
+            panelInstancesDic.Add(paneltype, panelbase);
+        panelbase.transform.SetParent(Layer(panelbase.Layer), false);
+        return panelbase;
+    }
+    #endregion
+    #region 控制多实例UI的开启和关闭
+
+    #endregion
     Transform Layer(UILayers layer)
     {
         switch (layer)
@@ -72,7 +91,14 @@ public class UIManager : BaseManager<UIManager>
         system = Canvas.transform.Find("System");
         hud = Top.Find("HUD").gameObject;
         #region Prefab路径
-        //panelPrefabsPathDic.Add();
+        panelPrefabsPathDic.Add(PanelTypes.UnitGenerationPanel,"GameLogic/UnitGenerationPanel/Call_Panel");
         #endregion
     }
+}
+public enum UILayers
+{
+    Top,
+    Mid,
+    Bottom,
+    System
 }

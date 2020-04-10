@@ -16,7 +16,7 @@ public class GameMain : MonoBehaviour
     {
         EventManager.Getinstance().AddListener<object>("Game_OnStart", OnGameStart);
         EventManager.Getinstance().EventTrigger("Game_OnStart");
-        EventManager.Getinstance().AddListener<CubeCell>("Grid_OnSelected",UI_Units.Getinstance().CellSelected);
+        EventManager.Getinstance().AddListener<CubeCell>("Grid_OnSelected",CellSelection.Getinstance().CellSelected);
     }
     void OnGameStart(object info)
     {

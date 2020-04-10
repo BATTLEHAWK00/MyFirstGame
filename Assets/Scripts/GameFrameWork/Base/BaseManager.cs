@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseManager<T> where T:new ()
+public abstract class BaseManager<T> where T:new ()
 { 
     private static T instance; 
     public static T Getinstance()

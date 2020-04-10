@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\GameFrameWork\EventManager\Events.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\Mono\MonoManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\ResManager\ResManager.cs" />
+    <Compile Include="Assets\Scripts\GameFrameWork\UIManager\PanelBase.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\UIManager\UIManager.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\Camera\SetCameraPos.cs" />
     <Compile Include="Assets\Scripts\GameLogic\GameMain\Debug\_Debug.cs" />
@@ -80,11 +81,11 @@
     <Compile Include="Assets\Scripts\GameLogic\GridSystem\Selection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\HolyWater\HolyWater.cs" />
     <Compile Include="Assets\Scripts\GameLogic\RoundSystem\RoundSystem.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\CellSelection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
-    <Compile Include="Assets\Scripts\GameLogic\UI\PanelBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Unit\HP_Bar\HP_Bar.cs" />
-    <Compile Include="Assets\Scripts\GameLogic\UI\Units.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Unit\UnitGenerationPanel\UnitGenerationPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Common\UnitGeneration.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Farmer\Farmer.cs" />
