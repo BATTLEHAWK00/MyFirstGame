@@ -13,7 +13,7 @@ public class CellSelection : BaseManager<CellSelection>
     public void CellSelected(CubeCell cubeCell)
     {
         CurrentSelected = cubeCell;
-        Debug.Log("单元格选中:" + cubeCell.Position.x + "," + cubeCell.Position.y);
+        //Debug.Log("单元格选中:" + cubeCell.Position.x + "," + cubeCell.Position.y);
         if (cubeCell.CurrentUnit != null)
             return;
         UnitSelection.Getinstance().ClearSelection();

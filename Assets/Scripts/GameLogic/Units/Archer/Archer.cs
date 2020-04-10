@@ -22,6 +22,7 @@ public class Archer : UnitBase
         base.Description = "弓箭手";
         base.Attack = 2;
         base.AttackRange = 3;
+        base.HolyWaterCost = 1;
     }
 }
 [System.Serializable]

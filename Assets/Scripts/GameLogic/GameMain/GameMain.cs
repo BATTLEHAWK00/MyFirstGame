@@ -21,6 +21,7 @@ public class GameMain : MonoBehaviour
     void OnGameStart(object info)
     {
         Debug.Log("[消息]游戏开始");
+        HolyWaterSystem.Getinstance().Init();
         RoundSystem.Getinstance().Init(1);
         AudioManager.Getinstance().PlayBGM("1");
         AudioManager.Getinstance().PlaySound("GameMain/GameStart",0.1f);
@@ -29,7 +30,11 @@ public class GameMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.Getinstance().SwitchPanel(PanelTypes.GameSettingPanel);
+        }
+            
     }
     public GameMain()
     {

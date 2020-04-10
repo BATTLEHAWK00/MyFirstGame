@@ -12,7 +12,7 @@ public class GridSystem : MonoBehaviour
     public Vector3 Offset;  //位置偏移
     public float Distance = 10f;
     #endregion
-    List<CubeCell> CubeCells = new List<CubeCell>();
+    public List<CubeCell> CubeCells { get; private set; } = new List<CubeCell>();
     [HideInInspector]
     public List<int> RowCounter = new List<int>();
     //CubeCell[] CubeCells;   //单元格数组

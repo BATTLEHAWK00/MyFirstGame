@@ -54,7 +54,7 @@ public class EventManager: BaseManager <EventManager>
     {
         if (EventDic.ContainsKey(name))
         {
-            Debug.Log("[事件]触发事件:" + name);
+           // Debug.Log("[事件]触发事件:" + name);
             (EventDic[name] as Game_Event<T>).Get().Invoke(info);
         }
         else
@@ -66,13 +66,7 @@ public class EventManager: BaseManager <EventManager>
     /// <param name="name">事件名</param>
     public void EventTrigger(string name)
     {
-        if (EventDic.ContainsKey(name))
-        {
-            Debug.Log("[事件]触发事件:" + name);
-            (EventDic[name] as Game_Event<object>).Get().Invoke(null);
-        }
-        else
-            Debug.LogWarning(string.Format("[事件]事件名({0})被触发,但无监听对象!", name));
+        EventTrigger<object>(name, null);
     }
     /// <summary>
     /// 删除事件

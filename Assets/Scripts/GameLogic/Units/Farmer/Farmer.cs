@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Farmer : UnitBase
 {
+    void AddHolyWaterPerRound(object info)
+    {
+        if(GetPosition().Position.y==0)
+            HolyWaterSystem.Getinstance().AddHolyWater(1);
+    }
     protected override void _Awake()
     {
         var data = TheGameCommon.JsonFunc.FromFile<ArcherData>("Prefabs/Units/UnitData/Farmer");
+        EventManager.Getinstance().AddListener<object>("RoundSystem_YourTurn", AddHolyWaterPerRound);
         /*Debug.Log(data.Description);
         Debug.Log(data.HP);
         Debug.Log(data.Attack);
@@ -18,6 +24,7 @@ public class Farmer : UnitBase
         base.MaxHP = 3;
         base.HP = MaxHP;
         base.Description = "农民";
+        base.HolyWaterCost = 1;
     }
 }
 public class FarmerData

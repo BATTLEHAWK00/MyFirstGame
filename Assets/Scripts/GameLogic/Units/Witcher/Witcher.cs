@@ -10,5 +10,6 @@ public class Witcher : UnitBase
         base.MaxHP = 3;
         base.HP = MaxHP;
         base.Description = "法师";
+        base.HolyWaterCost = 2;
     }
 }

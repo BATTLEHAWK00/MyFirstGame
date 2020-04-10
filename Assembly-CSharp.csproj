@@ -84,6 +84,9 @@
     <Compile Include="Assets\Scripts\GameLogic\UI\CellSelection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\HolyWaterPanel.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\RoundsPanel.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameSettingPanel\GameSettingPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Unit\HP_Bar\HP_Bar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Unit\UnitGenerationPanel\UnitGenerationPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Archer\Archer.cs" />

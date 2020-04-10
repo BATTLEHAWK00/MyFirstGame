@@ -10,5 +10,6 @@ public class Rider : UnitBase
         base.MaxHP = 10;
         base.HP = MaxHP;
         base.Description = "骑士";
+        base.HolyWaterCost = 2;
     }
 }

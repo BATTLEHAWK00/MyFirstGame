@@ -10,5 +10,6 @@ public class Lancer : UnitBase
         base.MaxHP = 3;
         base.HP = MaxHP;
         base.Description = "长矛手";
+        base.HolyWaterCost = 2;
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 public class UIManager : BaseManager<UIManager>
 {
     #region 私有成员
-    private GameObject hud;
-    private GameObject MsgBar;
+    private Transform hud;
     private Transform canvas;
     private Transform top;
     private Transform mid;
@@ -14,6 +13,7 @@ public class UIManager : BaseManager<UIManager>
     private Transform system;
     private Dictionary<PanelTypes, string> panelPrefabsPathDic = new Dictionary<PanelTypes, string>();
     private Dictionary<PanelTypes, PanelBase> panelInstancesDic = new Dictionary<PanelTypes, PanelBase>();
+    private Dictionary<MultiPanelTypes, List<PanelBase>> multipanelInstancesDic = new Dictionary<MultiPanelTypes, List<PanelBase>>();
     private Stack<PanelBase> panelStack = new Stack<PanelBase>();
     #endregion
     #region 外部只读属性
@@ -37,24 +37,46 @@ public class UIManager : BaseManager<UIManager>
     #region 控制面板的开启和关闭
     public void PushPanel(PanelTypes panelType)
     {
+        while (panelStack.Count > 0 && panelStack.Peek() == null)
+                panelStack.Pop();
         if (panelStack.Count > 0)
             panelStack.Peek().OnPause();
-        var panel = GetPanel(panelType);
+        var panel = getPanel(panelType);
         panel.OnEnter();
         panelStack.Push(panel);
     }
-    public void PopPanel(PanelTypes panelType)
+    public void PopPanel()
     {
         if (panelStack.Count == 0)
             return;
         var panel = panelStack.Peek();
-        panel.OnExit();
-        panelStack.Pop();
+        if(panel!=null)
+            panel.OnExit();
+        else while(panel==null)
+           panel = panelStack.Pop();
         if (panelStack.Count == 0)
             return;
         panelStack.Peek().OnResume();
     }
-    private PanelBase GetPanel(PanelTypes paneltype)
+    public void ForceExitPanel(PanelTypes panelType)
+    {
+        panelInstancesDic[panelType].OnExit();
+    }
+    public void SwitchPanel(PanelTypes panelType)
+    {
+        Debug.Log(panelStack.Count);
+        if (panelInstancesDic.ContainsKey(panelType) && panelInstancesDic[panelType] != null)
+            panelInstancesDic[panelType].OnExit();
+        else
+            PushPanel(panelType);
+    }
+    public PanelBase GetPanel(PanelTypes panelType)
+    {
+        if (panelInstancesDic.ContainsKey(panelType) && panelInstancesDic[panelType] != null)
+            return panelInstancesDic[panelType];
+        return null;
+    }
+    private PanelBase getPanel(PanelTypes paneltype)
     {
         if (panelInstancesDic.ContainsKey(paneltype) && panelInstancesDic[paneltype] != null)
             return panelInstancesDic[paneltype];
@@ -79,6 +101,7 @@ public class UIManager : BaseManager<UIManager>
             case UILayers.Mid:return mid;
             case UILayers.Top:return top;
             case UILayers.System:return system;
+            case UILayers.HUD:return hud;
             default:return null;
         }
     }
@@ -89,9 +112,12 @@ public class UIManager : BaseManager<UIManager>
         mid = Canvas.transform.Find("Mid");
         bottom = Canvas.transform.Find("Bottom");
         system = Canvas.transform.Find("System");
-        hud = Top.Find("HUD").gameObject;
+        hud = system.Find("HUD");
         #region Prefab路径
         panelPrefabsPathDic.Add(PanelTypes.UnitGenerationPanel,"GameLogic/UnitGenerationPanel/Call_Panel");
+        panelPrefabsPathDic.Add(PanelTypes.GameSettingPanel, "GameSettingPanel");
+        panelPrefabsPathDic.Add(PanelTypes.RoundPanel, "GameLogic/RoundsPanel");
+        panelPrefabsPathDic.Add(PanelTypes.HolyWaterPanel, "GameLogic/HolyWaterPanel");
         #endregion
     }
 }
@@ -100,5 +126,6 @@ public enum UILayers
     Top,
     Mid,
     Bottom,
-    System
+    System,
+    HUD
 }

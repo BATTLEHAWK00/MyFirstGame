@@ -4,5 +4,12 @@ using UnityEngine;
 
 public enum PanelTypes
 {
-    UnitGenerationPanel
+    UnitGenerationPanel,
+    GameSettingPanel,
+    RoundPanel,
+    HolyWaterPanel
+}
+public enum MultiPanelTypes
+{
+
 }

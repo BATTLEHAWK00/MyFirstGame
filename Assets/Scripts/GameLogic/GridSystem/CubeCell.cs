@@ -15,8 +15,13 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     public Material HighLightedMaterial;
     public Material NormalMaterial;
     public Material OccupiedMaterial;
-    //private Material CurrentMaterial;
     private MeshRenderer meshRenderer;
+    public bool isLocal { get; private set; }
+    private void Awake()
+    {
+        if (Position.y <= 1)
+            isLocal = true;
+    }
     // Start is called before the first frame update
     void Start()
     {

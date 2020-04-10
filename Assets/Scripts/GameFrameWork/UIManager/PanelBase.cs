@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class PanelBase : MonoBehaviour
 {
-    protected UILayers layer;
-    public UILayers Layer { get { return layer; } }
+    public UILayers Layer { get; protected set; } = UILayers.Mid;
     public virtual void OnEnter() { }
     public virtual void OnExit() { Destroy(gameObject); }
     public virtual void OnPause() { }

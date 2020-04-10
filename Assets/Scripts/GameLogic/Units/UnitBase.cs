@@ -33,6 +33,7 @@ public abstract class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExit
     public int AttackRange { get; protected set; } = 2;  //单位攻击距离
     public int Attack { get; protected set; } = 1;    //单位攻击力
     public int MaxHP { get; protected set; }     //最大生命值
+    public int HolyWaterCost { get; protected set; } = 1;
     private List<Buff> buffs = new List<Buff>();
     private List<Buff> deBuffs = new List<Buff>();
     protected delegate void AttackDelegate(UnitBase Target);
@@ -146,6 +147,10 @@ public abstract class UnitBase : MonoBehaviour,IPointerEnterHandler,IPointerExit
     }
     void Awake() 
     { 
+        if(!HolyWaterSystem.Getinstance().CostHolyWater(HolyWaterCost))
+        {
+            Destroy(gameObject);return;
+        }
         _Awake();
         ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/Unit/HP_Bar",(obj)=> {
             HP_Bar = obj.transform.Find("Bar").gameObject;
