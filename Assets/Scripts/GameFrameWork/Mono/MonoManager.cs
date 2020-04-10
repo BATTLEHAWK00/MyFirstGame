@@ -33,11 +33,11 @@ public class MonoManager : MonoBehaviour
             Debug.LogError("传入了空的UpdateAction!");
     }
 }
-public class Mono : BaseManager<Mono>
+public class MonoBase : BaseManager<MonoBase>
 {
     private MonoManager mono;
     public MonoManager GetMono() { return mono; }
-    public Mono()
+    public MonoBase()
     {
         GameObject gameObject = new GameObject();
         gameObject.name = "MonoManager";

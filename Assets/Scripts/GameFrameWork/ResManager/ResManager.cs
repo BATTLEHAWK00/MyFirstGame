@@ -32,7 +32,7 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
     public void LoadAsync<T>(string name, UnityAction<T> callback) where T : Object
     {
         //开启异步加载协程
-        Mono.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback));
+        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback));
     }
     IEnumerator LoadAsyncCoroutine<T>(string name,UnityAction<T> callback) where T: Object
     {

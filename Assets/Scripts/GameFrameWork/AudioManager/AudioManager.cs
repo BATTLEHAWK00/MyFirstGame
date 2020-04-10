@@ -63,7 +63,7 @@ public class AudioManager : BaseManager<AudioManager>
             audioSource.clip = clip;
             audioSource.volume = volume;
             audioSource.Play();
-            Mono.Getinstance().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
+            MonoBase.Getinstance().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
         });
     }
     IEnumerator AudioTimeToLive(AudioSource audioSource)

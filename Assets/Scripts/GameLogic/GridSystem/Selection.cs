@@ -41,7 +41,7 @@ public class UnitSelection : BaseManager<UnitSelection>
     }
     public UnitSelection()
     {
-        Mono.Getinstance().GetMono().AddUpdateListener(()=> {
+        MonoBase.Getinstance().GetMono().AddUpdateListener(()=> {
             if (Input.GetMouseButtonDown(1))
             {
                 if (start == null)

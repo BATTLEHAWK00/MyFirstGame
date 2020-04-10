@@ -27,7 +27,7 @@ public class UnitAttack:BaseManager<UnitAttack>
         #endregion
         from.ShowHP();target.ShowHP();
         //开启攻击协程
-        Mono.Getinstance().GetMono().StartCoroutine(attack(from, target));
+        MonoBase.Getinstance().GetMono().StartCoroutine(attack(from, target));
         from.CanOperate = false;
         //广播攻击消息
         UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击了{1}", from.UnitName, target.UnitName));

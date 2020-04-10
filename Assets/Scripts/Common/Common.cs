@@ -30,7 +30,7 @@ namespace TheGameCommon {
         [System.Serializable]
         private class JsonList<T>
         {
-            public List<T> jsonList;
+            public List<T> jsonList=null;
         }
         public static List<T> ListFromFile<T>(string name)
         {
