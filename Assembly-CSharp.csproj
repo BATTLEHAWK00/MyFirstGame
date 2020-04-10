@@ -95,6 +95,9 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\UnitAttack\UnitAttack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
+    <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\version.txt" />
+    <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Readme.txt" />
+    <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Plugins\Mono.Cecil\License.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -298,6 +301,18 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Mdb">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Pdb">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Rocks">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -644,6 +659,40 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Mirror.Weaver.csproj">
+      <Project>{70EB1F92-6787-C198-77FA-99FCBB588E82}</Project>
+      <Name>Mirror.Weaver</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Authenticators.csproj">
+      <Project>{2A5A53BC-1E8F-4D49-06CF-2FD1DD408E44}</Project>
+      <Name>Mirror.Authenticators</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Components.csproj">
+      <Project>{7C02025B-A2C4-B7C2-00FE-27E2C00F238A}</Project>
+      <Name>Mirror.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Examples.csproj">
+      <Project>{951A82CD-C4DC-5B74-98A3-68014397698B}</Project>
+      <Name>Mirror.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.CompilerSymbols.csproj">
+      <Project>{C931340B-9C54-050C-52A9-7E49D67F557D}</Project>
+      <Name>Mirror.CompilerSymbols</Name>
+    </ProjectReference>
+    <ProjectReference Include="Ninja.WebSockets.csproj">
+      <Project>{66FE5C89-1133-F674-234F-59AA3F03A95E}</Project>
+      <Name>Ninja.WebSockets</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.csproj">
+      <Project>{7E215DF6-0B56-F2CB-DB29-E94BFDA15E55}</Project>
+      <Name>Mirror</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Editor.csproj">
+      <Project>{23177B71-8CD7-60F1-8B5F-812C3DF778EF}</Project>
+      <Name>Mirror.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
