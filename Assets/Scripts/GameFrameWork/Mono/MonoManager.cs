@@ -42,5 +42,6 @@ public class MonoBase : BaseManager<MonoBase>
         GameObject gameObject = new GameObject();
         gameObject.name = "MonoManager";
         mono = gameObject.AddComponent<MonoManager>();
+        GameObject.DontDestroyOnLoad(mono);
     }
 }

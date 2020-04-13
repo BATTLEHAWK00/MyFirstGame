@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{F536D4E2-7E6F-BB40-F6EB-7C64A65B74DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -68,7 +69,7 @@
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\Base\BaseManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\EventManager\EventManager.cs" />
-    <Compile Include="Assets\Scripts\GameFrameWork\EventManager\Events.cs" />
+    <Compile Include="Assets\Scripts\GameFrameWork\EventManager\EventTypes.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\Mono\MonoManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\ResManager\ResManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\UIManager\PanelBase.cs" />
@@ -99,9 +100,7 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\UnitAttack\UnitAttack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
-    <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\version.txt" />
-    <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Readme.txt" />
-    <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Plugins\Mono.Cecil\License.txt" />
+    <Compile Include="Assets\Scripts\OtherScenes\StartGame.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

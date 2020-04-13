@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
 public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
 {
     #region 只读变量
@@ -48,7 +47,7 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
             return;
         if (!RoundSystem.Getinstance().IsWaitingPlayer())
             return;
-        EventManager.Getinstance().EventTrigger<CubeCell>("Grid_OnSelected",this);
+        EventManager.Getinstance().EventTrigger<CubeCell>(EventTypes.Cell_OnSelected,this);
         if (this.CurrentUnit != null)
             UnitSelection.Getinstance().Set(this);
         if (UnitSelection.Getinstance().GetStart() == this)

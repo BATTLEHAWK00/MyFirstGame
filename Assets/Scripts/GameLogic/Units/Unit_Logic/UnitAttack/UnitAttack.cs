@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class UnitAttack:BaseManager<UnitAttack>
 {
     /// <summary>
@@ -25,6 +24,7 @@ public class UnitAttack:BaseManager<UnitAttack>
         if (!from.CanOperate)
         { UIManager.Getinstance().MsgOnScreen("你已经操作过该单位!");return; }
         #endregion
+        //Debug.Log(AttackDistance(from,target));
         from.ShowHP();target.ShowHP();
         //开启攻击协程
         MonoBase.Getinstance().GetMono().StartCoroutine(attack(from, target));
@@ -82,8 +82,10 @@ public class UnitAttack:BaseManager<UnitAttack>
         int toY = to.GetPosition().Position.y;
         if (fromY > toY)
             TheGameCommon.Common.Swap(ref fromY,ref toY);
+        //foreach (var i in GameGlobal.Getinstance().GameMain.GridSystem.RowCounter)
+         //   Debug.Log(i);
         for (int i = fromY; i <= toY; i++)
-            if (TheGame.Getinstance().GameMain.GridSystem.RowCounter[i]>0)
+            if (GameGlobal.Getinstance().GameMain.GridSystem.RowCounter[i]>0)
                 cnt++;
         return cnt;
     }

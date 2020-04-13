@@ -11,27 +11,35 @@ public class AudioManager : BaseManager<AudioManager>
     public float BGM_Volume{
         get
         { 
-            return bgm_source.volume; 
+            return bgm_source.volume*4; 
         } 
         set
         {
-            bgm_source.volume = value;
+            if (value > 1f)
+                value = 1f;
+            else if (value < 0f)
+                value = 0f;
+            bgm_source.volume = value * 0.25f; ;
         }
     }
+    public float Sound_Volume = 1f;
     public void PlayBGM(string name)
     {
         if (bgm_source == null)
-        {
-            obj_Audio = new GameObject();
-            obj_Audio.name = "Audio";
-            bgm_source = obj_Audio.AddComponent<AudioSource>();
-            bgm_source.volume = 0.05f;
-        }
+            Debug.LogError("[错误]找不到音频组件!");
         Debug.Log("[消息]播放BGM:" + name);
         ResManager.Getinstance().LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) => {
             bgm_source.clip = clip;
             bgm_source.Play();
         });
+    }
+    void Init()
+    {
+        obj_Audio = new GameObject();
+        obj_Audio.name = "Audio";
+        bgm_source = obj_Audio.AddComponent<AudioSource>();
+        bgm_source.volume = 0.05f;
+        GameObject.DontDestroyOnLoad(obj_Audio);
     }
     public void SwitchBGM()
     {
@@ -47,21 +55,15 @@ public class AudioManager : BaseManager<AudioManager>
     
     public void PlaySound(string name)
     {
-        PlaySound(name, 0.5f);
+        PlaySound(name, Sound_Volume);
     }
     public void PlaySound(string name,float volume)
     {
-        if (bgm_source == null)
-        {
-            obj_Audio = new GameObject();
-            obj_Audio.name = "Audio";
-            bgm_source = obj_Audio.AddComponent<AudioSource>();
-        }
         ResManager.Getinstance().LoadAsync<AudioClip>("Audio/Sounds/" + name, (clip) => {
             AudioSource audioSource = obj_Audio.AddComponent<AudioSource>();
             sound_source.Add(audioSource);
             audioSource.clip = clip;
-            audioSource.volume = volume;
+            audioSource.volume = volume*Sound_Volume;
             audioSource.Play();
             MonoBase.Getinstance().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
         });
@@ -88,6 +90,7 @@ public class AudioManager : BaseManager<AudioManager>
     */
     public AudioManager()
     {
+        Init();
         //TheGame.Getinstance().GameMain.MonoManager.AddUpdateListener(CleanAudioSource);
     }
 }

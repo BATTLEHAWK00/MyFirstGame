@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class HP_Bar : MonoBehaviour
 {
     private UnitBase unitBase;

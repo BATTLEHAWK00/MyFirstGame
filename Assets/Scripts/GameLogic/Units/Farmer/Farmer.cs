@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Farmer : UnitBase
 {
     void AddHolyWaterPerRound(object info)
@@ -12,11 +11,7 @@ public class Farmer : UnitBase
     protected override void _Awake()
     {
         var data = TheGameCommon.JsonFunc.FromFile<ArcherData>("Prefabs/Units/UnitData/Farmer");
-        EventManager.Getinstance().AddListener<object>("RoundSystem_YourTurn", AddHolyWaterPerRound);
-        /*Debug.Log(data.Description);
-        Debug.Log(data.HP);
-        Debug.Log(data.Attack);
-        Debug.Log(data.AttackRange);*/
+        EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_YourTurn, AddHolyWaterPerRound);
     }
     public Farmer()
     {

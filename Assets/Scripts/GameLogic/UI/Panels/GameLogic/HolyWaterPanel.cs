@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class HolyWaterPanel : PanelBase
 {
     private UnityEngine.UI.Text text;
@@ -18,6 +17,6 @@ public class HolyWaterPanel : PanelBase
     public HolyWaterPanel()
     {
         base.Layer = UILayers.HUD;
-        EventManager.Getinstance().AddListener<object>("HolyWater_OnChanged", HolyWaterChanged);
+        EventManager.Getinstance().AddListener<object>(EventTypes.HolyWater_OnChanged, HolyWaterChanged);
     }
 }

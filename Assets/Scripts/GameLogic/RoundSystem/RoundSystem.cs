@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 /// <summary>
 /// 回合系统
 /// </summary>
@@ -29,12 +28,12 @@ public class RoundSystem : BaseManager<RoundSystem>
             isWaiting = true;
         else
             isWaiting = false;
-        EventManager.Getinstance().EventTrigger("RoundSystem_NextRound");
+        EventManager.Getinstance().EventTrigger(EventTypes.RoundSystem_NextRound);
         if (isWaiting)
         {
             foreach (var i in unitList)
                 i.CanOperate = true;
-            EventManager.Getinstance().EventTrigger("RoundSystem_YourTurn");    //触发你的回合事件
+            EventManager.Getinstance().EventTrigger(EventTypes.RoundSystem_YourTurn);    //触发你的回合事件
         }
         else
         {
@@ -46,7 +45,7 @@ public class RoundSystem : BaseManager<RoundSystem>
     {
         UIManager.Getinstance().PushPanel(PanelTypes.RoundPanel);
         this.side = side;
-        EventManager.Getinstance().AddListener<object>("RoundSystem_YourTurn", YourTurn);   //监听轮到玩家事件
+        EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_YourTurn, YourTurn);   //监听轮到玩家事件
         NextRound();
     }
     void YourTurn(object info)  //你的回合事件

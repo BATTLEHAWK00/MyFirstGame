@@ -32,9 +32,14 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
     public void LoadAsync<T>(string name, UnityAction<T> callback) where T : Object
     {
         //开启异步加载协程
-        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback));
+        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback,true));
     }
-    IEnumerator LoadAsyncCoroutine<T>(string name,UnityAction<T> callback) where T: Object
+    public void LoadAsync<T>(string name, UnityAction<T> callback,bool instatiate) where T : Object
+    {
+        //开启异步加载协程
+        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback,instatiate));
+    }
+    IEnumerator LoadAsyncCoroutine<T>(string name, UnityAction<T> callback,bool instantiate) where T : Object
     {
         ResourceRequest request = Resources.LoadAsync<T>(name);
         yield return request;
@@ -43,10 +48,21 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
             Debug.LogError(string.Format("异步加载{0}失败!", name));
             yield return null;
         }
-        if (request.asset is GameObject)
-            callback(GameObject.Instantiate(request.asset) as T);
+        if (instantiate&&request.asset is GameObject)
+            callback(GameObject.Instantiate<T>(request.asset as T));
         else
             callback(request.asset as T);
         //Debug.Log(string.Format("异步加载{0}成功!", name));
+    }
+    public void LoadAsync(GameObject gameObject, UnityAction<GameObject> callback)
+    {
+        //开启异步加载协程
+        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine(gameObject, callback));
+    }
+    IEnumerator LoadAsyncCoroutine(GameObject gameObject, UnityAction<GameObject> callback)
+    {
+        GameObject instance = GameObject.Instantiate(gameObject);
+        callback(instance);
+        yield break;
     }
 }

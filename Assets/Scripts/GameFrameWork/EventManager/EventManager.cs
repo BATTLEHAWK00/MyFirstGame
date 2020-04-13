@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 interface IGameEventInfo { }
-public class Game_Event<T>:IGameEventInfo
+public class Game_Event<T> : IGameEventInfo
 {
     private UnityAction<T> actions;
     public Game_Event(UnityAction<T> action) { actions += action; }
@@ -27,69 +27,69 @@ public class Game_Event<T>:IGameEventInfo
 /// <summary>
 /// 事件管理器
 /// </summary>
-public class EventManager: BaseManager <EventManager>
+public class EventManager : BaseManager<EventManager>
 {
-    private Dictionary<string, IGameEventInfo> EventDic = new Dictionary<string, IGameEventInfo>();
+    private Dictionary<EventTypes, IGameEventInfo> EventDic = new Dictionary<EventTypes, IGameEventInfo>();
     /// <summary>
     /// 添加事件
     /// </summary>
     /// <param name="name">事件名</param>
     /// <param name="action">事件动作</param>
-    public void AddListener<T>(string name,UnityAction<T> action)
+    public void AddListener<T>(EventTypes type, UnityAction<T> action)
     {
-        if (EventDic.ContainsKey(name))
-            (EventDic[name] as Game_Event<T>).Add(action);
+        if (EventDic.ContainsKey(type))
+            (EventDic[type] as Game_Event<T>).Add(action);
         else
         {
-            EventDic.Add(name,new Game_Event<T>(action));
+            EventDic.Add(type, new Game_Event<T>(action));
             //Debug.Log("[事件]添加事件:" + name);
-        } 
+        }
     }
     /// <summary>
     /// 触发事件
     /// </summary>
     /// <param name="name">事件名</param>
     /// <param name="info">参数</param>
-    public void EventTrigger<T>(string name,T info)
+    public void EventTrigger<T>(EventTypes type, T info)
     {
-        if (EventDic.ContainsKey(name))
+        if (EventDic.ContainsKey(type))
         {
-           // Debug.Log("[事件]触发事件:" + name);
-            (EventDic[name] as Game_Event<T>).Get().Invoke(info);
+            // Debug.Log("[事件]触发事件:" + name);
+            (EventDic[type] as Game_Event<T>).Get().Invoke(info);
         }
         else
-            Debug.LogWarning(string.Format("[事件]事件名({0})被触发,但无监听对象!", name));
+            Debug.LogWarning(string.Format("[事件]事件名({0})被触发,但无监听对象!", type));
     }
     /// <summary>
     /// 触发事件
     /// </summary>
     /// <param name="name">事件名</param>
-    public void EventTrigger(string name)
+    public void EventTrigger(EventTypes type)
     {
-        EventTrigger<object>(name, null);
+        EventTrigger<object>(type, null);
     }
     /// <summary>
     /// 删除事件
     /// </summary>
     /// <param name="name">事件名</param>
-    public void RemoveListener(string name)
+    public void RemoveListener(EventTypes type)
     {
-        if (EventDic.ContainsKey(name))
+        if (EventDic.ContainsKey(type))
         {
-            EventDic.Remove(name);
+            EventDic.Remove(type);
             //Debug.Log("[事件]删除事件:" + name);
         }
         else
-            Debug.LogError(string.Format("[事件]事件名({0})不存在!", name));
+            Debug.LogError(string.Format("[事件]事件名({0})不存在!", type));
     }
-    public void RemoveListener<T>(string name,UnityAction<T> action)
+    public void RemoveListener<T>(EventTypes type, UnityAction<T> action)
     {
-        if (EventDic.ContainsKey(name))
+        if (EventDic.ContainsKey(type))
         {
-            (EventDic[name] as Game_Event<T>).Remove(action);
+            (EventDic[type] as Game_Event<T>).Remove(action);
             //Debug.Log("[事件]删除事件:" + name);
         }
         else
-            Debug.LogError(string.Format("[事件]事件名({0})不存在!", name));
+            Debug.LogError(string.Format("[事件]事件名({0})不存在!", type));
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class RoundsPanel : PanelBase
 {
     private UnityEngine.UI.Text text;
@@ -18,6 +17,6 @@ public class RoundsPanel : PanelBase
     public RoundsPanel()
     {
         base.Layer = UILayers.HUD;
-        EventManager.Getinstance().AddListener<object>("RoundSystem_NextRound",NextRound);
+        EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_NextRound,NextRound);
     }
 }

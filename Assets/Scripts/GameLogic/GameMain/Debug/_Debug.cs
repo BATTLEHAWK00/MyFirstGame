@@ -10,6 +10,6 @@ public class _Debug : MonoBehaviour
     }
     public void ForceToDie()
     {
-        UnitSelection.Getinstance().GetStart().CurrentUnit.Die();
+        UnitSelection.Getinstance().GetStart().CurrentUnit.ForceDie();
     }
 }

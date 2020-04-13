@@ -24,16 +24,35 @@ public class UIManager : BaseManager<UIManager>
     public Transform System { get { return system; } }
     public Transform HUD { get { return hud.transform; } }
     #endregion
-
+    private GameObject MsgBarPrefab=null;
+    private Stack<MsgBar> msgBarsQ=new Stack<MsgBar>();
+    private float Seconds = 0f;
     public void MsgOnScreen(string text)    //广播消息
     {
-        ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/HUD/MsgBar",(obj)=> {
+        if (MsgBarPrefab == null)
+            MsgBarPrefab = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/HUD/MsgBar");
+        ResManager.Getinstance().LoadAsync(MsgBarPrefab,(obj)=> {
             if (obj == null)
                 Debug.LogError("[错误]公告栏无法加载!");
             obj.transform.SetParent(HUD.transform,false);
             obj.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
         });
-    } 
+    }
+    public void PushMsgBar(MsgBar msgBar)
+    {
+        if (msgBarsQ.Count > 0)
+            msgBarsQ.Peek().OnPause();
+        msgBarsQ.Push(msgBar);
+    }
+    public void PopMsgBar()
+    {
+        if (msgBarsQ.Count == 0)
+            return;
+        msgBarsQ.Peek().Die();
+        msgBarsQ.Pop();
+        if (msgBarsQ.Count > 0)
+            msgBarsQ.Peek().OnResume();
+    }
     #region 控制面板的开启和关闭
     public void PushPanel(PanelTypes panelType)
     {

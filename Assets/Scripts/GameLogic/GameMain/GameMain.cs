@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GameMain : MonoBehaviour
 {
     //public _debug _Debug;
@@ -14,9 +13,9 @@ public class GameMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.Getinstance().AddListener<object>("Game_OnStart", OnGameStart);
-        EventManager.Getinstance().EventTrigger("Game_OnStart");
-        EventManager.Getinstance().AddListener<CubeCell>("Grid_OnSelected",CellSelection.Getinstance().CellSelected);
+        OnGameStart(null);
+        EventManager.Getinstance().EventTrigger(EventTypes.Game_OnStart);
+        EventManager.Getinstance().AddListener<CubeCell>(EventTypes.Cell_OnSelected,CellSelection.Getinstance().CellSelected);
     }
     void OnGameStart(object info)
     {
@@ -38,10 +37,10 @@ public class GameMain : MonoBehaviour
     }
     public GameMain()
     {
-        TheGame.Getinstance().SetGameMain(this);
+        GameGlobal.Getinstance().SetGameMain(this);
     }
 }
-public class TheGame : BaseManager<TheGame>
+public class GameGlobal : BaseManager<GameGlobal>
 {
     private GameMain gameMain;
     public GameMain GameMain { get { return gameMain; } }

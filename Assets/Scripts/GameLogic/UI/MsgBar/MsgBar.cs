@@ -7,12 +7,14 @@ public class MsgBar : MonoBehaviour
     private float seconds = 0;
     [Range(1,10f)]
     public float RemainTime = 3f;
+    public bool Pause=false;
     private Animator animator;
     private RectTransform rectTransform;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rectTransform = GetComponent<RectTransform>();
+        UIManager.Getinstance().PushMsgBar(this);
     }
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,16 @@ public class MsgBar : MonoBehaviour
     {
         if (seconds <= 0)
             Die();
-        seconds -= Time.deltaTime;
+        if(!Pause)
+            seconds -= Time.deltaTime;
+    }
+    public void OnPause()
+    {
+        Pause = true;
+    }
+    public void OnResume()
+    {
+        Pause = false;
     }
     public void Die()
     {
@@ -33,6 +44,7 @@ public class MsgBar : MonoBehaviour
     }
     public void destroy()
     {
+        UIManager.Getinstance().PopMsgBar();
         Destroy(gameObject);
     }
 }
