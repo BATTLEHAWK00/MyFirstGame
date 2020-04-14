@@ -6,8 +6,8 @@ public class MsgBar : MonoBehaviour
 {
     private float seconds = 0;
     [Range(1,10f)]
-    public float RemainTime = 3f;
-    public bool Pause=false;
+    public float RemainTime = 1f;
+    private bool IsPaused=false;
     private Animator animator;
     private RectTransform rectTransform;
     private void Awake()
@@ -27,16 +27,17 @@ public class MsgBar : MonoBehaviour
     {
         if (seconds <= 0)
             Die();
-        if(!Pause)
+        if(!IsPaused)
             seconds -= Time.deltaTime;
     }
     public void OnPause()
     {
-        Pause = true;
+        IsPaused = true;
     }
     public void OnResume()
     {
-        Pause = false;
+        IsPaused = false;
+        seconds = 0.25f;
     }
     public void Die()
     {

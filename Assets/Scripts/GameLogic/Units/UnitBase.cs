@@ -38,7 +38,6 @@ public abstract class UnitBase : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public bool CanOperate = true;
     protected int HP = -1;    //生命
     protected UnitType unitType;
-
     public int HolyWaterCost { get; protected set; } = 1;
     private List<Buff> buffs = new List<Buff>();
     private List<Buff> deBuffs = new List<Buff>();

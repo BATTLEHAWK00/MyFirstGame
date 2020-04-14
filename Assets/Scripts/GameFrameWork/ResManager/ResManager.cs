@@ -11,7 +11,7 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
     /// <typeparam name="T">资源类型</typeparam>
     /// <param name="name">资源路径</param>
     /// <returns></returns>
-    public T Load<T>(string name) where T:Object
+    public T Load<T>(string name,bool instantiate=true) where T:Object
     {
         T obj = Resources.Load<T>(name);
         if(obj==null)
@@ -19,7 +19,7 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
             Debug.LogError(string.Format("同步加载{0}失败!",name));
             return null;
         }
-        if (obj is GameObject)
+        if (obj is GameObject&&instantiate)
             return GameObject.Instantiate(obj);
         return obj;
     }
@@ -29,12 +29,7 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
     /// <typeparam name="T">资源类型</typeparam>
     /// <param name="name">资源路径</param>
     /// <param name="callback">回调委托方法</param>
-    public void LoadAsync<T>(string name, UnityAction<T> callback) where T : Object
-    {
-        //开启异步加载协程
-        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback,true));
-    }
-    public void LoadAsync<T>(string name, UnityAction<T> callback,bool instatiate) where T : Object
+    public void LoadAsync<T>(string name, UnityAction<T> callback,bool instatiate=true) where T : Object
     {
         //开启异步加载协程
         MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback,instatiate));
