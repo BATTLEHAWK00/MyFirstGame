@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Resources\Prefabs\Network\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Common\Common.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioList.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioManager.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\GameFrameWork\EventManager\EventManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\EventManager\EventTypes.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\Mono\MonoManager.cs" />
+    <Compile Include="Assets\Scripts\GameFrameWork\NetworkManager\GameNetwork.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\ResManager\ResManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\UIManager\PanelBase.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\UIManager\UIManager.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Scripts\GameLogic\UI\CellSelection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\HUD\HUDPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\HolyWaterPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\RoundsPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameSettingPanel\GameSettingPanel.cs" />

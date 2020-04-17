@@ -32,7 +32,6 @@ public class HolyWaterSystem : BaseManager<HolyWaterSystem>
     }
     public void Init()
     {
-        UIManager.Getinstance().PushPanel(PanelTypes.HolyWaterPanel);
         EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_YourTurn,AddHolyWaterPerRound);
     }
 }

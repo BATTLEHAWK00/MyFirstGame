@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class RoundsPanel : PanelBase
+public class RoundsPanel : MonoBehaviour
 {
     private UnityEngine.UI.Text text;
+    private void Awake()
+    {
+        EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_NextRound, NextRound);
+    }
     void NextRound(object info)
     {
         if (text == null)
@@ -14,9 +18,4 @@ public class RoundsPanel : PanelBase
         else
             text.text = "回合数:" + RoundSystem.Getinstance().Rounds.ToString();
     }    
-    public RoundsPanel()
-    {
-        base.Layer = UILayers.HUD;
-        EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_NextRound,NextRound);
-    }
 }

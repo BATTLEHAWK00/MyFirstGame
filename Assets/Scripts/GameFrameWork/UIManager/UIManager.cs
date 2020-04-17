@@ -72,12 +72,13 @@ public class UIManager : BaseManager<UIManager>
         if (panelStack.Count == 0)
             return;
         var panel = panelStack.Peek();
-        if(panel!=null)
-            panel.OnExit();
-        else while(panel==null)
+        while(panel==null)
            panel = panelStack.Pop();
+        panel.OnExit();
+        panelStack.Pop();
         if (panelStack.Count == 0)
             return;
+        //Debug.Log("调用onResume");
         panelStack.Peek().OnResume();
     }
     public void ForceExitPanel(PanelTypes panelType)
@@ -86,9 +87,9 @@ public class UIManager : BaseManager<UIManager>
     }
     public void SwitchPanel(PanelTypes panelType)
     {
-        Debug.Log(panelStack.Count);
+        //Debug.Log(panelStack.Count);
         if (panelInstancesDic.ContainsKey(panelType) && panelInstancesDic[panelType] != null)
-            panelInstancesDic[panelType].OnExit();
+            PopPanel();
         else
             PushPanel(panelType);
     }
@@ -129,7 +130,9 @@ public class UIManager : BaseManager<UIManager>
     }
     public UIManager()
     {
-        canvas = GameObject.Find("UI/Canvas").transform;
+        GameObject ui = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/UI");
+        ui.name = "UI";
+        canvas = ui.transform.Find("Canvas").transform;
         top = Canvas.transform.Find("Top");
         mid = Canvas.transform.Find("Mid");
         bottom = Canvas.transform.Find("Bottom");
@@ -138,8 +141,7 @@ public class UIManager : BaseManager<UIManager>
         #region Prefab路径
         panelPrefabsPathDic.Add(PanelTypes.UnitGenerationPanel,"GameLogic/UnitGenerationPanel/Call_Panel");
         panelPrefabsPathDic.Add(PanelTypes.GameSettingPanel, "GameSettingPanel");
-        panelPrefabsPathDic.Add(PanelTypes.RoundPanel, "GameLogic/RoundsPanel");
-        panelPrefabsPathDic.Add(PanelTypes.HolyWaterPanel, "GameLogic/HolyWaterPanel");
+        panelPrefabsPathDic.Add(PanelTypes.HUDPanel, "HUDPanel/HUDPanel");
         #endregion
     }
 }

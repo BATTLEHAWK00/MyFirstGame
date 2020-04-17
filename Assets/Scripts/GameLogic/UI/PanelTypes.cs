@@ -6,8 +6,7 @@ public enum PanelTypes
 {
     UnitGenerationPanel,
     GameSettingPanel,
-    RoundPanel,
-    HolyWaterPanel
+    HUDPanel
 }
 public enum MultiPanelTypes
 {

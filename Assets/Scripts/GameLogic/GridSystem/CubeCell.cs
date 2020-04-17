@@ -7,13 +7,17 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     #region 只读变量
     public Vector2Int Position { get { return _Position; } }
     #endregion
-    public Vector3 CenterOffset;    //中心偏移 在Unity中修改
+    [SerializeField]
+    private Vector3 CenterOffset;    //中心偏移 在Unity中修改
     private Vector2Int _Position;
     [HideInInspector]
     public UnitBase CurrentUnit;    //单元内所处物体
-    public Material HighLightedMaterial;
-    public Material NormalMaterial;
-    public Material OccupiedMaterial;
+    [SerializeField]
+    private Material HighLightedMaterial=null;
+    [SerializeField]
+    private Material NormalMaterial=null;
+    [SerializeField]
+    private Material OccupiedMaterial=null;
     private MeshRenderer meshRenderer;
     public bool isLocal { get; private set; }
     private void Awake()
@@ -60,11 +64,13 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
         if (UnitSelection.Getinstance().GetStart() != this && UnitSelection.Getinstance().GetEnd() != this)
             meshRenderer.material = HighLightedMaterial;
         AudioManager.Getinstance().PlaySound("Grid/OnMouse",0.1f);
+        name = name + "(OnHovering)";
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(UnitSelection.Getinstance().GetStart()!=this && UnitSelection.Getinstance().GetEnd()!=this)
             meshRenderer.material = NormalMaterial;
+        name = string.Format("CubeCell({0},{1})", Position.x, Position.y);
     }
 }

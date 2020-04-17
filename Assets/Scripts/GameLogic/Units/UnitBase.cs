@@ -12,7 +12,7 @@ public class UnitSounds
 /// <summary>
 /// 单位基本属性类
 /// </summary>
-public abstract class UnitBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     #region Unity编辑器里编辑
     public float Height = 10f;

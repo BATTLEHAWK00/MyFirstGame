@@ -43,7 +43,6 @@ public class RoundSystem : BaseManager<RoundSystem>
     }
     public void Init(int side) //回合系统初始化
     {
-        UIManager.Getinstance().PushPanel(PanelTypes.RoundPanel);
         this.side = side;
         EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_YourTurn, YourTurn);   //监听轮到玩家事件
         NextRound();

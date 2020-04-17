@@ -52,7 +52,14 @@ public class AudioManager : BaseManager<AudioManager>
     {
         bgm_source.Pause();
     }
-    
+    public void Mute()
+    {
+        obj_Audio.SetActive(false);
+    }
+    public void Resume()
+    {
+        obj_Audio.SetActive(true);
+    }
     public void PlaySound(string name)
     {
         PlaySound(name, Sound_Volume);

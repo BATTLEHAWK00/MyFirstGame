@@ -5,12 +5,18 @@ using UnityEngine;
 public class GridSystem : MonoBehaviour
 {
     #region 此处变量在Unity中修改
-    public uint Width;  //宽度
-    public uint Length; //长度
-    public CubeCell CubePrefab; //正方形单元预制
-    public GameObject Ground;   //地面
-    public Vector3 Offset;  //位置偏移
-    public float Distance = 10f;
+    [SerializeField]
+    private uint Width=4;  //宽度
+    [SerializeField]
+    private uint Length=5; //长度
+    [SerializeField]
+    private CubeCell CubePrefab=null; //正方形单元预制
+    [SerializeField]
+    private GameObject Ground=null;   //地面
+    [SerializeField]
+    private Vector3 Offset=Vector3.zero;  //位置偏移
+    [SerializeField]
+    private float Distance = 10f;
     #endregion
     public List<CubeCell> CubeCells { get; private set; } = new List<CubeCell>();
     [HideInInspector]
@@ -46,7 +52,7 @@ public class GridSystem : MonoBehaviour
         Cell.SetPosition(x,z);
         Cell.transform.SetParent(transform, false);
         Cell.transform.localPosition = position+Offset;
-        Cell.name = "CubeCell (" + x.ToString() + "," + z.ToString() + ")";
+        Cell.name = string.Format("CubeCell({0},{1})", x, z);
     }
 
     public CubeCell FindCubeCell(Vector2Int a) //按坐标查找单元格

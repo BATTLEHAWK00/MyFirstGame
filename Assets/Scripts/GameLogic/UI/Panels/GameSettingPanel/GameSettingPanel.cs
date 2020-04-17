@@ -67,8 +67,9 @@ public class GameSettingPanel : PanelBase
     }
     #endregion
     #region MonoBehavior事件
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         if (OnAwake != null)
             OnAwake();
     }
