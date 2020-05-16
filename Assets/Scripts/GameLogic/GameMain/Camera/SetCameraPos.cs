@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class SetCameraPos : MonoBehaviour
 {
-    public GameObject _Camera;
+    private GameObject _Camera;
     public float BackwardOffset = 2f;
     public float HeightOffset = 5f;
     public float HorizontalOffset;
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 vector = gameObject.GetComponent<GridSystem>().FindCubeCell(new Vector2Int(gameObject.GetComponent<GridSystem>().Center().x,0)).transform.position;
+        _Camera = Camera.main.gameObject;
+        Vector3 vector = gameObject.GetComponent<GridSystem>().FindCubeCell(new Vector2Int(gameObject.GetComponent<GridSystem>().Center().x, 0)).transform.position;
         vector.z -= BackwardOffset;
         vector.y += HeightOffset;
         vector.x += HorizontalOffset;
-        _Camera.transform.position = vector;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Camera.main.transform.position = vector;
     }
 }

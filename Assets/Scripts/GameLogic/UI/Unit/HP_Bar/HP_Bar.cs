@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class HP_Bar : MonoBehaviour
 {
     private UnitBase unitBase;
@@ -33,36 +34,42 @@ public class HP_Bar : MonoBehaviour
             LastHP = unitBase.GetHP();
         if (LastHP != unitBase.GetHP())
         {
-            StartCoroutine(Anim_HP(LastHP, unitBase.GetHP(), 1f));
-            
-        }
-        LastHP = unitBase.GetHP();
-        IEnumerator Anim_HP(int LastHP, int Now, float speed)
-        {
-            float lastvalue = (float)LastHP / unitBase.MaxHP;
-            float targetvalue = (float)Now / unitBase.MaxHP;
-            float currentvalue = bar.GetComponent<UnityEngine.UI.Slider>().value;
-            Seconds = 1f;
-            //检测动画是否完成
-            if (LastHP > Now)
-            {
-                if (currentvalue <= targetvalue)
-                    yield break;
-            }
-            else
-            {
-                if (currentvalue >= targetvalue)
-                    yield break;
-            }
-            //控制加速
-            speed += 0.1f;
-            //改变血条
-            if (LastHP > Now)
-                bar.GetComponent<UnityEngine.UI.Slider>().value -= 0.01f * speed;
-            else
-                bar.GetComponent<UnityEngine.UI.Slider>().value += 0.01f * speed;
-            yield return new WaitForSeconds(0.01f);
-            yield return Anim_HP(LastHP, Now, speed);
+            //StartCoroutine(Anim_HP(LastHP, unitBase.GetHP(), 1f));
+            LastHP = unitBase.GetHP();
+            DOTween.To(() => bar.GetComponent<UnityEngine.UI.Slider>().value,
+                (x) => bar.GetComponent<UnityEngine.UI.Slider>().value = x,
+                (float)unitBase.GetHP() / unitBase.MaxHP,
+                1f
+            );
         }
     }
+    /* 弃用
+    IEnumerator Anim_HP(int LastHP, int Now, float speed)
+    {
+        float lastvalue = (float)LastHP / unitBase.MaxHP;
+        float targetvalue = (float)Now / unitBase.MaxHP;
+        float currentvalue = bar.GetComponent<UnityEngine.UI.Slider>().value;
+        Seconds = 1f;
+        //检测动画是否完成
+        if (LastHP > Now)
+        {
+            if (currentvalue <= targetvalue)
+                yield break;
+        }
+        else
+        {
+            if (currentvalue >= targetvalue)
+                yield break;
+        }
+        //控制加速
+        speed += 0.1f;
+        //改变血条
+        if (LastHP > Now)
+            bar.GetComponent<UnityEngine.UI.Slider>().value -= 0.01f * speed;
+        else
+            bar.GetComponent<UnityEngine.UI.Slider>().value += 0.01f * speed;
+        yield return new WaitForSeconds(0.01f);
+        yield return Anim_HP(LastHP, Now, speed);
+    }
+    */
 }

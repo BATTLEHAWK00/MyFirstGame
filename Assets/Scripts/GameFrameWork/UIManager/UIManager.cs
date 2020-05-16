@@ -142,6 +142,7 @@ public class UIManager : BaseManager<UIManager>
         panelPrefabsPathDic.Add(PanelTypes.UnitGenerationPanel,"GameLogic/UnitGenerationPanel/Call_Panel");
         panelPrefabsPathDic.Add(PanelTypes.GameSettingPanel, "GameSettingPanel");
         panelPrefabsPathDic.Add(PanelTypes.HUDPanel, "HUDPanel/HUDPanel");
+        panelPrefabsPathDic.Add(PanelTypes.ChooseBuffPanel, "GameLogic/ChooseBuffPanel/ChooseBuffPanel");
         #endregion
     }
 }

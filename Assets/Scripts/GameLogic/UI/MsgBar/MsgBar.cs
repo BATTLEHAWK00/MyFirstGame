@@ -41,7 +41,8 @@ public class MsgBar : MonoBehaviour
     }
     public void Die()
     {
-        animator.Play("Disappear");
+        if(animator!=null)
+            animator.Play("Disappear");
     }
     public void destroy()
     {

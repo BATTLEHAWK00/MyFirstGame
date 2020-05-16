@@ -26,6 +26,16 @@ public class MonoManager : NetworkBehaviour
         else
             Debug.LogError("传入了空的UpdateAction!");
     }
+    public void RunDelayTask(UnityAction unityAction,float seconds)
+    {
+        StartCoroutine(delayTask(unityAction,seconds));
+    }
+    IEnumerator delayTask(UnityAction unityAction,float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if(unityAction!=null)
+            unityAction();
+    }
     public void RemoveUpdateListener(UnityAction action)
     {
         if (action != null)

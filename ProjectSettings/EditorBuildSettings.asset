@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameMain.unity
     guid: fb6d82bfc71d69c44b7cda01fb6010f4
+  - enabled: 1
+    path: Assets/Scenes/InGame/Portrait.unity
+    guid: b94f6a506cd6dd849b2e828c49cce0e3
   m_configObjects: {}

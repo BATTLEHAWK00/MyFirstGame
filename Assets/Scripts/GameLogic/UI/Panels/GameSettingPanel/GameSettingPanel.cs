@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 public class GameSettingPanel : PanelBase
 {
     #region 音频组件
@@ -64,6 +66,11 @@ public class GameSettingPanel : PanelBase
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void ToMainMenu()
+    {
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.LoadScene("GameMenu");
     }
     #endregion
     #region MonoBehavior事件

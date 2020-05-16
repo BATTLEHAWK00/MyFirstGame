@@ -292,6 +292,12 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/DoTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/DoTween/Editor/DOTweenEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.CecilX">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
     </Reference>

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Buff;
 public class _Debug : MonoBehaviour
 {
     public void NextRound()
@@ -12,4 +12,9 @@ public class _Debug : MonoBehaviour
     {
         UnitSelection.Getinstance().GetStart().CurrentUnit.ForceDie();
     }
+    public void Buff()
+    {
+        UIManager.Getinstance().PushPanel(PanelTypes.ChooseBuffPanel);
+    }
+
 }

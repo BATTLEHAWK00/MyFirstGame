@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 //[ExecuteInEditMode] //让网格在Unity编辑器里出现
 public class GridSystem : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GridSystem : MonoBehaviour
     //CubeCell[] CubeCells;   //单元格数组
     void Awake()
     {
+        Ground = GameObject.Find("Ground");
         // 初始化行计数器
         for (int i = 0; i < Length; i++)
             RowCounter.Add(0);
@@ -31,11 +33,33 @@ public class GridSystem : MonoBehaviour
         for (int i = 0, z = 0; z < Width; z++)
             for (int x = 0; x < Length; x++)
                 CreateCell(x, z, i++);
+        
     }
    void Start() //建立单元格系统
    {
-
+        StartCoroutine(Anim_Enter());
    }
+    IEnumerator Anim_Enter()
+    {
+        yield return new WaitForSeconds(0.25f);
+        foreach (var i in CubeCells)
+        {
+            Vector3 po = i.transform.position;
+            po.y += 10f;
+            i.transform.position = po;
+            Color color = i.GetComponent<MeshRenderer>().material.color;
+            color.a = 0f;
+            i.GetComponent<MeshRenderer>().material.color=color;
+            i.GetComponent<MeshRenderer>().material.DOFade(1f,1f);
+            Vector3 scale = i.transform.localScale;
+            i.transform.localScale = scale * 0.25f;
+            i.gameObject.SetActive(true);
+            i.transform.DOScale(scale, 0.5f).SetEase(Ease.InOutQuad);
+            i.transform.DOMoveY(i.transform.position.y - 10f, 0.5f).SetDelay(0.25f).SetEase(Ease.InBack);
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield break;
+    }
     private void Update()
     {
         //for(int i=0;i<RowCounter.Count;i++)
@@ -53,6 +77,7 @@ public class GridSystem : MonoBehaviour
         Cell.transform.SetParent(transform, false);
         Cell.transform.localPosition = position+Offset;
         Cell.name = string.Format("CubeCell({0},{1})", x, z);
+        Cell.gameObject.SetActive(false);
     }
 
     public CubeCell FindCubeCell(Vector2Int a) //按坐标查找单元格

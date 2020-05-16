@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 public class StartGame : MonoBehaviour
 {
+    public GameObject BlackPanel;
     public void Load()
     {
         StartCoroutine(LoadScene("GameMain"));
@@ -40,7 +42,9 @@ public class StartGame : MonoBehaviour
             { setvalue(1f);yield return new WaitForSeconds(0.5f);break; }
             yield return new WaitForEndOfFrame();
         }
-        asyncOperation.allowSceneActivation = true;
+        BlackPanel.GetComponent<Image>().DOFade(1f, 0.5f).OnComplete(()=> {
+            asyncOperation.allowSceneActivation = true;
+        });
         yield break;
     }
 }

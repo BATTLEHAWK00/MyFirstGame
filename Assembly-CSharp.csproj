@@ -63,7 +63,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DoTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\DoTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\DoTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\DoTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\DoTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\DoTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\DoTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Resources\Prefabs\Network\Player\Player.cs" />
+    <Compile Include="Assets\Resources\Prefabs\UI\Unit\MessageText\MessageText.cs" />
     <Compile Include="Assets\Scripts\Common\Common.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioList.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioManager.cs" />
@@ -86,6 +94,7 @@
     <Compile Include="Assets\Scripts\GameLogic\UI\CellSelection.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\MsgBar\MsgBar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\ChooseBuffPanel\ChooseBuffPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\HUD\HUDPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\HolyWaterPanel.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Panels\GameLogic\RoundsPanel.cs" />
@@ -100,9 +109,15 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff\Heal.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff\LightShield.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff\MultiAttack.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Buff\Triumph.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\Buffs\Debuff\Poison.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Unit_Logic\UnitAttack\UnitAttack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Witcher\Witcher.cs" />
     <Compile Include="Assets\Scripts\OtherScenes\StartGame.cs" />
+    <None Include="Assets\DoTween\readme.txt" />
     <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\version.txt" />
     <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Readme.txt" />
     <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Plugins\Mono.Cecil\License.txt" />
@@ -309,6 +324,9 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Software/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/DoTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Mono.CecilX">
       <HintPath>E:/MyFiles/Projects/Unity/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>

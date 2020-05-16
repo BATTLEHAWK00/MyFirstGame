@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class UnitAttack:BaseManager<UnitAttack>
 {
     /// <summary>
@@ -36,11 +37,39 @@ public class UnitAttack:BaseManager<UnitAttack>
     #region 攻击动画
     IEnumerator attack(UnitBase from, UnitBase target)
     {
-        yield return Anim_MoveTo(from, target);
+        yield return DT_MoveTo(from, target);
         if (target == null)
             yield break;
-        yield return Anim_MoveTo(target, from);
+        if (from.triumph)
+            from.AddHP(1);
+        if (from.dualAttack)
+            yield return DT_MoveTo(from, target);
+        if(target.GetHP()>0f)
+            yield return DT_MoveTo(target, from);
     }
+    IEnumerator DT_MoveTo(UnitBase from, UnitBase target)
+    {
+        if (from == null || target == null)
+            yield break;
+        UnitSelection.Getinstance().Waiting = true;
+        Vector3 currentpositon = from.transform.position;
+        Vector3 targetpositon = target.transform.position;
+        yield return from.transform.DOMove(targetpositon, 0.4f).WaitForCompletion();
+        AudioManager.Getinstance().PlaySound("Units/OnAttack",0.25f);
+        target.CostHP(from.Attack);
+        target.transform.DOShakePosition(0.25f, 1f, 20, default, default, false);
+        Camera.main.transform.DOShakePosition(0.2f, 0.05f, 20, default, default, false);
+        yield return DT_MoveBack(from);
+    }
+    IEnumerator DT_MoveBack(UnitBase from)
+    {
+        Vector3 currentpositon = from.transform.position;
+        Vector3 targetpositon = from.GetPosition().transform.position;
+        yield return from.transform.DOMove(targetpositon, 0.4f).WaitForCompletion();
+        UnitSelection.Getinstance().Waiting = false;
+        yield break;
+    }
+    /* 弃用代码
     IEnumerator Anim_MoveTo(UnitBase from, UnitBase target)
     {
         UnitSelection.Getinstance().Waiting = true;
@@ -50,6 +79,7 @@ public class UnitAttack:BaseManager<UnitAttack>
         if (Vector3.Distance(currentpositon, targetpositon) < 0.1f)
         {
             target.CostHP(from.Attack);
+            target.transform.DOShakePosition(0.25f,1f,20,default,default,false);
             yield return Anim_MoveBack(from);
         }
         else
@@ -71,7 +101,7 @@ public class UnitAttack:BaseManager<UnitAttack>
         }
         else
             yield return Anim_MoveBack(from);
-    }
+    }*/
     #endregion
     public int AttackDistance(UnitBase from,UnitBase to)    //计算攻击需要的距离
     {
