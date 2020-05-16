@@ -10,7 +10,7 @@ public class UnitGenerationPanel : PanelBase
 {
     private Dictionary<UnitType, string> unitPrefabDic = new Dictionary<UnitType, string>();
     [SerializeField]
-    private Text unitText;
+    private Text unitText = null;
     private UnitType current;
     private UnitType Current
     {

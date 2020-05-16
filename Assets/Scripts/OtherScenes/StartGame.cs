@@ -7,9 +7,17 @@ using DG.Tweening;
 public class StartGame : MonoBehaviour
 {
     public GameObject BlackPanel;
+    private void Awake()
+    {
+        AudioManager.Getinstance().PlayBGM("MainMenu");
+    }
     public void Load()
     {
-        StartCoroutine(LoadScene("GameMain"));
+        transform.Find("Button").gameObject.SetActive(false);
+        MonoBase.Getinstance().GetMono().RunDelayTask(() =>
+        {
+            StartCoroutine(LoadScene("GameMain"));
+        },0.25f);
     }
     IEnumerator LoadScene(string name)
     {
@@ -42,7 +50,7 @@ public class StartGame : MonoBehaviour
             { setvalue(1f);yield return new WaitForSeconds(0.5f);break; }
             yield return new WaitForEndOfFrame();
         }
-        BlackPanel.GetComponent<Image>().DOFade(1f, 0.5f).OnComplete(()=> {
+        BlackPanel.GetComponent<Image>().DOFade(1f, 0.5f).OnComplete(() => {
             asyncOperation.allowSceneActivation = true;
         });
         yield break;

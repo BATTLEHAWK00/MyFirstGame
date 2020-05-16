@@ -8,18 +8,7 @@ public class GameMain : MonoBehaviour
     private bool isinBackground;
     private void Awake()
     {
-        MonoBase.Getinstance().GetMono().AddUpdateListener(() => {
-            if(Application.isFocused != isinBackground)
-            {
-                if(isinBackground)
-                { AudioManager.Getinstance().Mute(); }
-                else
-                { AudioManager.Getinstance().Resume(); }
-            }
-
-            isinBackground = Application.isFocused;
-        });
-
+        
     }
 
     // Start is called before the first frame update
@@ -28,6 +17,16 @@ public class GameMain : MonoBehaviour
         OnGameStart(null);
         EventManager.Getinstance().EventTrigger(EventTypes.Game_OnStart);
         EventManager.Getinstance().AddListener<CubeCell>(EventTypes.Cell_OnSelected,CellSelection.Getinstance().CellSelected);
+        MonoBase.Getinstance().GetMono().AddUpdateListener(() => {
+            if (Application.isFocused == isinBackground)
+            {
+                if (Application.isFocused)
+                { AudioManager.Getinstance().Resume(); }
+                else
+                { AudioManager.Getinstance().Mute(); }
+                isinBackground = !Application.isFocused;
+            }
+        });
     }
     void OnGameStart(object info)
     {

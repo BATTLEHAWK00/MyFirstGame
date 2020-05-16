@@ -11,6 +11,7 @@ public class GameSettingPanel : PanelBase
     [Header("Audio")]
     public Slider BGMVolumeSlider;
     public Slider SoundVolumeSlider;
+    public Slider MasterVolumeSlider;
     #endregion
     #region 显示组件
     [Header("Graphics")]
@@ -23,15 +24,20 @@ public class GameSettingPanel : PanelBase
     private void OnAwake_Audio()
     {
         BGMVolumeSlider.value = AudioManager.Getinstance().BGM_Volume;
-        SoundVolumeSlider.value = AudioManager.Getinstance().Sound_Volume;
+        SoundVolumeSlider.value = AudioManager.Getinstance().Sounds_Volume;
+        MasterVolumeSlider.value = AudioManager.Getinstance().Master_Volume;
     }
     public void OnSoundVolumeChanged()
     {
-        AudioManager.Getinstance().Sound_Volume = SoundVolumeSlider.value;
+        AudioManager.Getinstance().Sounds_Volume = SoundVolumeSlider.value;
     }
     public void OnBGMVolumeChanged()
     {
         AudioManager.Getinstance().BGM_Volume = BGMVolumeSlider.value;
+    }
+    public void OnMasterVolumeChanged()
+    {
+        AudioManager.Getinstance().Master_Volume = MasterVolumeSlider.value;
     }
     #endregion
     #region 显示设置事件

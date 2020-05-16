@@ -116,7 +116,7 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
         HideHP();
         //GetComponent<MeshRenderer>().material.DOFade(0f,1f);
         transform.DOMoveY(transform.position.y+5f, 0.25f).SetEase(Ease.InOutQuad).SetDelay(0.25f).OnComplete(() => {
-            transform.DOScale(0.25f, 0.5f).SetEase(Ease.InBack).OnComplete(()=> {
+            transform.DOScale(0.25f, 0.25f).SetEase(Ease.InBack).OnComplete(()=> {
                 //BeforeDeath事件
                 BeforeDeath();
                 //触发OnDeath事件
