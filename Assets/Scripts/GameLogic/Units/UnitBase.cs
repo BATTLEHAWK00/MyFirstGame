@@ -137,29 +137,29 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
     void OnDeath()
     {
         //播放死亡音效
-        AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
+        AudioManager.Get().PlaySound(new GameSounds().UnitSounds.OnDeath, 0.2f);
         //广播死亡消息
-        UIManager.Getinstance().MsgOnScreen(UnitName + "已死亡!");
+        UIManager.Get().MsgOnScreen(UnitName + "已死亡!");
         //行计数器扣除
-        GameGlobal.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.y]--;
+        GameGlobal.Get().GameMain.GridSystem.RowCounter[GetPosition().Position.y]--;
         //触发单位死亡事件(Unit_OnUnitDeath)
-        EventManager.Getinstance().EventTrigger(EventTypes.Unit_OnDeath, gameObject);
+        EventManager.Get().EventTrigger(EventTypes.Unit_OnDeath, gameObject);
         //事件移除
         EventRemove();
         //解引用
         GetPosition().CurrentUnit = null;
         //移除回合系统列表
-        RoundSystem.Getinstance().RemoveUnit(this);
+        RoundSystem.Get().RemoveUnit(this);
     }
     void OnBorn()
     {
         //行计数器加1
-        GameGlobal.Getinstance().GameMain.GridSystem.RowCounter[GetPosition().Position.y]++;
+        GameGlobal.Get().GameMain.GridSystem.RowCounter[GetPosition().Position.y]++;
         //添加事件
         EventAdd();
-        EventManager.Getinstance().EventTrigger(EventTypes.Unit_OnBorn, gameObject);
+        EventManager.Get().EventTrigger(EventTypes.Unit_OnBorn, gameObject);
         //向回合系统列表添加单位
-        RoundSystem.Getinstance().AddUnit(this);
+        RoundSystem.Get().AddUnit(this);
     }
     void BeforeDeath()
     {
@@ -174,7 +174,7 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
         transform.DOMoveY(transform.position.y - 100f, 0.4f).SetEase(Ease.InQuad).OnComplete(() => {
             //transform.DOShakePosition(0.25f, 1f, 20, default, default, false);
             Camera.main.transform.DOShakePosition(0.3f, 0.05f, 20, default, default, true);
-            AudioManager.Getinstance().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.2f);
+            AudioManager.Get().PlaySound(new GameSounds().UnitSounds.OnBorn, 0.3f);
         });
         
     }
@@ -183,6 +183,21 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
     // Start is called before the first frame update
     void Start()
     {
+        if (!HolyWaterSystem.Get().CostHolyWater(HolyWaterCost))
+        {
+            Destroy(gameObject); return;
+        }
+        ResManager.Get().LoadAsync<GameObject>("Prefabs/UI/Unit/HP_Bar", (obj) => {
+            obj.name = "HP_Bar";
+            HP_Bar = obj.transform.Find("Bar").gameObject;
+            HP_Bar.SetActive(false);
+            obj.transform.SetParent(this.transform);
+            Vector3 vector3 = this.transform.position;
+            vector3.y += Height;
+            obj.transform.position = vector3;
+            obj.transform.rotation = Camera.main.transform.rotation;
+            obj.GetComponent<HP_Bar>().SetUnit(this);
+        });
         //检测初始化是否有错误
         if (CheckInitError())
         {
@@ -209,22 +224,7 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
     }
     void Awake()
     {
-        if (!HolyWaterSystem.Getinstance().CostHolyWater(HolyWaterCost))
-        {
-            Destroy(gameObject); return;
-        }
         _Awake();
-        ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/Unit/HP_Bar", (obj) => {
-            obj.name = "HP_Bar";
-            HP_Bar = obj.transform.Find("Bar").gameObject;
-            HP_Bar.SetActive(false);
-            obj.transform.SetParent(this.transform);
-            Vector3 vector3 = this.transform.position;
-            vector3.y += Height;
-            obj.transform.position = vector3;
-            obj.transform.rotation = Camera.main.transform.rotation;
-            obj.GetComponent<HP_Bar>().SetUnit(this);
-        });
     }
     virtual protected void _Awake() { }
     virtual protected void _Start() { }
@@ -253,14 +253,14 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
         if (HP >= MaxHP)
             return;
         HP += amount;
-        AudioManager.Getinstance().PlaySound("Units/OnHeal",0.2f);
+        AudioManager.Get().PlaySound("Units/OnHeal",0.2f);
         ShowMessage("+" + _amount);
     }
     #endregion
     #region UI方法
     public void ShowMessage(string msg)
     {
-        ResManager.Getinstance().LoadAsync<GameObject>("Prefabs/UI/Unit/MessageText/MessageText", (obj) => {
+        ResManager.Get().LoadAsync<GameObject>("Prefabs/UI/Unit/MessageText/MessageText", (obj) => {
             if (gameObject == null)
                 return;
             obj.transform.SetParent(transform.Find("HP_Bar"), false);
@@ -285,7 +285,8 @@ public abstract class UnitBase : NetworkBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerEnter(PointerEventData eventData)
     {
         _position.OnPointerEnter(eventData);
-        ShowHP();
+        if(!dead)
+            ShowHP();
     }
 
     public void OnPointerExit(PointerEventData eventData)

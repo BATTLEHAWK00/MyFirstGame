@@ -15,23 +15,23 @@ public class UnitAttack:BaseManager<UnitAttack>
         if (from == null || target == null)
             return;
         if(from==target)
-        { UIManager.Getinstance().MsgOnScreen("你不能攻击自己!");return; }
+        { UIManager.Get().MsgOnScreen("你不能攻击自己!");return; }
         if (from.AttackRange < AttackDistance(from, target))
         {
-            UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击距离({1})不够!与目标距离:{2}", from.UnitName, from.AttackRange, AttackDistance(from, target)));
+            UIManager.Get().MsgOnScreen(string.Format("{0}攻击距离({1})不够!与目标距离:{2}", from.UnitName, from.AttackRange, AttackDistance(from, target)));
             Debug.LogWarning("攻击距离不够!");
             return;
         }
         if (!from.CanOperate)
-        { UIManager.Getinstance().MsgOnScreen("你已经操作过该单位!");return; }
+        { UIManager.Get().MsgOnScreen("你已经操作过该单位!");return; }
         #endregion
         //Debug.Log(AttackDistance(from,target));
         from.ShowHP();target.ShowHP();
         //开启攻击协程
-        MonoBase.Getinstance().GetMono().StartCoroutine(attack(from, target));
+        MonoBase.Get().GetMono().StartCoroutine(attack(from, target));
         from.CanOperate = false;
         //广播攻击消息
-        UIManager.Getinstance().MsgOnScreen(string.Format("{0}攻击了{1}", from.UnitName, target.UnitName));
+        UIManager.Get().MsgOnScreen(string.Format("{0}攻击了{1}", from.UnitName, target.UnitName));
         Debug.Log(string.Format("{0}攻击了{1}",from.UnitName,target.UnitName));
     }
     #region 攻击动画
@@ -51,11 +51,11 @@ public class UnitAttack:BaseManager<UnitAttack>
     {
         if (from == null || target == null)
             yield break;
-        UnitSelection.Getinstance().Waiting = true;
+        UnitSelection.Get().Waiting = true;
         Vector3 currentpositon = from.transform.position;
         Vector3 targetpositon = target.transform.position;
         yield return from.transform.DOMove(targetpositon, 0.4f).WaitForCompletion();
-        AudioManager.Getinstance().PlaySound("Units/OnAttack",0.25f);
+        AudioManager.Get().PlaySound("Units/OnAttack",0.25f);
         target.CostHP(from.Attack);
         target.transform.DOShakePosition(0.25f, 1f, 20, default, default, false);
         Camera.main.transform.DOShakePosition(0.2f, 0.05f, 20, default, default, false);
@@ -66,7 +66,7 @@ public class UnitAttack:BaseManager<UnitAttack>
         Vector3 currentpositon = from.transform.position;
         Vector3 targetpositon = from.GetPosition().transform.position;
         yield return from.transform.DOMove(targetpositon, 0.4f).WaitForCompletion();
-        UnitSelection.Getinstance().Waiting = false;
+        UnitSelection.Get().Waiting = false;
         yield break;
     }
     /* 弃用代码
@@ -115,7 +115,7 @@ public class UnitAttack:BaseManager<UnitAttack>
         //foreach (var i in GameGlobal.Getinstance().GameMain.GridSystem.RowCounter)
          //   Debug.Log(i);
         for (int i = fromY; i <= toY; i++)
-            if (GameGlobal.Getinstance().GameMain.GridSystem.RowCounter[i]>0)
+            if (GameGlobal.Get().GameMain.GridSystem.RowCounter[i]>0)
                 cnt++;
         return cnt;
     }

@@ -12,8 +12,8 @@ public class MessageText : MonoBehaviour
         transform.rotation = Camera.main.transform.rotation;
         (transform as RectTransform).DOAnchorPos(Vector2.up * 3f, 3f);
         GetComponent<Text>().DOFade(0f, 3f);
-        transform.DOScale(0.02f, 0.25f).OnComplete(() => {
-            transform.DOScale(0.01f, 2f);
+        transform.DOScale(0.02f, 0.25f).SetEase(Ease.InQuad).OnComplete(() => {
+            transform.DOScale(0.01f, 1f).SetEase(Ease.InOutQuad);
         });
     }
     public void SetText(string text)

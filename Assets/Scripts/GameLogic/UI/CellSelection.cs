@@ -16,7 +16,7 @@ public class CellSelection : BaseManager<CellSelection>
         //Debug.Log("单元格选中:" + cubeCell.Position.x + "," + cubeCell.Position.y);
         if (cubeCell.CurrentUnit != null)
             return;
-        UnitSelection.Getinstance().ClearSelection();
-        UIManager.Getinstance().PushPanel(PanelTypes.UnitGenerationPanel);
+        UnitSelection.Get().ClearSelection();
+        UIManager.Get().PushPanel(PanelTypes.UnitGenerationPanel);
     }
 }

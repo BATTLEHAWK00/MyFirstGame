@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6419410713664905365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 0.04, z: 6}
+  m_LocalScale: {x: 7.2435255, y: 0.048290163, z: 7.2435255}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CenterOffset: {x: 0, y: 0, z: 0}
-  CurrentObject: {fileID: 0}
+  CurrentUnit: {fileID: 0}
   HighLightedMaterial: {fileID: 2100000, guid: caf6d4174bf37554999d445458e87cb7, type: 2}
   NormalMaterial: {fileID: 2100000, guid: 5694c5240a2b13649aa969a61b27e90d, type: 2}
   OccupiedMaterial: {fileID: 2100000, guid: 074594d2f11e656459286ce6b3f88f63, type: 2}

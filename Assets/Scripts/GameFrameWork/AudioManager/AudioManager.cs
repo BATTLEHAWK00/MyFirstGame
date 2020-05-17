@@ -75,7 +75,7 @@ public class AudioManager : BaseManager<AudioManager>
         if (bgm_source == null)
             Debug.LogError("[错误]找不到音频组件!");
         Debug.Log("[消息]播放BGM:" + name);
-        ResManager.Getinstance().LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) => {
+        ResManager.Get().LoadAsync<AudioClip>("Audio/BGM/" + name, (clip) => {
             bgm_source.clip = clip;
             bgm_source.volume = 0.25f;
             bgm_source.Play();
@@ -83,7 +83,7 @@ public class AudioManager : BaseManager<AudioManager>
     }
     void Init()
     {
-        Mixer = ResManager.Getinstance().Load<AudioMixer>("Audio/AudioMaster");
+        Mixer = ResManager.Get().Load<AudioMixer>("Audio/AudioMaster");
         BGM_MixerGroup = Mixer.FindMatchingGroups("Master/BGM")[0];
         Sounds_MixerGroup = Mixer.FindMatchingGroups("Master/Sounds")[0];
         obj_Audio = new GameObject();
@@ -115,18 +115,18 @@ public class AudioManager : BaseManager<AudioManager>
     }
     public void PlaySound(string name)
     {
-        PlaySound(name);
+        PlaySound(name,0.5f);
     }
     public void PlaySound(string name,float volume)
     {
-        ResManager.Getinstance().LoadAsync<AudioClip>("Audio/Sounds/" + name, (clip) => {
+        ResManager.Get().LoadAsync<AudioClip>("Audio/Sounds/" + name, (clip) => {
             AudioSource audioSource = obj_Audio.AddComponent<AudioSource>();
             sound_source.Add(audioSource);
             audioSource.clip = clip;
             audioSource.volume = volume;
             audioSource.outputAudioMixerGroup = Sounds_MixerGroup;
             audioSource.Play();
-            MonoBase.Getinstance().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
+            MonoBase.Get().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
         });
     }
     IEnumerator AudioTimeToLive(AudioSource audioSource)

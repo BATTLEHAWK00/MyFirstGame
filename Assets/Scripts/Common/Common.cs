@@ -34,13 +34,13 @@ namespace TheGameCommon {
         }
         public static List<T> ListFromFile<T>(string name)
         {
-            TextAsset json = ResManager.Getinstance().Load<TextAsset>(name);
+            TextAsset json = ResManager.Get().Load<TextAsset>(name);
             JsonList<T> jsonObject = JsonUtility.FromJson<JsonList<T>>(json.text);
             return jsonObject.jsonList;
         }
         public static T FromFile<T>(string name)
         {
-            TextAsset json = ResManager.Getinstance().Load<TextAsset>(name);
+            TextAsset json = ResManager.Get().Load<TextAsset>(name);
             T jsonObject = JsonUtility.FromJson<T>(json.text);
             return jsonObject;
         }

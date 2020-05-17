@@ -30,8 +30,8 @@ public class UIManager : BaseManager<UIManager>
     public void MsgOnScreen(string text)    //广播消息
     {
         if (MsgBarPrefab == null)
-            MsgBarPrefab = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/HUD/MsgBar", false);
-        ResManager.Getinstance().LoadAsync(MsgBarPrefab, (obj) => {
+            MsgBarPrefab = ResManager.Get().Load<GameObject>("Prefabs/UI/MsgBar/MsgBar", false);
+        ResManager.Get().LoadAsync(MsgBarPrefab, (obj) => {
             if (obj == null)
                 Debug.LogError("[错误]公告栏无法加载!");
             obj.transform.SetParent(HUD.transform, false);
@@ -103,7 +103,7 @@ public class UIManager : BaseManager<UIManager>
     {
         if (panelInstancesDic.ContainsKey(paneltype) && panelInstancesDic[paneltype] != null)
             return panelInstancesDic[paneltype];
-        var panel = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/Panels/" + panelPrefabsPathDic[paneltype]);
+        var panel = ResManager.Get().Load<GameObject>("Prefabs/UI/Panels/" + panelPrefabsPathDic[paneltype]);
         var panelbase = panel.GetComponent<PanelBase>();
         if (panelInstancesDic.ContainsKey(paneltype))
             panelInstancesDic[paneltype] = panelbase;
@@ -130,7 +130,7 @@ public class UIManager : BaseManager<UIManager>
     }
     public UIManager()
     {
-        GameObject ui = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/UI");
+        GameObject ui = ResManager.Get().Load<GameObject>("Prefabs/UI/UI");
         ui.name = "UI";
         canvas = ui.transform.Find("Canvas").transform;
         top = Canvas.transform.Find("Top");
@@ -140,7 +140,7 @@ public class UIManager : BaseManager<UIManager>
         hud = system.Find("HUD");
         #region Prefab路径
         panelPrefabsPathDic.Add(PanelTypes.UnitGenerationPanel,"GameLogic/UnitGenerationPanel/Call_Panel");
-        panelPrefabsPathDic.Add(PanelTypes.GameSettingPanel, "GameSettingPanel");
+        panelPrefabsPathDic.Add(PanelTypes.GameSettingPanel, "GameSettingPanel/GameSettingPanel");
         panelPrefabsPathDic.Add(PanelTypes.HUDPanel, "HUDPanel/HUDPanel");
         panelPrefabsPathDic.Add(PanelTypes.ChooseBuffPanel, "GameLogic/ChooseBuffPanel/ChooseBuffPanel");
         #endregion

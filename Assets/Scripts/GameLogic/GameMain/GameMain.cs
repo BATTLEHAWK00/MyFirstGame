@@ -8,71 +8,88 @@ public class GameMain : MonoBehaviour
     private bool isinBackground;
     private void Awake()
     {
-        
+        OnGameInitialize();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        OnGameStart(null);
-        EventManager.Getinstance().EventTrigger(EventTypes.Game_OnStart);
-        EventManager.Getinstance().AddListener<CubeCell>(EventTypes.Cell_OnSelected,CellSelection.Getinstance().CellSelected);
-        MonoBase.Getinstance().GetMono().AddUpdateListener(() => {
-            if (Application.isFocused == isinBackground)
-            {
-                if (Application.isFocused)
-                { AudioManager.Getinstance().Resume(); }
-                else
-                { AudioManager.Getinstance().Mute(); }
-                isinBackground = !Application.isFocused;
-            }
-        });
-    }
-    void OnGameStart(object info)
-    {
+        OnGameStart();
+        EventManager.Get().EventTrigger(EventTypes.Game_OnStart);
+        EventManager.Get().AddListener<CubeCell>(EventTypes.Cell_OnSelected,CellSelection.Get().CellSelected);
         Debug.Log("[消息]游戏开始");
-        GameObject grid = ResManager.Getinstance().Load<GameObject>("Prefabs/GridSystem/GridSystem");
-        grid.transform.SetParent(GameObject.Find("Ground").transform,false);
+        MonoBase.Get().GetMono().AddUpdateListener(CheckFocus);
+    }
+    void CheckFocus()
+    {
+        if (Application.isFocused == isinBackground)
+        {
+            if (Application.isFocused)
+            { AudioManager.Get().Resume(); }
+            else
+            { AudioManager.Get().Mute(); }
+            isinBackground = !Application.isFocused;
+        }
+    }
+    void OnGameInitialize()
+    {
+        GameObject grid = ResManager.Get().Load<GameObject>("Prefabs/GridSystem/GridSystem");
+        grid.transform.SetParent(GameObject.Find("Ground").transform, false);
         GridSystem = grid.GetComponent<GridSystem>();
         GridSystem.enabled = true;
         GridSystem.gameObject.name = "GridSystem";
-        HolyWaterSystem.Getinstance().Init();
-        RoundSystem.Getinstance().Init(1);
-        UIManager.Getinstance();
-        UIManager.Getinstance().PushPanel(PanelTypes.HUDPanel);
+        HolyWaterSystem.Get().Init();
+        RoundSystem.Get().Init(1);
+        UIManager.Get();
+        UIManager.Get().PushPanel(PanelTypes.HUDPanel);
         //GameNetwork.Getinstance().GetNetWorkManager();
-        UIManager.Getinstance().MsgOnScreen("游戏开始啦!");
-        AudioManager.Getinstance().PlayBGM("1");
-        AudioManager.Getinstance().PlaySound("GameMain/GameStart", 0.05f);
+    }
+    void OnGameStart()
+    {
+        UIManager.Get().MsgOnScreen("游戏开始啦!");
+        AudioManager.Get().PlayBGM("1");
+        AudioManager.Get().PlaySound("GameMain/GameStart", 0.05f);
+        CardSystem.Get().AddCard(new Slay());
+        CardSystem.Get().AddCard(new BattleHorn());
+        CardSystem.Get().AddCard(new HawkEye());
+        CardSystem.Get().AddCard(new Purify());
     }
     // Update is called once per frame
     void Update()
     {
+        CheckKey_Esc();
+    }
+    void CheckKey_Esc()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UIManager.Getinstance().SwitchPanel(PanelTypes.GameSettingPanel);
+            UIManager.Get().SwitchPanel(PanelTypes.GameSettingPanel);
         }
-            
+    }
+    private void OnDestroy()
+    {
+        MonoBase.Get().GetMono().RemoveUpdateListener(CheckFocus);
+        UnloadGameLogic();
+    }
+    void UnloadGameLogic()
+    {
+        EventManager.Destroy();
+        UIManager.Destroy();
+        HolyWaterSystem.Destroy();
+        RoundSystem.Destroy();
+        CardSystem.Destroy();
     }
     public GameMain()
     {
-        GameGlobal.Getinstance().SetGameMain(this);
+        GameGlobal.Get().SetGameMain(this);
     }
 }
 public class GameGlobal : BaseManager<GameGlobal>
 {
     private GameMain gameMain;
     public GameMain GameMain { get { return gameMain; } }
-    public void Unload()
-    {
-        UIManager.Destroy();
-        EventManager.Destroy();
-        RoundSystem.Destroy();
-        HolyWaterSystem.Destroy();
-    }
     public void SetGameMain(GameMain _gameMain)
-    {
-        Unload();
+    { 
         gameMain = _gameMain;
     }
 }

@@ -6,12 +6,12 @@ public class Farmer : UnitBase
     void AddHolyWaterPerRound(object info)
     {
         if(GetPosition().Position.y==0)
-            HolyWaterSystem.Getinstance().AddHolyWater(1);
+            HolyWaterSystem.Get().AddHolyWater(1);
     }
     protected override void _Awake()
     {
         var data = TheGameCommon.JsonFunc.FromFile<ArcherData>("Prefabs/Units/UnitData/Farmer");
-        EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_YourTurn, AddHolyWaterPerRound);
+        EventManager.Get().AddListener<object>(EventTypes.RoundSystem_YourTurn, AddHolyWaterPerRound);
     }
     public Farmer()
     {

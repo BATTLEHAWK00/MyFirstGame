@@ -9,19 +9,19 @@ public class StartGame : MonoBehaviour
     public GameObject BlackPanel;
     private void Awake()
     {
-        AudioManager.Getinstance().PlayBGM("MainMenu");
+        AudioManager.Get().PlayBGM("MainMenu");
     }
     public void Load()
     {
         transform.Find("Button").gameObject.SetActive(false);
-        MonoBase.Getinstance().GetMono().RunDelayTask(() =>
+        MonoBase.Get().GetMono().RunDelayTask(() =>
         {
             StartCoroutine(LoadScene("GameMain"));
         },0.25f);
     }
     IEnumerator LoadScene(string name)
     {
-        GameObject bar = ResManager.Getinstance().Load<GameObject>("Prefabs/UI/OtherScene/LoadingBar");
+        GameObject bar = ResManager.Get().Load<GameObject>("Prefabs/UI/OtherScene/LoadingBar");
         Text text = bar.GetComponentInChildren<Text>();
         Slider slider = bar.GetComponentInChildren<Slider>();
         void setvalue(float value)
@@ -42,12 +42,15 @@ public class StartGame : MonoBehaviour
             {
                 float value= (targetvalue-currentvalue)*0.1f;
                 currentvalue += value;
-                //text.text = Mathf.Round(currentvalue*100).ToString();
                 setvalue(currentvalue);
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(0.025f);
             }
             if (Mathf.Abs(currentvalue - 1f) <= 0.01f)
-            { setvalue(1f);yield return new WaitForSeconds(0.5f);break; }
+            { 
+                setvalue(1f);
+                yield return new WaitForSeconds(0.5f);
+                break; 
+            }
             yield return new WaitForEndOfFrame();
         }
         BlackPanel.GetComponent<Image>().DOFade(1f, 0.5f).OnComplete(() => {

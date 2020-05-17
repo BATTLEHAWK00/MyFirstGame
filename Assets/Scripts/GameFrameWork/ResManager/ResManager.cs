@@ -32,7 +32,7 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
     public void LoadAsync<T>(string name, UnityAction<T> callback,bool instatiate=true) where T : Object
     {
         //开启异步加载协程
-        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback,instatiate));
+        MonoBase.Get().GetMono().StartCoroutine(LoadAsyncCoroutine<T>(name, callback,instatiate));
     }
     IEnumerator LoadAsyncCoroutine<T>(string name, UnityAction<T> callback,bool instantiate) where T : Object
     {
@@ -52,7 +52,7 @@ public class ResManager : BaseManager<ResManager>   //资源管理模块
     public void LoadAsync(GameObject gameObject, UnityAction<GameObject> callback)
     {
         //开启异步加载协程
-        MonoBase.Getinstance().GetMono().StartCoroutine(LoadAsyncCoroutine(gameObject, callback));
+        MonoBase.Get().GetMono().StartCoroutine(LoadAsyncCoroutine(gameObject, callback));
     }
     IEnumerator LoadAsyncCoroutine(GameObject gameObject, UnityAction<GameObject> callback)
     {

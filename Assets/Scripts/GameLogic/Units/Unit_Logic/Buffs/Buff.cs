@@ -45,7 +45,7 @@ namespace Buff
             }
             finally
             {
-                EventManager.Getinstance().RemoveListener<object>(EventTypes.RoundSystem_NextRound, OnNextRound);
+                EventManager.Get().RemoveListener<object>(EventTypes.RoundSystem_NextRound, OnNextRound);
                 unit.ShowMessage("Buff失效:" + BuffName);
                 unit.RemoveBuff(this);
                 unit = null;
@@ -70,14 +70,14 @@ namespace Buff
         /// </summary>
         virtual protected void afterTargetSet()
         {
-            MonoBase.Getinstance().GetMono().RunDelayTask(() => {
+            MonoBase.Get().GetMono().RunDelayTask(() => {
                 OnNextRound(null);
             }, 0.25f);
         }
         public Buff(int rounds)
         {
             this.rounds = rounds;
-            EventManager.Getinstance().AddListener<object>(EventTypes.RoundSystem_NextRound, OnNextRound);
+            EventManager.Get().AddListener<object>(EventTypes.RoundSystem_NextRound, OnNextRound);
         }
     }
 }

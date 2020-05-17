@@ -6,15 +6,18 @@ public class _Debug : MonoBehaviour
 {
     public void NextRound()
     {
-        RoundSystem.Getinstance().NextRound();
+        RoundSystem.Get().NextRound();
     }
     public void ForceToDie()
     {
-        UnitSelection.Getinstance().GetStart().CurrentUnit.ForceDie();
+        UnitSelection.Get().GetStart().CurrentUnit.ForceDie();
     }
     public void Buff()
     {
-        UIManager.Getinstance().PushPanel(PanelTypes.ChooseBuffPanel);
+        UIManager.Get().PushPanel(PanelTypes.ChooseBuffPanel);
     }
-
+    public void AddCard()
+    {
+        CardSystem.Get().AddCard(new Slay());
+    }
 }

@@ -11,7 +11,7 @@ public class Player : NetworkBehaviour
     void Start()
     {
         if (isLocalPlayer)
-            UIManager.Getinstance().MsgOnScreen("LocalPlayer");
+            UIManager.Get().MsgOnScreen("LocalPlayer");
     }
     private int frames=0;
     // Update is called once per frame

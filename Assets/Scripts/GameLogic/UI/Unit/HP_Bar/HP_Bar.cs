@@ -36,7 +36,8 @@ public class HP_Bar : MonoBehaviour
         {
             //StartCoroutine(Anim_HP(LastHP, unitBase.GetHP(), 1f));
             LastHP = unitBase.GetHP();
-            DOTween.To(() => bar.GetComponent<UnityEngine.UI.Slider>().value,
+            DOTween.To(
+                () => bar.GetComponent<UnityEngine.UI.Slider>().value,
                 (x) => bar.GetComponent<UnityEngine.UI.Slider>().value = x,
                 (float)unitBase.GetHP() / unitBase.MaxHP,
                 1f

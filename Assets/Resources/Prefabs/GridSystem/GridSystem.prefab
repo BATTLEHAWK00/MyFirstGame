@@ -50,7 +50,7 @@ MonoBehaviour:
     type: 3}
   Ground: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
-  Distance: 6.5
+  Distance: 8
   RowCounter: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &115281020090545638
 MonoBehaviour:
@@ -64,7 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55157cc92adb782489a7497f3e6a9960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Camera: {fileID: 0}
   BackwardOffset: 5
   HeightOffset: 30
   HorizontalOffset: 0

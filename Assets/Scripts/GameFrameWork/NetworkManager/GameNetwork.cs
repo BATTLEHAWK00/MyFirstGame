@@ -10,7 +10,7 @@ public class GameNetwork : BaseManager<GameNetwork>
     {
         if(networkManager==null)
         {
-            GameObject obj = ResManager.Getinstance().Load<GameObject>("Prefabs/Network/NetworkManager");
+            GameObject obj = ResManager.Get().Load<GameObject>("Prefabs/Network/NetworkManager");
             GameObject.DontDestroyOnLoad(obj);
             networkManager = obj.GetComponent<NetworkManager>();
         }
