@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 863967484498860485}
+  - component: {fileID: 1571475806169613964}
   m_Layer: 5
   m_Name: LoadingBar
   m_TagString: Untagged
@@ -36,6 +37,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 22.850006}
   m_SizeDelta: {x: 700.3, y: 45.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1571475806169613964
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863967484498860486}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1680864989616593087
 GameObject:
   m_ObjectHideFlags: 0

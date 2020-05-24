@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardSystem : BaseManager<CardSystem>
+public class CardSystem : GameLogicSystem<CardSystem>
 {
     Transform cardContent;
     List<CardBase> cardList = new List<CardBase>();
     CardsPanel cardsPanel;
+    const float interval = 0.5f;
+    float cooldown = 0f;
     public void SetCardsPanel(CardsPanel cardsPanel)
     {
         this.cardsPanel = cardsPanel;
@@ -23,20 +25,40 @@ public class CardSystem : BaseManager<CardSystem>
                 cardContent = value;
         }
     }
+    public bool Busy()
+    {
+        if (cooldown > 0)
+            return true;
+        else
+            return false;
+    }
     public void AddCard(CardBase cardtype)
     {
-        //if(cardContent.parent.parent.GetComponent<>)
         cardsPanel.Anim_Up(0.5f);
         MonoBase.Get().GetMono().RunDelayTask(() => {
             ResManager.Get().LoadAsync<GameObject>("Prefabs/UI/Panels/HUDPanel/Card/Card", (obj) => {
                 obj.transform.SetParent(cardContent, false);
                 obj.GetComponent<Card>().SetCardBase(cardtype);
                 cardtype.SetCardPanel(obj);
-                MonoBase.Get().GetMono().RunDelayTask(() => {
-                    cardsPanel.Anim_Down(1f);
-                }, 1f);
+                MonoBase.Get().GetMono().StartCoroutine(cardsPanel.WaitForAnim_Down());
             });
-        }, 0.25f);
-
+        }, cooldown);
+        cooldown = interval;
+    }
+    void CoolDownTimer()
+    {
+        if (cooldown > 0)
+            cooldown -= Time.deltaTime;
+        else if (cooldown < 0)
+            cooldown = 0;
+    }
+    protected override void onDestroy()
+    {
+        MonoBase.Get().GetMono().RemoveUpdateListener(CoolDownTimer);
+        Debug.Log("卡牌系统销毁完毕");
+    }
+    public CardSystem()
+    {
+        MonoBase.Get().GetMono().AddUpdateListener(CoolDownTimer);
     }
 }

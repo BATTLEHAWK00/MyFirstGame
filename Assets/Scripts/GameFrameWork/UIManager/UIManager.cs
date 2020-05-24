@@ -26,7 +26,20 @@ public class UIManager : BaseManager<UIManager>
     #endregion
     #region 公告消息
     private GameObject MsgBarPrefab = null;
-    private Stack<MsgBar> msgBarsStack = new Stack<MsgBar>();
+    private Queue<MsgBar> msgBarsStack = new Queue<MsgBar>();
+    private Transform messagePanelContent;
+    public Transform MessagePanelContent 
+    { 
+        get 
+        { 
+            return messagePanelContent; 
+        }
+        set
+        {
+            if (messagePanelContent == null)
+                messagePanelContent = value;
+        }
+    }
     public void MsgOnScreen(string text)    //广播消息
     {
         if (MsgBarPrefab == null)
@@ -34,7 +47,7 @@ public class UIManager : BaseManager<UIManager>
         ResManager.Get().LoadAsync(MsgBarPrefab, (obj) => {
             if (obj == null)
                 Debug.LogError("[错误]公告栏无法加载!");
-            obj.transform.SetParent(HUD.transform, false);
+            obj.transform.SetParent(messagePanelContent, false);
             obj.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
         });
     }
@@ -42,15 +55,14 @@ public class UIManager : BaseManager<UIManager>
     {
         if (msgBarsStack.Count > 0)
             msgBarsStack.Peek().OnPause();
-        msgBarsStack.Push(msgBar);
+        msgBarsStack.Enqueue(msgBar);
     }
     public void PopMsgBar()
     {
         if (msgBarsStack.Count <= 0)
             return;
-        MsgBar msgBar = msgBarsStack.Peek();
-        msgBar.Die();
-        msgBarsStack.Pop();
+        MsgBar msgBar = msgBarsStack.Dequeue();
+        //msgBar.Die();
         if (msgBarsStack.Count > 0)
             msgBarsStack.Peek().OnResume();
     }

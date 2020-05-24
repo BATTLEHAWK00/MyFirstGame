@@ -75,9 +75,7 @@ public class GameMain : MonoBehaviour
     {
         EventManager.Destroy();
         UIManager.Destroy();
-        HolyWaterSystem.Destroy();
-        RoundSystem.Destroy();
-        CardSystem.Destroy();
+        GameLogicSystemManager.Destroy();
     }
     public GameMain()
     {

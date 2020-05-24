@@ -5,6 +5,7 @@ public class Farmer : UnitBase
 {
     void AddHolyWaterPerRound(object info)
     {
+        Debug.Log(base._position);
         if(GetPosition().Position.y==0)
             HolyWaterSystem.Get().AddHolyWater(1);
     }

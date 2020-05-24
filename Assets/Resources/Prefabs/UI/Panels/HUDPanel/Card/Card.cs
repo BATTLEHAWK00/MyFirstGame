@@ -29,7 +29,7 @@ public class Card : MonoBehaviour,IPointerClickHandler
         Vector3 scale = transform.localScale;
         transform.localScale = scale * 0.25f;
         transform.DOScale(scale, 0.5f).SetEase(Ease.OutBack);
-        AudioManager.Get().PlaySound("Units/OnHeal",0.25f);
+        AudioManager.Get().PlaySound("UI/Cards/OnCardAdd",0.25f);
     }
 
     // Update is called once per frame

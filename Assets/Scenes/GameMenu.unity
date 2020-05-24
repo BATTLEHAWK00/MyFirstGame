@@ -535,6 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlackPanel: {fileID: 1570553967}
+  Title: {fileID: 1850636173}
 --- !u!1 &1850636173
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class HolyWaterSystem : BaseManager<HolyWaterSystem>
+public class HolyWaterSystem : GameLogicSystem<HolyWaterSystem>
 { 
     public int HolyWater { get; private set; } = 0;
     public bool CostHolyWater(int amount)

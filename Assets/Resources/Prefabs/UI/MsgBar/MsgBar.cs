@@ -1,24 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class MsgBar : MonoBehaviour
 {
     private float seconds = 0;
     [Range(1,10f)]
     public float RemainTime = 1f;
     private bool IsPaused=false;
-    private Animator animator;
-    private RectTransform rectTransform;
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-        rectTransform = GetComponent<RectTransform>();
-        UIManager.Get().PushMsgBar(this);
-    }
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 scale = transform.localScale;
+        transform.localScale = scale * 0.25f;
+        transform.DOScale(scale,0.5f).SetEase(Ease.OutBack);
+        GetComponent<CanvasGroup>().alpha = 0f;
+        GetComponent<CanvasGroup>().DOFade(1f, 0.5f);
         seconds = RemainTime;
     }
 
@@ -26,7 +23,7 @@ public class MsgBar : MonoBehaviour
     void Update()
     {
         if (seconds <= 0)
-            Die();
+            End();
         if(!IsPaused)
             seconds -= Time.deltaTime;
     }
@@ -39,14 +36,12 @@ public class MsgBar : MonoBehaviour
         IsPaused = false;
         seconds = 0.25f;
     }
-    public void Die()
+    public void End()
     {
-        if(animator!=null)
-            animator.Play("Disappear");
-    }
-    public void destroy()
-    {
-        UIManager.Get().PopMsgBar();
-        Destroy(gameObject);
+        Vector3 scale = transform.localScale;
+        GetComponent<CanvasGroup>().DOFade(0f, 0.4f);
+        transform.DOScale(scale*0.25f, 0.5f).OnComplete(()=> {
+            Destroy(gameObject);
+        });
     }
 }

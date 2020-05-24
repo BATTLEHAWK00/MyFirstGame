@@ -7,13 +7,20 @@ using DG.Tweening;
 public class StartGame : MonoBehaviour
 {
     public GameObject BlackPanel;
+    public GameObject Title;
     private void Awake()
     {
         AudioManager.Get().PlayBGM("MainMenu");
     }
     public void Load()
     {
-        transform.Find("Button").gameObject.SetActive(false);
+        Transform button = transform.Find("Button");
+        button.gameObject.AddComponent<CanvasGroup>().alpha = 1f;
+        button.DOScale(button.localScale*0.25f,0.5f).SetEase(Ease.InBack).easeOvershootOrAmplitude=2f;
+        button.gameObject.GetComponent<CanvasGroup>().DOFade(0, 0.5f).OnComplete(()=> 
+        { 
+            button.gameObject.SetActive(false);
+        });
         MonoBase.Get().GetMono().RunDelayTask(() =>
         {
             StartCoroutine(LoadScene("GameMain"));
@@ -30,6 +37,8 @@ public class StartGame : MonoBehaviour
             slider.value = value;
         }
         bar.transform.SetParent(GameObject.Find("Canvas").transform,false);
+        bar.GetComponent<CanvasGroup>().alpha = 0;
+        yield return bar.GetComponent<CanvasGroup>().DOFade(1f, 0.5f).WaitForCompletion();
         yield return new WaitForSeconds(1f);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name);
         asyncOperation.allowSceneActivation = false;
@@ -53,9 +62,9 @@ public class StartGame : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
-        BlackPanel.GetComponent<Image>().DOFade(1f, 0.5f).OnComplete(() => {
-            asyncOperation.allowSceneActivation = true;
-        });
+        yield return BlackPanel.GetComponent<Image>().DOFade(1f, 0.5f).WaitForCompletion();
+        yield return bar.GetComponent<CanvasGroup>().DOFade(0f, 0.5f).WaitForCompletion();
+        asyncOperation.allowSceneActivation = true;
         yield break;
     }
 }

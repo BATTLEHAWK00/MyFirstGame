@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 回合系统
 /// </summary>
-public class RoundSystem : BaseManager<RoundSystem>
+public class RoundSystem : GameLogicSystem<RoundSystem>
 {
     #region 私有属性
     private bool isWaiting = false; //是否正在等待玩家

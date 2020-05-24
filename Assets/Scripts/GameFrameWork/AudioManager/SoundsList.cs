@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSounds
+public static partial class SoundsList
 {
-    public UnitSounds UnitSounds = new UnitSounds();
+
 }

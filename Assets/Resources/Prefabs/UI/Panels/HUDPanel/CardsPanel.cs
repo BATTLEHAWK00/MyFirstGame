@@ -9,8 +9,11 @@ public class CardsPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField]
     private Transform Content = null;
     const float HideAmount = 0.75f;
+    [SerializeField]
+    private bool open;
     float width;
     float originalPosition;
+    [SerializeField]
     bool OnMouse;
     private void Awake()
     {
@@ -18,7 +21,7 @@ public class CardsPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         originalPosition = transform.position.y;
         CardSystem.Get().CardContent = Content;
         CardSystem.Get().SetCardsPanel(this);
-        Debug.Log(originalPosition);
+        //Debug.Log(originalPosition);
         Vector3 po = transform.position;
         po.y = originalPosition - width * HideAmount;
         transform.position = po;
@@ -44,26 +47,37 @@ public class CardsPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     public void Anim_Up(float duration)
     {
+        if (open)
+            return;
         transform.DOMoveY(originalPosition, duration).OnComplete(() =>
         {
             Vector3 vector = transform.position;
             vector.y = originalPosition;
             transform.position = vector;
-            Debug.Log(transform.position.y);
+            open = true;
+            //EDebug.Log(transform.position.y);
         });
     }
     public void Anim_Down(float duration)
     {
-        MonoBase.Get().GetMono().RunDelayTask(() =>
-        {
-            if (!OnMouse)
-                transform.DOMoveY(originalPosition - width * HideAmount, 0.5f).SetEase(Ease.OutQuad);
-        }, duration);
+        if (!open)
+            return;
+        transform.DOMoveY(originalPosition - width * HideAmount, 0.5f).SetEase(Ease.OutQuad).OnComplete(()=> {
+            open = false;
+        });
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         //return;
         OnMouse = false;
-        Anim_Down(0.5f);
+        StartCoroutine(WaitForAnim_Down());
+    }
+    public IEnumerator WaitForAnim_Down()
+    {
+        while (CardSystem.Get().Busy())
+            yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        if (!OnMouse)
+            Anim_Down(1f);
     }
 }
