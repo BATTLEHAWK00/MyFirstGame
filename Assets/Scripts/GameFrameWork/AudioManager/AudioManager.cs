@@ -129,6 +129,25 @@ public class AudioManager : BaseManager<AudioManager>
             MonoBase.Get().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
         });
     }
+    public IEnumerator PlaySoundAndWait(string name, float volume)
+    {
+        bool finished = false;
+        ResManager.Get().LoadAsync<AudioClip>("Audio/Sounds/" + name, (clip) => {
+            AudioSource audioSource = obj_Audio.AddComponent<AudioSource>();
+            sound_source.Add(audioSource);
+            audioSource.clip = clip;
+            audioSource.volume = volume;
+            audioSource.outputAudioMixerGroup = Sounds_MixerGroup;
+            audioSource.Play();
+            finished = true;
+            MonoBase.Get().GetMono().StartCoroutine(AudioTimeToLive(audioSource));
+        });
+        while (!finished)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield break;
+    }
     IEnumerator AudioTimeToLive(AudioSource audioSource)
     {
         while (audioSource.isPlaying)

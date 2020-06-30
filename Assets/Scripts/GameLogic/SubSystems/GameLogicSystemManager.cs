@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class GameLogicSystemManager : BaseManager<GameLogicSystemManager>
 {
-    List<GameLogicSystem<object>> systemsList = new List<GameLogicSystem<object>>();
-    public bool AddSystem(GameLogicSystem<object> system)
+    List<IGameLogicSystem> systemsList = new List<IGameLogicSystem>();
+    public bool AddSystem(IGameLogicSystem system)
     {
-        Debug.Log(system.GetType().Name);
         if (systemsList.Contains(system))
             return false;
         systemsList.Add(system);
         return true;
     }
-    public void RemoveSystem(GameLogicSystem<object> system)
+    public void RemoveSystem(IGameLogicSystem system)
     {
         systemsList.Remove(system);
     }

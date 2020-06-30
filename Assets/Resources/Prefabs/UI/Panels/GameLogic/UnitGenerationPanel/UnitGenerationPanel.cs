@@ -32,6 +32,7 @@ public class UnitGenerationPanel : PanelBase
         if(unitModels.ContainsKey(Current) && unitModels[Current] != null)
         {
             unitModels[Current].SetActive(true);
+            unitText.text = unitModels[Current].GetComponent<UnitBase>().UnitName;
             return;
         }
         ResManager.Get().LoadAsync<GameObject>(unitPrefabDic[Current], (obj) =>

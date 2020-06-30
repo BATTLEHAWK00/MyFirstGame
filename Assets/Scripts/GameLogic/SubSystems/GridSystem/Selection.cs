@@ -22,7 +22,7 @@ public class UnitSelection : BaseManager<UnitSelection>
         {
             end = cubeCell;
             end.GetComponent<MeshRenderer>().material.color = Color.blue;
-            UnitAttack.Get().AttackTarget(start.CurrentUnit, end.CurrentUnit);
+            start.CurrentUnit.Attack(end.CurrentUnit);
             ClearSelection();
         }
             

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameLogicSystem<T>:BaseManager<T> where T:new()
+public interface IGameLogicSystem 
+{
+    void ForceDestroy();
+}
+public abstract class GameLogicSystem<T>:BaseManager<T>,IGameLogicSystem where T:new()
 {
     public GameLogicSystem()
     {
         Debug.Log(this.GetType().Name+"启动");
-        //GameLogicSystemManager.Get().AddSystem(this as GameLogicSystem<object>);
+        GameLogicSystemManager.Get().AddSystem(this as IGameLogicSystem);
     }
 }

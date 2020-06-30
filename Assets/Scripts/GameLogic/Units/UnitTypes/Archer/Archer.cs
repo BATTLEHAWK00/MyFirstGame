@@ -20,9 +20,10 @@ public class Archer : UnitBase
         base.MaxHP = 3;
         base.HP = MaxHP;
         base.Description = "弓箭手";
-        base.Attack = 2;
+        base.Damage = 2;
         base.AttackRange = 3;
         base.HolyWaterCost = 1;
+        base.attackBase = new LongRangeAttack();
     }
 }
 [System.Serializable]

@@ -11,5 +11,6 @@ public class Witcher : UnitBase
         base.HP = MaxHP;
         base.Description = "法师";
         base.HolyWaterCost = 2;
+        base.attackBase = new LongRangeAttack();
     }
 }

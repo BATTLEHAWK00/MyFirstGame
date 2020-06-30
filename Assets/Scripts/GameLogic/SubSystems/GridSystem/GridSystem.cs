@@ -58,11 +58,11 @@ public class GridSystem : MonoBehaviour
         UIManager.Get().GetPanel(PanelTypes.HUDPanel).OnResume();
         yield break;
     }
-    private void Update()
-    {
-        //for(int i=0;i<RowCounter.Count;i++)
-        //    Debug.Log(string.Format("第{0}行单位数:{1}", i,RowCounter[i]));
-    }
+    //private void Update()
+    //{
+    //    //for(int i=0;i<RowCounter.Count;i++)
+    //    //    Debug.Log(string.Format("第{0}行单位数:{1}", i,RowCounter[i]));
+    //}
     void CreateCell(int x, int z, int i) //创建单元格
     {
         Vector3 position;

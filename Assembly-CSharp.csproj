@@ -83,6 +83,7 @@
     <Compile Include="Assets\Resources\Prefabs\UI\Panels\HUDPanel\MessagePanel.cs" />
     <Compile Include="Assets\Resources\Prefabs\UI\Panels\HUDPanel\RoundsPanel.cs" />
     <Compile Include="Assets\Resources\Prefabs\UI\Unit\MessageText\MessageText.cs" />
+    <Compile Include="Assets\Resources\Prefabs\Units\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Common\Common.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\AudioManager.cs" />
     <Compile Include="Assets\Scripts\GameFrameWork\AudioManager\SoundsList.cs" />
@@ -114,8 +115,11 @@
     <Compile Include="Assets\Scripts\GameLogic\UI\PanelTypes.cs" />
     <Compile Include="Assets\Scripts\GameLogic\UI\Unit\HP_Bar\HP_Bar.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\Common\UnitGeneration.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Animations\OnAttack.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Animations\OnDamage.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\AudioList.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\UnitBase.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Attack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Buff.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Debug.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Events.cs" />
@@ -129,6 +133,8 @@
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\Buffs\Buff\MultiAttack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\Buffs\Buff\Triumph.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\Buffs\Debuff\Poison.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\UnitAttack\AttackTypes\LongRange.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\UnitAttack\AttackTypes\ShortRange.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\UnitAttack\UnitAttack.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes\Archer\Archer.cs" />
     <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes\Farmer\Farmer.cs" />

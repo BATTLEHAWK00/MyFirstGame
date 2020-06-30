@@ -23,7 +23,7 @@ public abstract partial class UnitBase : MonoBehaviour
     #region 外部访问器
     public string Description { get; protected set; }    //单位描述
     public int AttackRange { get; protected set; } = 2;  //单位攻击距离
-    public int Attack { get; protected set; } = 1;    //单位攻击力
+    public int Damage { get; protected set; } = 1;    //单位攻击力
     public int MaxHP { get; protected set; }     //最大生命值
     public string UnitName { get; protected set; }   //单位名
     public UnitType UnitType { get { return unitType; } } //单位类型

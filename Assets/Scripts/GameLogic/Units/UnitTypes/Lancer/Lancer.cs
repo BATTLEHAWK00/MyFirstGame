@@ -11,5 +11,6 @@ public class Lancer : UnitBase
         base.HP = MaxHP;
         base.Description = "长矛手";
         base.HolyWaterCost = 2;
+        base.attackBase = new ShortRangeAttack();
     }
 }

@@ -21,6 +21,7 @@ public class Farmer : UnitBase
         base.HP = MaxHP;
         base.Description = "农民";
         base.HolyWaterCost = 1;
+        base.attackBase = new ShortRangeAttack();
     }
 }
 public class FarmerData

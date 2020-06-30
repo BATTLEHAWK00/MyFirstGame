@@ -10,7 +10,7 @@ partial class UnitBase:IPointerClickHandler,IPointerEnterHandler,IPointerExitHan
     {
         _position.OnPointerEnter(eventData);
         GetComponent<ShowOutline>().enabled = true;
-        UnityEditor.Selection.activeGameObject = gameObject;
+        //UnityEditor.Selection.activeGameObject = gameObject;
         if (!dead)
             ShowHP();
     }

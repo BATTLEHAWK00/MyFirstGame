@@ -25,17 +25,18 @@ public class CubeCell : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     {
         if (Position.y <= 1)
             isLocal = true;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
     }
-    // Update is called once per frame
-    void Update()
-    {
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+        
+    //}
+    //// Update is called once per frame
+    //void Update()
+    //{
 
-    }
+    //}
     public void SetPosition(int x,int y)  //初始化单元格坐标
     {
         _Position.x = x;
