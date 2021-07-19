@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Mirror;
 
-public class MonoManager : NetworkBehaviour
+public class MonoManager : MonoBehaviour
 {
     private UnityAction action_OnUpdate;
     // Start is called before the first frame update

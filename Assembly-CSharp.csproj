@@ -63,7 +63,6 @@
      <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Debug.cs" />
      <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes\Witcher\Witcher.cs" />
      <Compile Include="Assets\Scripts\GameLogic\SubSystems\GameLogicSystemManager.cs" />
-     <Compile Include="Assets\Scripts\GameFrameWork\NetworkManager\GameNetwork.cs" />
      <Compile Include="Assets\Scripts\GameLogic\Units\UnitLogic\Buffs\Buff.cs" />
      <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Buff.cs" />
      <Compile Include="Assets\Scripts\GameLogic\Units\UnitBase\Unit_Attack.cs" />
@@ -110,7 +109,6 @@
      <Compile Include="Assets\DoTween\Modules\DOTweenModulePhysics.cs" />
      <Compile Include="Assets\Resources\Prefabs\Units\Projectile\Projectile.cs" />
      <Compile Include="Assets\Resources\Prefabs\UI\Panels\HUDPanel\RoundsPanel.cs" />
-     <Compile Include="Assets\Resources\Prefabs\Network\Player\Player.cs" />
      <Compile Include="Assets\Scripts\GameLogic\Units\UnitTypes\Rider\Rider.cs" />
      <Compile Include="Assets\DoTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\DoTween\Modules\DOTweenModuleUI.cs" />
@@ -133,11 +131,8 @@
      <Compile Include="Assets\Scripts\GameLogic\GameMain\Camera\SetCameraPos.cs" />
      <Compile Include="Assets\Scripts\GameFrameWork\ResManager\ResManager.cs" />
      <None Include="Assets\DoTween\readme.txt" />
-     <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\version.txt" />
      <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
-     <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Readme.txt" />
      <None Include="Assets\QuickOutline\Readme.txt" />
-     <None Include="Assets\Scripts\GameFrameWork\Network(Mirror)\Plugins\Mono.Cecil\License.txt" />
      <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.11f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -361,23 +356,11 @@
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.11f1c1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
- <Reference Include="Mono.CecilX.Rocks">
- <HintPath>D:/UserFile/YXL/Desktop/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
- </Reference>
- <Reference Include="Mono.CecilX.Pdb">
- <HintPath>D:/UserFile/YXL/Desktop/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
- </Reference>
- <Reference Include="Mono.CecilX">
- <HintPath>D:/UserFile/YXL/Desktop/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
- </Reference>
  <Reference Include="DOTween">
  <HintPath>D:/UserFile/YXL/Desktop/MyFirstGame/Assets/DoTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>D:/UserFile/YXL/Desktop/MyFirstGame/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
- </Reference>
- <Reference Include="Mono.CecilX.Mdb">
- <HintPath>D:/UserFile/YXL/Desktop/MyFirstGame/Assets/Scripts/GameFrameWork/Network(Mirror)/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.11f1c1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -756,38 +739,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Mirror.csproj">
-      <Project>{f65d217e-560b-cbf2-db29-e94bfda15e55}</Project>
-      <Name>Mirror</Name>
-    </ProjectReference>
-    <ProjectReference Include="Ninja.WebSockets.csproj">
-      <Project>{895cfe66-3311-74f6-234f-59aa3f03a95e}</Project>
-      <Name>Ninja.WebSockets</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Editor.csproj">
-      <Project>{717b1723-d78c-f160-8b5f-812c3df778ef}</Project>
-      <Name>Mirror.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Examples.csproj">
-      <Project>{cd821a95-dcc4-745b-98a3-68014397698b}</Project>
-      <Name>Mirror.Examples</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.CompilerSymbols.csproj">
-      <Project>{0b3431c9-549c-0c05-52a9-7e49d67f557d}</Project>
-      <Name>Mirror.CompilerSymbols</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Authenticators.csproj">
-      <Project>{bc535a2a-8f1e-494d-06cf-2fd1dd408e44}</Project>
-      <Name>Mirror.Authenticators</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Weaver.csproj">
-      <Project>{921feb70-8767-98c1-77fa-99fcbb588e82}</Project>
-      <Name>Mirror.Weaver</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Components.csproj">
-      <Project>{5b02027c-c4a2-c2b7-00fe-27e2c00f238a}</Project>
-      <Name>Mirror.Components</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
